@@ -1,17 +1,20 @@
 import './App.css'
 import { Routes, Route, HashRouter } from "react-router-dom";
-import { Header } from './components/structure/Header'
+import { Header } from './components/structure/Header/Header'
+import { ModeProvider } from './providers/mode';
 
 function App() {
 
   return (
     <>
-      <HashRouter>
-        <Header />
-        <Routes>
+      <ModeProvider>
+        <HashRouter>
+          <Header />
+          <Routes>
 
-        </Routes>
-      </HashRouter>
+          </Routes>
+        </HashRouter>
+      </ModeProvider>
     </>
   )
 }
