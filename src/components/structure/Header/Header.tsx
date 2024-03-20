@@ -21,35 +21,35 @@ export const Header = () => {
                     styles["header__container"],
                     styles[mode]
                 )}>
-                    <div className={styles["logo"]}>
-                        <Link className={styles["logo__link"]} to="/">
-                            <div className={styles["logo__link__container"]}>
+                    <div className={styles["header__logo"]}>
+                        <Link className={styles["header__logo-link"]} to="/">
+                            <div className={styles["header__logo-link-container"]}>
                                 {mode === "light" ? (
                                     <img src="/images/icons/dairy/diary-light.png" alt="diary-daze logo" className={classnames(
-                                        styles["logo__img"],
+                                        styles["header__logo-img"],
                                         styles[mode])} />
                                 ) : (
                                     <img src="/images/icons/dairy/diary-dark.png" alt="diary-daze logo" className={classnames(
-                                        styles["logo__img"],
+                                        styles["header__logo-img"],
                                         styles[mode]
                                     )} />
                                 )}
                             </div>
                         </Link>
                     </div>
-                    <div className={styles["global-nav__container"]}>
-                        <nav className={styles["global-nav"]}>
-                            <ul className={styles["global-nav__list"]}>
+                    <div className={styles["header-nav__container"]}>
+                        <nav className={styles["header-nav"]}>
+                            <ul className={styles["header-nav__list"]}>
                                 <li>
                                     <Link
                                         className={classnames(
-                                            styles["global-nav__list-item-link"],
-                                            styles["global-nav__list-item-link--home"],
+                                            styles["header-nav__list-item-link"],
+                                            styles["header-nav__list-item-link--home"],
                                             styles[mode])}
                                         to="/"
                                     >
                                         <div className={classnames(
-                                            styles["global-nav__list-item"],
+                                            styles["header-nav__list-item"],
                                             { [styles.active]: location.pathname === '/' }
                                         )}>Home</div>
                                     </Link>
@@ -57,13 +57,13 @@ export const Header = () => {
                                 <li>
                                     <Link
                                         className={classnames(
-                                            styles["global-nav__list-item-link"],
+                                            styles["header-nav__list-item-link"],
                                             styles[mode]
                                         )}
                                         to="/login"
                                     >
                                         <div className={classnames(
-                                            styles["global-nav__list-item"],
+                                            styles["header-nav__list-item"],
                                             { [styles.active]: location.pathname === '/login' || location.pathname === '/sign-up' }
                                         )}>Login</div>
                                     </Link>
@@ -78,29 +78,29 @@ export const Header = () => {
 
                                 className={styles["header__account-button"]}
                             >
-                                <img src="/images/icons/user/user-light.png" className={styles["header__account-icon"]} />
+                                <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
                             </div>
                         ) : (
                             <div
                                 className={styles["header__account-button"]}
                             >
-                                <img src="/images/icons/user/user-dark.png" className={styles["header__account-icon"]} />
+                                <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
                             </div>
                         )}
                     </div>
-                    <div className={styles["global-mode__container"]}>
+                    <div className={styles["header-mode__container"]}>
                         {mode === "light" ? (
                             <button
 
-                                onClick={toggleMode} className={styles["global-mode__button"]}
+                                onClick={toggleMode} className={styles["header-mode__button"]}
                             >
-                                <img src="/images/icons/mode/day-mode-light.png" className={styles["global-mode__icon"]} />
+                                <img src="/images/icons/mode/day-mode-light.png" className={styles["header-mode__icon"]} />
                             </button>
                         ) : (
                             <button
-                                onClick={toggleMode} className={styles["global-mode__button"]}
+                                onClick={toggleMode} className={styles["header-mode__button"]}
                             >
-                                <img src="/images/icons/mode/night-mode-dark.png" className={styles["global-mode__icon"]} />
+                                <img src="/images/icons/mode/night-mode-dark.png" className={styles["header-mode__icon"]} />
                             </button>
                         )}
                     </div>

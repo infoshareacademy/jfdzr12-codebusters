@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { ModeContext } from "../../../providers/mode";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../../../../firebase-config.js";
+import { auth } from "../../../../firebase-config";
 
 interface UserModalProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +14,7 @@ export const UserModal = ({ setIsModalOpen }: UserModalProps) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
 
-    const handlerSignOut = () => {
+    const handlerLogOut = () => {
         signOut(auth)
             .then(() => {
                 console.log("User signed out successfully");
@@ -27,18 +27,18 @@ export const UserModal = ({ setIsModalOpen }: UserModalProps) => {
 
     return (
         <div className={classnames(
-            styles["account-modal__container"],
+            styles["user-modal__container"],
             styles[mode]
         )}>
             <div className={classnames(
-                styles["account-modal__list-container"],
+                styles["user-modal__list-container"],
                 styles[mode]
             )}>
-                <ul className={styles["account-modal__list"]} onClick={() => setIsModalOpen(false)}>
+                <ul className={styles["user-modal__list"]} onClick={() => setIsModalOpen(false)}>
                     <li className={classnames(
-                        styles["account-modal__list-option"],
+                        styles["user-modal__list-option"],
                         styles[mode]
-                    )} onClick={handlerSignOut}>Sign out</li>
+                    )} onClick={handlerLogOut}>Log out</li>
                 </ul>
             </div>
         </div>
