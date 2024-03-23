@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import classnames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config.js";
 import { ModeContext } from "@/providers/mode.js";
@@ -37,6 +37,17 @@ export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
         )}>
             <div className={classnames(styles["login__form"], styles[mode])}>
                 <AuthForm submitText="Login" handleSubmit={handleSubmit}></AuthForm>
+                <div className="login-form__register-container">
+                    <p className={classnames(
+                        styles["login-form__register-text"],
+                        styles[mode]
+                    )}>Don't have account yet? <Link to="/register" className={classnames(
+                        styles["login-form__register-link"],
+                        styles[mode]
+                    )} onClick={() => { setIsLoginModalOpen(false) }}>
+                            Register
+                        </Link></p>
+                </div>
             </div>
         </div>
 
