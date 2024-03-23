@@ -11,9 +11,8 @@ function App() {
       <ModeProvider>
         <HashRouter>
           <Header />
-          <Main />
           <Routes>
-
+            <Route path="/" element={<Main/>}> </Route>
           </Routes>
         </HashRouter>
       </ModeProvider>
