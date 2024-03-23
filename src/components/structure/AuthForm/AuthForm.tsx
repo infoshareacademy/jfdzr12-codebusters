@@ -2,8 +2,6 @@ import { useContext, useState, FormEvent } from "react";
 import styles from "./AuthForm.module.css";
 import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
-
 interface AuthFormProps {
     submitText: string;
     isPasswordHidden?: boolean;

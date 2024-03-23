@@ -23,7 +23,6 @@ export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
                 console.log(response);
                 navigate("/");
                 setIsLoginModalOpen(false);
-
             })
             .catch((error) => {
                 console.error("Error signing in:", error);
