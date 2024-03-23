@@ -2,12 +2,10 @@ import { useContext } from "react";
 import classnames from "classnames";
 import styles from "./Footer.module.css";
 import { ModeContext } from "@/providers/mode";
-import fb from '../../../../public/images/icons/footer/facebook.png'
-import twitter from '../../../../public/images/icons/footer/twitter.png'
-import linkedin from '../../../../public/images/icons/footer/linkedin.png'
-import insta from '../../../../public/images/icons/footer/instagram.png'
-
-
+import fb from '/images/icons/footer/facebook.png'
+import twitter from '/images/icons/footer/twitter.png'
+import linkedin from '/images/icons/footer/linkedin.png'
+import insta from '/images/icons/footer/instagram.png'
 
 export const Footer = () => {
     const { mode, } = useContext(ModeContext);
