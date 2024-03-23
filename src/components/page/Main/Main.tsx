@@ -10,7 +10,7 @@ export const Main = () => {
 <Page>
         
         <h1 className={classNames(
-            styles["main__headline-name"],
+            styles["main__headline"],
             styles[mode])}>
             <span>D</span>
             <span>i</span>
@@ -23,17 +23,25 @@ export const Main = () => {
             <span>z</span>
             <span>e</span>
             </h1>
-        <div className={styles["main__paper-area"]}>
-            <p className={styles["main__handwriting"]}>keep a private online diary</p>
-            <p className={styles["main__normal-text"]}>You want to keep your thoughts in a place where no one can find them? Or capture great ideas so they do not get lost? The online Diary Daze offers you a safe place for your very personal topics.</p>
-            <img className={styles["main__book-image"]} src="images/main/open-book.png" />
-            <p className={styles["main__strong-text"]}>the safest place for your thoughts</p>
+        <div className={classNames(
+            styles["main__paper-area"],
+            styles[mode])
+        }>
+            <p className={classNames(
+                styles["main__handwriting"],
+            styles[mode])}>keep a private online diary</p>
+            <p className={classNames(
+                styles["main__normal-text"],
+            styles[mode])}>You want to keep your thoughts in a place where no one can find them? Or capture great ideas so they do not get lost? The online Diary Daze offers you a safe place for your very personal topics.</p>
+           {mode ==="light" ? (
+            <img className={styles["main__book-image"]} src="images/main/open-book.png" />) : (<img className={styles["main__book-image"]}  src="images/main/open-lightbook.png" />)}
+            <p className={classNames(styles["main__strong-text"],
+            styles[mode])}>the safest place for your thoughts</p>
         </div>
         <div className={styles["main__headline-area"]}>
-            <img className={classNames(
-                styles["main__feather-image"],
-                styles[mode])} 
-                src="images/main/feather-pen.png" /> 
+           {mode ==="light" ? ( <img className={styles["main__feather-image"]} 
+                src="images/main/feather-pen.png" />) : (<img className={styles["main__feather-image"]} 
+                src="images/main/feather-lightpen.png" />) }
         </div>
         </Page>
         )}

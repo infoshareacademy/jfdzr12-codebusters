@@ -8,3 +8,9 @@
   align-items: center;
   flex-direction: column;
 }
+
+.page-container.dark {
+
+  background-color: var(--indigo-deep-dark);
+  border-radius: 5px;
+}

@@ -2,7 +2,7 @@
   --white: #ffffff;
   --black: #000000;
   --beige: #c9bfc1;
-  --beige-dark: #847b7d;
+  --beige-dark: #6c6466;
   --beige-light: #f1eced;
   --violet-light: #c5c5ff;
   --violet-medium: #a4a4f7;
@@ -10,6 +10,7 @@
   --violet-deep-dark: #393958;
   --indigo-medium-dark: #212844;
   --indigo-deep-dark: #060d2a;
+  --indigo-black: #040819;
   --pink-light: #fcf4f6;
   --pink-medium: #ff9fb3;
   --pink-dark: #cd8090;
@@ -38,5 +39,5 @@ h3 {
 
 body.dark {
   color: var(--violet-deep-dark);
-  background-color: var(--black);
+  background-color: var(--indigo-black);
 }
