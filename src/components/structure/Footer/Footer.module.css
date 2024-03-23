@@ -14,13 +14,3 @@
     text-transform: uppercase;
   }
   
-  .light {
-    background-color: var(--box-dark-color-light);
-    color: var(--main-text-color-light);
-  }
-  
-  .dark {
-    background-color: var(--box-dark-color-dark);
-    color: var(--main-text-color-dark);
-  }
-  
