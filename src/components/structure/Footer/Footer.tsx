@@ -2,6 +2,10 @@ import { useContext } from "react";
 import classnames from "classnames";
 import styles from "./Footer.module.css";
 import { ModeContext } from "@/providers/mode";
+import fb from '../../../../public/images/icons/footer/facebook.png'
+import twitter from '../../../../public/images/icons/footer/twitter.png'
+import linkedin from '../../../../public/images/icons/footer/linkedin.png'
+import insta from '../../../../public/images/icons/footer/instagram.png'
 
 
 
@@ -33,6 +37,19 @@ export const Footer = () => {
                             <p><img src={twitter} alt="" /></p>
                             <p><img src={linkedin} alt="" /></p>
                         </div>
+                    </div>
+                </div>
+                <hr></hr>
+                <div className={classnames(styles["sb_footer-below"], styles[mode])}>
+                    <div className={classnames(styles["sb_footer-copyright"], styles[mode])}>
+                        <p>
+                            @{new Date().getFullYear()} Diary-Daze All rights reserved. &copy;
+                        </p>
+                    </div>
+                    <div className={classnames(styles["sb_footer-below-links"], styles[mode])}>
+                        <a href="/terms"><div><p>Terms & Conditions</p></div></a>
+                        <a href="/security"><div><p>Security</p></div></a>
+                        <a href="/cookie"><div><p>Cookie declaration</p></div></a>
                     </div>
                 </div>
             </div>
