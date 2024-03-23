@@ -4,14 +4,21 @@ import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
+import { LoginModal } from "../LoginModal/LoginModal";
 
 export const Header = () => {
     const { mode, toggleMode } = useContext(ModeContext);
     const location = useLocation();
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
     const toggleAccountModal = (): void => {
-        setIsModalOpen((prevState) => (prevState === false ? true : false));
+        setIsUserModalOpen((prevState) => (prevState === false ? true : false));
+    };
+
+    const toggleLoginModal = (): void => {
+        setIsLoginModalOpen((prevState) => (prevState === false ? true : false));
     };
 
     return (
@@ -55,18 +62,18 @@ export const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link
+                                    <div
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
                                             styles[mode]
                                         )}
-                                        to="/login"
+                                        onClick={toggleLoginModal}
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
                                             { [styles.active]: location.pathname === '/login' || location.pathname === '/sign-up' }
                                         )}>Login</div>
-                                    </Link>
+                                    </div>
                                 </li>
                             </ul>
                         </nav>
@@ -104,7 +111,8 @@ export const Header = () => {
                             </button>
                         )}
                     </div>
-                    {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}></UserModal>}
+                    {isUserModalOpen && <UserModal setIsUserModalOpen={setIsUserModalOpen}></UserModal>}
+                    {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}></LoginModal>}
                 </div>
             </header >
         </>)

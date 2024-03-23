@@ -1,5 +1,4 @@
-import React from "react";
-import {Page} from "../../structure/Page/Page"
+import { Page } from "../../structure/Page/Page"
 import styles from "./Main.module.css"
 
 export const Main = () => {
