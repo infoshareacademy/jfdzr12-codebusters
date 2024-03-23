@@ -9,3 +9,9 @@
   flex-direction: column;
   min-height: 750px;
 }
+
+.page-container.dark {
+
+  background-color: var(--indigo-deep-dark);
+  border-radius: 5px;
+}
