@@ -1,0 +1,18 @@
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  padding-top: 20px;
+}
+
+.auth-form__submit-button-container {
+  color: var(--white);
+  background-color: var(--violet-medium);
+  border-radius: 8px;
+}
+
+.auth-form__submit-button {
+  padding: 10px;
+}

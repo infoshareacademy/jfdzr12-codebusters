@@ -7,10 +7,10 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 
 interface UserModalProps {
-    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const UserModal = ({ setIsModalOpen }: UserModalProps) => {
+export const UserModal = ({ setIsUserModalOpen }: UserModalProps) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export const UserModal = ({ setIsModalOpen }: UserModalProps) => {
         signOut(auth)
             .then(() => {
                 console.log("User signed out successfully");
-                navigate("/login");
+                navigate("/");
             })
             .catch(error => {
                 console.error("Sign out failed:", error.message);
@@ -34,7 +34,7 @@ export const UserModal = ({ setIsModalOpen }: UserModalProps) => {
                 styles["user-modal__list-container"],
                 styles[mode]
             )}>
-                <ul className={styles["user-modal__list"]} onClick={() => setIsModalOpen(false)}>
+                <ul className={styles["user-modal__list"]} onClick={() => setIsUserModalOpen(false)}>
                     <li className={classnames(
                         styles["user-modal__list-option"],
                         styles[mode]
