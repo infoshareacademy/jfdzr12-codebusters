@@ -12,8 +12,8 @@
 }
 
 .user-modal__list-container {
-  width: 200px;
-  min-height: 200px;
+  min-width: 200px;
+  margin: 20px;
 }
 
 .user-modal__list {
