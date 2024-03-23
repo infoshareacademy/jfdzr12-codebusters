@@ -1,0 +1,26 @@
+.footer__container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer__text {
+    font-size: 0.9rem;
+  }
+  
+  .footer__text-company {
+    text-transform: uppercase;
+  }
+  
+  .light {
+    background-color: var(--box-dark-color-light);
+    color: var(--main-text-color-light);
+  }
+  
+  .dark {
+    background-color: var(--box-dark-color-dark);
+    color: var(--main-text-color-dark);
+  }
+  
