@@ -1,13 +1,20 @@
-import { useState } from 'react'
 import './App.css'
-import { Main } from './components/page/Main/Main'
+import { Routes, Route, HashRouter } from "react-router-dom";
+import { Header } from './components/structure/Header/Header'
+import { ModeProvider } from './providers/mode';
 
 function App() {
-  const [count, setCount] = useState(null)
 
   return (
     <>
-      <Main></Main>
+      <ModeProvider>
+        <HashRouter>
+          <Header />
+          <Routes>
+
+          </Routes>
+        </HashRouter>
+      </ModeProvider>
     </>
   )
 }
