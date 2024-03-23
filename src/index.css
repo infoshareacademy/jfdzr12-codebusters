@@ -74,3 +74,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: Roboto, Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+body.light {
+  background-color: white;
+}
+
+body.dark {
+  background-color: #161419;
+}

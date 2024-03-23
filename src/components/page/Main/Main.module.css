@@ -1,14 +1,66 @@
 
+.two-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 100px 0 200px 0;
+  
+}
+
+
+
 .headline-name {
-    margin: 100px auto 80px;
-    text-align: center;
-    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 2.6rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 50vh;
+  font-size: 40px;
+  transform: translateY(-50%);
+  margin: 170px 170px 30px 170px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--beige-dark);
+  font-family:'Times New Roman', Times, serif;
+  transition: transform .3s ease-in-out;
+  
+  &:hover {
+    transform: rotateX(35deg), translateY(-50%);   
+    span {
+      color: var(--violet-dark);
+      &:nth-child(odd) {
+        transform: skewY(15deg);      
+      }
+      &:nth-child(even) {
+        transform: skewY(-15deg);      
+        background-color: var(--violet-light);
+      }
+    }
+  }
+  > span {
+    display: block;
+    background-color: var(--pink-light);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    &:first-child {
+      /* border-radius: 5px 0 0 5px; */
+    }
+  }
+}
+
+.handwriting-text {
+    font-family: "Satisfy", cursive;
+    font-size:40px;
+    color: var(--violet-dark)
 }
 
 .normal-text {
+color:var(--indigo-medium-dark);
+font-family:'Times New Roman', Times, serif;
 font-weight: 400;
 font-size: 20px;
 letter-spacing: 2px;
@@ -33,7 +85,9 @@ line-height: 150%;
 }
 
 .styled-image {
-    border-radius: 5%;
+    margin-bottom: 180px;
+    width:200px;
+
 }
 
 
