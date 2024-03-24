@@ -1,15 +1,24 @@
-import { Page } from "../../structure/Page/Page"
-import styles from "./Entry.module.css"
+import { Page } from "../../structure/Page/Page";
+import styles from "./Entry.module.css";
 import { FormEvent, useContext } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
+import { doc,setDoc } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
+import { User } from "firebase/auth";
 
 export const Entry = () => {
     const { mode } = useContext(ModeContext);
 
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
+        try {
+                await setDoc(doc(db, "entries", user && user.uid), {
+                    entry: "data"
+                }
+                )}
+        catch (error){console.log(error)}
     }
 
     return (
