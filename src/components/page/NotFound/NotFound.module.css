@@ -20,7 +20,7 @@
   color: var(--beige-dark);
 }
 
-.not-found_paragraph {
+.not-found_paragraph.dark {
   color: var(--beige-light);
 }
 

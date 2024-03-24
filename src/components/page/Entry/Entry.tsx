@@ -16,10 +16,6 @@ export const Entry = ({ user }: EntryProps) => {
         e.preventDefault();
     }
 
-    console.log("USER", user && user.uid);
-
-
-
     return (
         <Page>
             <div className={classNames(
