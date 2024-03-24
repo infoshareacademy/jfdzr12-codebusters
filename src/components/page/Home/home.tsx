@@ -10,7 +10,7 @@ export const Home = () => {
     return (
         <Page>
             <div>
-                hello
+
             </div>
 
         </Page>
