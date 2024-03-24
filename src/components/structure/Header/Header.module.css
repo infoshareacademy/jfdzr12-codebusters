@@ -112,7 +112,7 @@
 }
 
 .header__container.dark {
-  background: var(--indigo-deep-dark);
+  background: var(--indigo-black);
 }
 
 .header-nav__list-item-link.dark:hover {

@@ -1,4 +1,6 @@
 
+/* containers */
+
 .main__headline-area {
     position: absolute;
     display: flex;
@@ -50,7 +52,7 @@
         }
       }
 
-.main__headline-name {
+.main__headline {
   display: flex;
   justify-content: center;
   margin-top: 50vh;
@@ -91,11 +93,26 @@
   }
 }
 
+/* images */
+
+.main__feather-image {
+    margin-bottom: 180px;
+    width:100px;
+}
+
+.main__book-image {
+    margin-top: 80px;
+    width:200px;
+    align-self: center;
+}
+
+/* texts */
+
 .main__handwriting {
-    font-family: "Satisfy", cursive;
-    font-size:30px;
-    text-align: center;
-    color: var(--violet-dark)
+  font-family: "Satisfy", cursive;
+  font-size:30px;
+  text-align: center;
+  color: var(--violet-dark)
 }
 
 .main__normal-text {
@@ -123,26 +140,61 @@ text-align: center;
 word-spacing: 5px;
 text-align: justify;
 line-height: 150%;
-}
-
-.main__feather-image {
-    margin-bottom: 180px;
-    width:100px;
-}
-
-.main__book-image {
-    margin-top: 80px;
-    width:200px;
-    align-self: center;
+margin-top:10px;
 }
 
 
-/* .light {
-    background: var();
-    color: var();
-  }
-  
-  .dark {
-    background: var();
-    color: var();
-  } */
+/* dark mode */
+
+.main__handwriting.dark {
+  color: var(--pink-light);
+}
+.main__normal-text.dark {
+  color:var(--pink-light)
+}
+.main__strong-text.dark {
+color: var(--violet-dark);
+}
+
+.main__paper-area.dark {
+        background: var(--indigo-medium-dark);
+        box-shadow: 4px 4px 0 #595976;
+        background-image:
+          linear-gradient(
+            90deg,
+            #212844 12px, 0,
+            #595976 15px, 0,
+            #040819 20px, 0,
+            #212844 100%
+          ),
+          radial-gradient(
+            circle closest-side,
+            rgba(255,255,255,0) 88%,
+            #212844 100%
+          ),
+          radial-gradient(
+            circle at 22px 8px,
+            #040819 40%,
+            #595976 40%,
+            #595976 100%
+          );
+        background-size: 32px 8px, 32px 16px, 32px 16px;
+        background-repeat: space no-repeat;
+        background-position: center top, center 6px, center 6px;
+      }
+
+      .main__headline.dark {
+        color: var(--beige-light);
+        &:hover {
+          span {
+            color: var(--pink-light);
+            &:nth-child(even) {  
+              background-color: var(--indigo-medium-dark);
+            }
+          }
+        }
+        > span {
+          background-color: var(--violet-dark);
+          box-shadow: 0 5px 10px rgb(33, 40, 68, 0,1);
+        }
+      }
