@@ -16,19 +16,19 @@ export const Footer = () => {
                 <div className={classnames(styles["sb_footer-links"], styles[mode])}>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Company</h3>
-                        <a href="/about"></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/about"></a>
                         <p>About</p>
-                        <a href="/career"></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/career"></a>
                         <p>Career</p>
-                        <a href="/contact"></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/contact"></a>
                         <p>Contact</p>
                     </div>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
-                        <h4>Partners</h4>
-                        <a href="/https://infoshareacademy.com/kursy/">Infoshare Academy</a>
+                        <h3>Partners:</h3>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/https://infoshareacademy.com/kursy/">Infoshare Academy</a>
                     </div>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
-                        <h4>Coming soon</h4>
+                        <h3>Coming soon</h3>
                         <div className={classnames(styles["socialmedia"], styles[mode])}>
                             <p><img src={fb} alt="Facebook link" /></p>
                             <p><img src={insta} alt="Instagram link" /></p>
@@ -45,9 +45,9 @@ export const Footer = () => {
                         </p>
                     </div>
                     <div className={classnames(styles["sb_footer-below-links"], styles[mode])}>
-                        <a href="/terms"><div><p>Terms & Conditions</p></div></a>
-                        <a href="/security"><div><p>Security</p></div></a>
-                        <a href="/cookie"><div><p>Cookie declaration</p></div></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/terms"><div><p>Terms & Conditions</p></div></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/security"><div><p>Security</p></div></a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/cookie"><div><p>Cookie declaration</p></div></a>
                     </div>
                 </div>
             </div>

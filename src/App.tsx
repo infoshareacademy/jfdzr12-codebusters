@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import { Header } from './components/structure/Header/Header';
 import { Welcome } from './components/page/Main/Welcome';
+import { Entry } from './components/page/Entry/Entry'
 import { Footer } from './components/structure/Footer/Footer';
 import { ModeProvider } from './providers/mode';
 import { useState, useEffect } from 'react';
@@ -26,7 +27,6 @@ function App(): JSX.Element {
           <Header user={user} />
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </HashRouter>
