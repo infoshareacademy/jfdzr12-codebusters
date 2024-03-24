@@ -36,6 +36,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     styles[mode]
                 )}>Login</label>
                 <input
+                    required
                     type="email"
                     name="email"
                     id="email"
@@ -59,6 +60,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     )}>Password</label>
 
                     <input
+                        required
+                        minLength={6}
                         type="password"
                         name="password"
                         id="password"

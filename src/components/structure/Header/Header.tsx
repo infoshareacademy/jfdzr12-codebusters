@@ -84,7 +84,7 @@ export const Header = ({ user }: HeaderProps) => {
                             </ul>
                         </nav>
                     </div>
-                    <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                    {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
                     >
                         {mode === "light" ? (
                             <div
@@ -100,7 +100,8 @@ export const Header = ({ user }: HeaderProps) => {
                                 <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
                             </div>
                         )}
-                    </div>
+                    </div>}
+
                     <div className={styles["header-mode__container"]}>
                         {mode === "light" ? (
                             <button
