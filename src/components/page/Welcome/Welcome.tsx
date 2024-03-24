@@ -25,11 +25,11 @@ export const Welcome = () => {
                 <p className={classNames(styles["main__strong-text"],
                     styles[mode])}>the safest place for your thoughts</p>
             </div>
-            {/* <div className={styles["main__headline-area"]}>
+            <div className={styles["main__headline-area"]}>
                 {mode === "light" ? (<img className={styles["main__feather-image"]}
                     src="images/main/feather-pen.png" />) : (<img className={styles["main__feather-image"]}
                         src="images/main/feather-lightpen.png" />)}
-            </div> */}
+            </div>
         </Page>
     )
 }
