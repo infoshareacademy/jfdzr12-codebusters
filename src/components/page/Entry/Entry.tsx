@@ -8,8 +8,8 @@ export const Entry = () => {
     const { mode } = useContext(ModeContext);
 
 
-    function handleSubmit(_event: FormEvent<HTMLFormElement>): void {
-        _event.preventDefault();
+    function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+        e.preventDefault();
     }
 
     return (

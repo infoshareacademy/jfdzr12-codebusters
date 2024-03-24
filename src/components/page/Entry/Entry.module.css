@@ -7,18 +7,15 @@
 .entry__textarea {
     font-size: 12px;
     padding: 20px;
-
-}
-
-textarea {
     resize:both;
     word-spacing: 2px;
     border-radius: 5%;
+
 }
 
-textarea:focus {
+.entry__textarea:focus {
     border: 1px solid var(--violet-light);
-  }
+}
 
 .entry__input {
     display: block;
