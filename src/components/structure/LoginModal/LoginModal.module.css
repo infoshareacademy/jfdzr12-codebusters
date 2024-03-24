@@ -31,3 +31,14 @@
 .login-form__register-link {
   color: var(--violet-dark);
 }
+
+.login-modal__container.dark {
+  background-color: var(--indigo-medium-dark);
+  border: 1px solid var(--indigo-medium-dark);
+  box-shadow: 0 0 60px rgba(99, 105, 111, 0.292);
+  color: white;
+}
+
+.login-form__register-link.dark {
+  color: var(--violet-light);
+}
