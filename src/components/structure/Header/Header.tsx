@@ -46,6 +46,13 @@ export const Header = ({ user }: HeaderProps) => {
                                         styles[mode]
                                     )} />
                                 )}
+                                <div className={classnames(
+                                    styles["header__logo-link-paragraph-container"],
+                                    styles[mode])}>
+                                    <p className={classnames(
+                                        styles["header__logo-link-paragraph"],
+                                        styles[mode])}>diary daze</p>
+                                </div>
                             </div>
                         </Link>
                     </div>
@@ -76,7 +83,6 @@ export const Header = ({ user }: HeaderProps) => {
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
-                                            { [styles.active]: location.pathname === '/login' || location.pathname === '/sign-up' }
                                         )}>Login</div>
                                     </div>
                                 </li>}
@@ -84,39 +90,41 @@ export const Header = ({ user }: HeaderProps) => {
                             </ul>
                         </nav>
                     </div>
-                    {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
-                    >
-                        {mode === "light" ? (
-                            <div
+                    <div className={styles["header__icons-container"]}>
+                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                        >
+                            {mode === "light" ? (
+                                <div
 
-                                className={styles["header__account-button"]}
-                            >
-                                <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
-                            </div>
-                        ) : (
-                            <div
-                                className={styles["header__account-button"]}
-                            >
-                                <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
-                            </div>
-                        )}
-                    </div>}
+                                    className={styles["header__account-button"]}
+                                >
+                                    <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
+                                </div>
+                            ) : (
+                                <div
+                                    className={styles["header__account-button"]}
+                                >
+                                    <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
+                                </div>
+                            )}
+                        </div>}
 
-                    <div className={styles["header-mode__container"]}>
-                        {mode === "light" ? (
-                            <button
+                        <div className={styles["header-mode__container"]}>
+                            {mode === "light" ? (
+                                <button
 
-                                onClick={toggleMode} className={styles["header-mode__button"]}
-                            >
-                                <img src="/images/icons/mode/day-mode-light.png" className={styles["header-mode__icon"]} />
-                            </button>
-                        ) : (
-                            <button
-                                onClick={toggleMode} className={styles["header-mode__button"]}
-                            >
-                                <img src="/images/icons/mode/night-mode-dark.png" className={styles["header-mode__icon"]} />
-                            </button>
-                        )}
+                                    onClick={toggleMode} className={styles["header-mode__button"]}
+                                >
+                                    <img src="/images/icons/mode/day-mode-light.png" className={styles["header-mode__icon"]} />
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={toggleMode} className={styles["header-mode__button"]}
+                                >
+                                    <img src="/images/icons/mode/night-mode-dark.png" className={styles["header-mode__icon"]} />
+                                </button>
+                            )}
+                        </div>
                     </div>
                     {isUserModalOpen && <UserModal user={user} setIsUserModalOpen={setIsUserModalOpen}></UserModal>}
                     {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}></LoginModal>}
