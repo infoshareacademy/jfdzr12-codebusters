@@ -4,7 +4,7 @@ import { Page } from "../../structure/Page/Page"
 // import styles from "./welcome.module.css";
 // import { ModeContext } from "@/providers/mode";
 
-export const Welcome = () => {
+export const Home = () => {
     // const { mode, } = useContext(ModeContext);
 
     return (

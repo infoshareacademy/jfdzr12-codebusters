@@ -8,7 +8,7 @@ import { ModeProvider } from './providers/mode';
 import { useState, useEffect } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebase-config';
-import { Welcome } from './components/page/Welcome/Welcome';
+import { Welcome } from './components/page/Home/home';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -28,7 +28,7 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/entry" element={<Entry />} />
-            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
           <Footer />
         </HashRouter>
