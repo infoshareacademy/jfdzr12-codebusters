@@ -15,9 +15,13 @@
 
 .not-found_paragraph {
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   color: var(--beige-dark);
+}
+
+.not-found_paragraph {
+  color: var(--beige-light);
 }
 
 .not-found_image-container {
