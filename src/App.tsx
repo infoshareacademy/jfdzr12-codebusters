@@ -26,7 +26,9 @@ function App(): JSX.Element {
         <HashRouter>
           <Header user={user} />
           <Routes>
-            <Route path="/" element={<Welcome />} />
+            {!user && <Route path="/" element={<Welcome />} />}
+            {user && <Route path="/entry" element={<Entry />} />}
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </HashRouter>
