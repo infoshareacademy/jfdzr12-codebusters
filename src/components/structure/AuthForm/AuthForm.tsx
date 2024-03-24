@@ -2,7 +2,6 @@ import { useContext, useState, FormEvent } from "react";
 import styles from "./AuthForm.module.css";
 import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
-
 interface AuthFormProps {
     submitText: string;
     isPasswordHidden?: boolean;
@@ -28,25 +27,50 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             onSubmit={onSubmit}
             className={`${styles["modal__form"]} ${styles[mode]}`}
         >
-            <div>
-                <label htmlFor="email">Login</label>
+            <div className={classnames(
+                styles["auth-form__input-container"],
+                styles[mode]
+            )}>
+                <label htmlFor="email" className={classnames(
+                    styles["auth-form__label"],
+                    styles[mode]
+                )}>Login</label>
                 <input
+                    required
                     type="email"
                     name="email"
                     id="email"
                     value={login}
                     onChange={(e) => setLogin(e.target.value)}
+                    className={classnames(
+                        styles["auth-form__input"],
+                        styles[mode]
+                    )}
                 />
+
             </div>
             {!isPasswordHidden && (
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className={classnames(
+                    styles["auth-form__input-container"],
+                    styles[mode]
+                )}>
+                    <label htmlFor="password" className={classnames(
+                        styles["auth-form__label"],
+                        styles[mode]
+                    )}>Password</label>
+
                     <input
+                        required
+                        minLength={6}
                         type="password"
                         name="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className={classnames(
+                            styles["auth-form__input"],
+                            styles[mode]
+                        )}
                     />
                 </div>
             )}
@@ -60,7 +84,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                 )} type="submit">{submitText}
                 </button>
             </div>
-
         </form>
     );
 };

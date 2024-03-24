@@ -79,7 +79,7 @@
 }
 
 .header-nav__list-item-link:hover {
-  color: var(--pink-medium);
+  color: var(--white);
 }
 
 .header-nav__list-item-link:active {
@@ -112,11 +112,11 @@
 }
 
 .header__container.dark {
-  background: var(--indigo-deep-dark);
+  background: var(--indigo-black);
 }
 
 .header-nav__list-item-link.dark:hover {
-  color: var(--pink-dark);
+  color: var(--white);
 }
 
 .active {

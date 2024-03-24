@@ -5,8 +5,13 @@ import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
+import { User } from "firebase/auth";
 
-export const Header = () => {
+interface HeaderProps {
+    user: User | null;
+}
+
+export const Header = ({ user }: HeaderProps) => {
     const { mode, toggleMode } = useContext(ModeContext);
     const location = useLocation();
 
@@ -61,7 +66,7 @@ export const Header = () => {
                                         )}>Home</div>
                                     </Link>
                                 </li>
-                                <li>
+                                {!user && <li>
                                     <div
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
@@ -74,11 +79,12 @@ export const Header = () => {
                                             { [styles.active]: location.pathname === '/login' || location.pathname === '/sign-up' }
                                         )}>Login</div>
                                     </div>
-                                </li>
+                                </li>}
+
                             </ul>
                         </nav>
                     </div>
-                    <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                    {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
                     >
                         {mode === "light" ? (
                             <div
@@ -94,7 +100,8 @@ export const Header = () => {
                                 <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
                             </div>
                         )}
-                    </div>
+                    </div>}
+
                     <div className={styles["header-mode__container"]}>
                         {mode === "light" ? (
                             <button
@@ -111,7 +118,7 @@ export const Header = () => {
                             </button>
                         )}
                     </div>
-                    {isUserModalOpen && <UserModal setIsUserModalOpen={setIsUserModalOpen}></UserModal>}
+                    {isUserModalOpen && <UserModal user={user} setIsUserModalOpen={setIsUserModalOpen}></UserModal>}
                     {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}></LoginModal>}
                 </div>
             </header >

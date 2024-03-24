@@ -87,5 +87,5 @@ body.light {
 }
 
 body.dark {
-  background-color: #161419;
+  background-color: var(--indigo-black);
 }

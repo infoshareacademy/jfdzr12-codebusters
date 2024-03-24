@@ -3,14 +3,15 @@ import styles from "./UserModal.module.css";
 import classnames from "classnames";
 import { ModeContext } from "../../../providers/mode";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
+import { User, signOut } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 
 interface UserModalProps {
     setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    user: User | null;
 }
 
-export const UserModal = ({ setIsUserModalOpen }: UserModalProps) => {
+export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
 
@@ -35,10 +36,16 @@ export const UserModal = ({ setIsUserModalOpen }: UserModalProps) => {
                 styles[mode]
             )}>
                 <ul className={styles["user-modal__list"]} onClick={() => setIsUserModalOpen(false)}>
-                    <li className={classnames(
+                    {user && <li className={classnames(
                         styles["user-modal__list-option"],
                         styles[mode]
-                    )} onClick={handlerLogOut}>Log out</li>
+                    )}> {user?.email}
+                    </li>}
+                    {user && <li className={classnames(
+                        styles["user-modal__list-option"],
+                        styles[mode]
+                    )} onClick={handlerLogOut}>Log out
+                    </li>}
                 </ul>
             </div>
         </div>
