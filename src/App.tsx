@@ -27,7 +27,7 @@ function App(): JSX.Element {
           <Header user={user} />
           <Routes>
             {!user && <Route path="/" element={<Welcome />} />}
-            {user && <Route path="/entry" element={<Entry />} />}
+            {user && <Route path="/entry" element={<Entry user={user} />} />}
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
