@@ -1,0 +1,38 @@
+.entry__area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.entry__textarea {
+    font-size: 12px;
+    padding: 20px;
+    resize:both;
+    word-spacing: 2px;
+    border-radius: 5%;
+
+}
+
+.entry__textarea:focus {
+    border: 1px solid var(--violet-light);
+}
+
+.entry__input {
+    display: block;
+    margin: auto;
+    align-self: center;
+    font-size: 20px;
+}
+
+.entry__input:hover {
+    color:var(--violet-dark);
+}
+
+  /* text */
+.entry__headline {
+margin-bottom: 50px;
+font-family: "Satisfy", cursive;
+font-size:50px;
+text-align: center;
+
+}

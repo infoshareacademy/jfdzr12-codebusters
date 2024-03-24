@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import { Header } from './components/structure/Header/Header';
 import { Main } from './components/page/Main/Main';
+import { Entry } from './components/page/Entry/Entry'
 import { Footer } from './components/structure/Footer/Footer';
 import { ModeProvider } from './providers/mode';
 import { useState, useEffect } from 'react';
@@ -25,6 +26,7 @@ function App(): JSX.Element {
           <Header user={user} />
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/entry" element={<Entry />} />
           </Routes>
           <Footer />
         </HashRouter>
