@@ -22,7 +22,7 @@ function App(): JSX.Element {
     <>
       <ModeProvider>
         <HashRouter>
-          <Header setUser={setUser} user={user} />
+          <Header user={user} />
           <Routes>
             <Route path="/" element={<Main />} />
           </Routes>
