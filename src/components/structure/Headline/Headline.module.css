@@ -41,19 +41,19 @@
   box-shadow: 0 5px 10px #0000001a;
 }
 
-.main__headline.dark {
+.headline.dark {
   color: var(--beige-light);
 }
 
-.main__headline.dark:hover > span {
+.headline.dark:hover > span {
   color: var(--pink-light);
 }
 
-.main__headline.dark:hover > span:nth-child(even) {
+.headline.dark:hover > span:nth-child(even) {
   background-color: var(--indigo-medium-dark);
 }
 
-.main__headline.dark > span {
+.headline.dark > span {
   background-color: var(--violet-dark);
   box-shadow: 0 5px 10px #2128441a;
 }
