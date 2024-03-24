@@ -1,0 +1,10 @@
+.button-container {
+  color: var(--white);
+  background-color: var(--violet-medium);
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+}
