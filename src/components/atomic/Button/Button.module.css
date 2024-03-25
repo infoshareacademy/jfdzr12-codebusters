@@ -40,3 +40,15 @@
   background-color: var(--indigo-medium-dark);
   border: 2px solid var(--violet-dark);
 }
+
+.button-container.disabled {
+  color: var(--white);
+  background-color: var(--medium-grey);
+  border: 2px solid var(--medium-grey);
+}
+
+.button-container.disabled.dark {
+  color: var(--indigo-medium-dark);
+  background-color: var(--dark-grey);
+  border: 2px solid var(--dark-grey);
+}
