@@ -2,6 +2,7 @@ import { useContext, useState, FormEvent } from "react";
 import styles from "./AuthForm.module.css";
 import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
+import { Button } from "@/components/atomic/Button/Button";
 interface AuthFormProps {
     submitText: string;
     isPasswordHidden?: boolean;
@@ -74,16 +75,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     />
                 </div>
             )}
-            <div className={classnames(
-                styles["auth-form__submit-button-container"],
-                styles[mode]
-            )}>
-                <button className={classnames(
-                    styles["auth-form__submit-button"],
-                    styles[mode]
-                )} type="submit">{submitText}
-                </button>
-            </div>
+            <Button type="submit">
+                {submitText}
+            </Button>
         </form>
     );
 };

@@ -1,0 +1,54 @@
+.button-container {
+  color: var(--white);
+  background-color: var(--violet-medium);
+  border-radius: 8px;
+  margin: 10px;
+  border: 2px solid var(--white);
+}
+
+.button {
+  padding: 10px 25px;
+  font-weight: 500;
+}
+
+.button-container:hover {
+  color: var(--violet-medium);
+  background-color: var(--white);
+  border: 2px solid var(--violet-medium);
+}
+
+.button-container:active {
+  color: var(--pink-light);
+  background-color: var(--white);
+  border: 2px solid var(--pink-light);
+}
+
+.button-container.dark {
+  color: var(--indigo-medium-dark);
+  background-color: var(--beige-light);
+  border: 2px solid var(--beige-light);
+}
+
+.button-container.dark:hover {
+  color: var(--beige-light);
+  background-color: var(--indigo-medium-dark);
+  border: 2px solid var(--beige-light);
+}
+
+.button-container.dark:active {
+  color: var(--violet-dark);
+  background-color: var(--indigo-medium-dark);
+  border: 2px solid var(--violet-dark);
+}
+
+.button-container.disabled {
+  color: var(--white);
+  background-color: var(--medium-grey);
+  border: 2px solid var(--medium-grey);
+}
+
+.button-container.disabled.dark {
+  color: var(--indigo-medium-dark);
+  background-color: var(--dark-grey);
+  border: 2px solid var(--dark-grey);
+}
