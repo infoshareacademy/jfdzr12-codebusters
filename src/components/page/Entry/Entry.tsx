@@ -12,6 +12,8 @@ interface EntryProps {
 export const Entry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
 
+    console.log(user);
+
     function handleSubmit(e: FormEvent<HTMLFormElement>): void {
         e.preventDefault();
     }

@@ -1,21 +1,3 @@
-.login-modal__container {
-  position: absolute;
-  z-index: 900;
-  top: 80px;
-  right: 40px;
-  border: 1px solid #f4f4f4;
-  border-top: none;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 0 0 60px rgba(17, 48, 81, 0.13);
-  background-color: white;
-}
-
-.login-modal__container.dark {
-  border: 1px solid var(--indigo-medium-dark);
-  box-shadow: 0 0 60px rgba(99, 105, 111, 0.292);
-}
-
 .login__form {
   min-height: 200px;
   width: 350px;
@@ -36,7 +18,6 @@
   background-color: var(--indigo-medium-dark);
   border: 1px solid var(--indigo-medium-dark);
   box-shadow: 0 0 60px rgba(99, 105, 111, 0.292);
-  color: white;
 }
 
 .login-form__register-link.dark {
