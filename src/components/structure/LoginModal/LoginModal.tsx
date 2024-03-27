@@ -7,6 +7,7 @@ import { ModeContext } from "@/providers/mode.js";
 import { AuthForm } from "../AuthForm/AuthForm.js";
 
 import styles from "./LoginModal.module.css";
+import { HeaderModal } from "@/components/atomic/HeaderModal/HeaderModal.js";
 
 
 interface LoginModalProps {
@@ -30,25 +31,23 @@ export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
     };
 
     return (
-        <div className={classnames(
-            styles["login-modal__container"],
-            styles[mode]
-        )}>
+        <HeaderModal>
             <div className={classnames(styles["login__form"], styles[mode])}>
                 <AuthForm submitText="Login" handleSubmit={handleSubmit}></AuthForm>
                 <div className="login-form__register-container">
                     <p className={classnames(
                         styles["login-form__register-text"],
                         styles[mode]
-                    )}>Don't have account yet? <Link to="/register" className={classnames(
-                        styles["login-form__register-link"],
-                        styles[mode]
-                    )} onClick={() => { setIsLoginModalOpen(false) }}>
+                    )}>Don't have account yet?
+                        <Link to="/register" className={classnames(
+                            styles["login-form__register-link"],
+                            styles[mode]
+                        )} onClick={() => { setIsLoginModalOpen(false) }}>
                             Register
-                        </Link></p>
+                        </Link>
+                    </p>
                 </div>
             </div>
-        </div>
-
+        </HeaderModal>
     );
 };
