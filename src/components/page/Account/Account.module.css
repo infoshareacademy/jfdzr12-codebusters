@@ -1,0 +1,16 @@
+.account__user-email-text {
+  font-size: 1.1rem;
+}
+
+.account__user-email-text.dark {
+  color: var(--violet-medium);
+}
+
+.account__user-email {
+  font-weight: 600;
+  color: var(--violet-dark);
+}
+
+.account__user-email.dark {
+  color: var(--violet-light);
+}
