@@ -34,15 +34,32 @@ export const Account = ({ user }: AccountProps) => {
     return (
         <Page>
             <Headline text="account" />
-            <p className={classNames(
-                styles["account__user-email-text"],
+            <div className={classNames(
+                styles["account__user-email-text-container"],
                 styles[mode]
-            )}>Hello, <span className={classNames(
-                styles["account__user-email"],
+            )}>
+                <p className={classNames(
+                    styles["account__user-email-text"],
+                    styles[mode]
+                )}>Hello, <span className={classNames(
+                    styles["account__user-email"],
+                    styles[mode]
+                )}>{user?.email}</span></p>
+            </div>
+            <div className={classNames(
+                styles["account__user-updated-container"],
                 styles[mode]
-            )}>{user?.email}</span></p>
-            <p>Password updated:</p>
-            <p>{createdAt?.toLocaleString()}</p>
+            )}>
+                <p className={classNames(
+                    styles["account__user-updated-text"],
+                    styles[mode]
+                )}>Password updated:</p>
+                <p className={classNames(
+                    styles["account__user-updated-text-date"],
+                    styles[mode]
+                )}>{createdAt?.toLocaleString()}</p>
+            </div>
+
             <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
         </Page>
     )
