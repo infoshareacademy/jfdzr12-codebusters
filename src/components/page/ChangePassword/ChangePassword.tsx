@@ -1,21 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { auth } from '../../../../firebase-config';
 import { Page } from '@/components/structure/Page/Page';
 import { Headline } from '@/components/structure/Headline/Headline';
 import { User, signInWithEmailAndPassword, updatePassword } from 'firebase/auth';
 import { Button } from '@/components/atomic/Button/Button';
+import styles from './ChangePassword.module.css';
+import { ModeContext } from '@/providers/mode';
+import classNames from 'classnames';
 
 interface ChangePasswordProps {
     user: User | null;
 }
 
 export const ChangePassword = ({ user }: ChangePasswordProps) => {
+    const { mode } = useContext(ModeContext);
     const email = user?.email;
     const [currentPassword, setCurrentPassword] = useState<string>('');
     const [newPassword, setNewPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const handleChangePassword = async () => {
         if (!email || !currentPassword || !newPassword || !confirmPassword) {
             setError('Please, fill all fields');
@@ -34,7 +38,10 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
             setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
-            alert('Password changed');
+            setSuccessMessage('Password changed successfully');
+            setTimeout(() => {
+                setSuccessMessage(null);
+            }, 4000);
         } catch (error) {
             if (typeof error === 'string') {
                 setError(error);
@@ -74,7 +81,14 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                 />
             </div>
             <Button onClick={handleChangePassword}>Submit</Button>
-            {error && <p>{error}</p>}
+            {error && <p className={classNames(
+                styles["change-password__error-message"],
+                styles[mode]
+            )}>{error}</p>}
+            {successMessage && <p className={classNames(
+                styles["change-password__success-message"],
+                styles[mode]
+            )}>{successMessage}</p>}
         </Page>
     );
 };

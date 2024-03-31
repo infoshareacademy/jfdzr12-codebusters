@@ -21,8 +21,8 @@ export const Account = ({ user }: AccountProps) => {
         if (user) {
             getIdTokenResult(user).then(idTokenResult => {
                 if (idTokenResult && idTokenResult.claims && idTokenResult.claims.auth_time) {
-                    const authTime = parseInt(idTokenResult.claims.auth_time); // Преобразование в число
-                    const timestamp = authTime * 1000; // Преобразование в миллисекунды
+                    const authTime = parseInt(idTokenResult.claims.auth_time);
+                    const timestamp = authTime * 1000;
                     setCreatedAt(new Date(timestamp));
                 }
             }).catch(error => {
