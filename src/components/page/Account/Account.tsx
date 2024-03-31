@@ -41,7 +41,7 @@ export const Account = ({ user }: AccountProps) => {
                 styles["account__user-email"],
                 styles[mode]
             )}>{user?.email}</span></p>
-            <p>Account created:</p>
+            <p>Password updated:</p>
             <p>{createdAt?.toLocaleString()}</p>
             <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
         </Page>
