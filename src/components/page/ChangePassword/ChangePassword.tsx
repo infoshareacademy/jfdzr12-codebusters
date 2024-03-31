@@ -56,39 +56,77 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
     return (
         <Page>
             <Headline text="Change password" />
-            <div>
-                <label>Current password</label>
+            <div className={classNames(
+                styles["change-password__input-container"],
+                styles[mode]
+            )}>
+                <label
+                    className={classNames(
+                        styles["change-password__label"],
+                        styles[mode]
+                    )} htmlFor="old-password">Current password:</label>
                 <input
+                    className={classNames(
+                        styles["change-password__input"],
+                        styles[mode]
+                    )}
+                    name="old-password"
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                 />
             </div>
-            <div>
-                <label>New password</label>
+            <div
+                className={classNames(
+                    styles["change-password__input-container"],
+                    styles[mode]
+                )}>
+                <label className={classNames(
+                    styles["change-password__label"],
+                    styles[mode]
+                )} htmlFor="new-password">New password:</label>
                 <input
+                    className={classNames(
+                        styles["change-password__input"],
+                        styles[mode]
+                    )}
+                    name="new-password"
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                 />
             </div>
-            <div>
-                <label>Submit new password</label>
+            <div
+                className={classNames(
+                    styles["change-password__input-container"],
+                    styles[mode]
+                )}>
+                <label className={classNames(
+                    styles["change-password__label"],
+                    styles[mode]
+                )} htmlFor="new-password-repeat">Submit new password:</label>
                 <input
+                    className={classNames(
+                        styles["change-password__input"],
+                        styles[mode]
+                    )}
+                    name="new-password-repeat"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
             <Button onClick={handleChangePassword}>Submit</Button>
-            {error && <p className={classNames(
-                styles["change-password__error-message"],
-                styles[mode]
-            )}>{error}</p>}
-            {successMessage && <p className={classNames(
-                styles["change-password__success-message"],
-                styles[mode]
-            )}>{successMessage}</p>}
+            {error && <p
+                className={classNames(
+                    styles["change-password__error-message"],
+                    styles[mode]
+                )}>{error}</p>}
+            {successMessage && <p
+                className={classNames(
+                    styles["change-password__success-message"],
+                    styles[mode]
+                )}>{successMessage}</p>}
         </Page>
     );
 };
