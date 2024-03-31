@@ -3,7 +3,8 @@
   background-color: var(--violet-medium);
   border-radius: 8px;
   margin: 10px;
-  border: 2px solid var(--white);
+  border: 2px solid var(--violet-medium);
+  text-align: center;
 }
 
 .button {
@@ -13,7 +14,7 @@
 
 .button-container:hover {
   color: var(--violet-medium);
-  background-color: var(--white);
+  background-color: inherit;
   border: 2px solid var(--violet-medium);
 }
 

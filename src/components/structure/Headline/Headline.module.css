@@ -33,9 +33,9 @@
 .headline > span {
   display: block;
   background-color: var(--pink-light);
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
   box-shadow: 0 5px 10px #0000001a;

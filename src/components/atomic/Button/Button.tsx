@@ -4,12 +4,13 @@ import classNames from "classnames";
 import { ModeContext } from "@/providers/mode";
 
 interface ButtonProps {
-    type?: "button" | "submit" | "reset";
     children: React.ReactNode;
+    type?: "button" | "submit" | "reset";
     disabled?: boolean;
+    onClick?: () => void;
 }
 
-export const Button = ({ type = "button", children, disabled }: ButtonProps) => {
+export const Button = ({ type = "button", children, disabled, onClick }: ButtonProps) => {
     const { mode } = useContext(ModeContext);
     return (
         <div className={classNames(
@@ -17,7 +18,7 @@ export const Button = ({ type = "button", children, disabled }: ButtonProps) => 
             styles[mode],
             { [styles.disabled]: disabled }
         )}>
-            <button className={classNames(
+            <button onClick={onClick} className={classNames(
                 styles["button"],
                 styles[mode]
             )} type={type}>
