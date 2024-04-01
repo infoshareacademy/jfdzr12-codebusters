@@ -53,7 +53,7 @@ export const Account = ({ user }: AccountProps) => {
                 <p className={classNames(
                     styles["account__user-updated-text"],
                     styles[mode]
-                )}>Password updated:</p>
+                )}>Last authentication:</p>
                 <p className={classNames(
                     styles["account__user-updated-text-date"],
                     styles[mode]
