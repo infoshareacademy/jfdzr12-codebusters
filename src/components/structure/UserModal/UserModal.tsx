@@ -37,7 +37,7 @@ export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
                     {user && <li className={classnames(
                         styles["user-modal__list-option"],
                         styles[mode]
-                    )}> {user?.email}
+                    )} onClick={() => { navigate("/account") }}>Account
                     </li>}
                     {user && <li className={classnames(
                         styles["user-modal__list-option"],

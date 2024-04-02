@@ -1,0 +1,47 @@
+.account__user-email-text-container {
+  margin: 20px;
+}
+
+.account__user-updated-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.account__user-updated-text {
+  margin: 3px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.account__user-updated-text-date {
+  margin: 3px;
+  font-size: 1.1rem;
+}
+
+.account__user-updated-text.dark {
+  color: var(--violet-medium);
+}
+
+.account__user-updated-text-date.dark {
+  color: var(--violet-medium);
+}
+
+.account__user-email-text {
+  font-size: 1.3rem;
+}
+
+.account__user-email-text.dark {
+  color: var(--violet-medium);
+}
+
+.account__user-email {
+  font-weight: 600;
+  color: var(--violet-dark);
+}
+
+.account__user-email.dark {
+  color: var(--violet-light);
+}

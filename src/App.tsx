@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { NotFound } from './components/page/NotFound/NotFound';
+import { Account } from './components/page/Account/Account';
+import { ChangePassword } from './components/page/ChangePassword/ChangePassword';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -27,7 +29,13 @@ function App(): JSX.Element {
           <Header user={user} />
           <Routes>
             {!user && <Route path="/" element={<Welcome />} />}
-            {user && <Route path="/entry" element={<Entry user={user} />} />}
+            {user &&
+              <>
+                <Route path="/entry" element={<Entry user={user} />} />
+                <Route path="/account" element={<Account user={user} />} />
+                <Route path="/change-password" element={<ChangePassword user={user} />} />
+              </>
+            }
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
