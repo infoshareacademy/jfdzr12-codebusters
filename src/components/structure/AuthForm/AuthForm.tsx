@@ -7,12 +7,16 @@ interface AuthFormProps {
     submitText: string;
     isPasswordHidden?: boolean;
     handleSubmit: (data: { login: string; password: string }) => void;
+    error?: boolean;
+    message?: string;
 }
 
 export const AuthForm: React.FC<AuthFormProps> = ({
     submitText,
     isPasswordHidden = false,
     handleSubmit,
+    error,
+    message,
 }) => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -78,6 +82,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             <Button type="submit">
                 {submitText}
             </Button>
+            {error && <div className={classnames(
+                styles["auth-form__error-message"],
+                styles[mode]
+            )}>{message}</div>}
         </form>
     );
 };
