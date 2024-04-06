@@ -7,7 +7,7 @@ import { User } from "firebase/auth";
 import loupe from '/images/icons/Welcome/loupe.png'
 import feather from '/images/main/feather-pen.png'
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "firebase-config";
+import { db } from "../../../../firebase-config";
 
 
 interface EntryProps {
@@ -82,7 +82,6 @@ export const Home = ({ user }: EntryProps) => {
                     </div>
                 </div>
             </div>
-
         </Page >
     )
 }
