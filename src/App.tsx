@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import { Header } from './components/structure/Header/Header';
 import { Welcome } from './components/page/Welcome/Welcome';
-import { Home } from './components/page/Home/home';
+import { Home } from './components/page/Home/Home';
 import { Entry } from './components/page/Entry/Entry'
 import { Footer } from './components/structure/Footer/Footer';
 import { ModeProvider } from './providers/mode';
