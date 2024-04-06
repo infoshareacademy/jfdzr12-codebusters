@@ -35,7 +35,7 @@ export const Home = ({ user }: EntryProps) => {
             return;
         }
 
-        const myEntries = async () => {
+        const fetchEntries = async () => {
             try {
                 const q = query(collection(db, `entries/${user.uid}/entry`), where("email", "==", user.email));
                 const querySnapshot = await getDocs(q);
@@ -52,22 +52,25 @@ export const Home = ({ user }: EntryProps) => {
             }
         };
 
+        fetchEntries();
     }, [user]);
 
     return (
         <Page>
-            <Headline text="Your diary" />
+            {/* <Headline text="Your diary" /> */}
             <div className={classnames(styles["home"], styles[mode])}>
-                {/* <div className={classnames(styles["home-header"], styles[mode])}>
+                <div className={classnames(styles["home-header"], styles[mode])}>
                     <p><img src={feather} alt="feather" /></p>
-                    <h1>Your (user) diary</h1>
+                    <h1>Your diary</h1>
                     <p>Here you can see your entries and add new ones</p>
-                </div> */}
+                </div>
                 <div className={classnames(styles["home-section"], styles[mode])}>
                     <div className={classnames(styles["home-section_entries"], styles[mode])}>
-                        {entries.map((entry, id) => (
-                            <div key={id} >
-                                <p>{entry.entry}</p>
+                        {entries.map((entry) => (
+                            <div key={entry.id} className={classnames(styles["home-section_entry"], styles[mode])}>
+                                <p className={classnames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
+                                <p className={classnames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+
                             </div>
                         ))}
                     </div>
