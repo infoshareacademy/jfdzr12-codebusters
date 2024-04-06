@@ -1,21 +1,53 @@
-import { Page } from "../../structure/Page/Page"
-import styles from "./Entry.module.css"
-import { FormEvent, useContext } from "react";
+import { Page } from "../../structure/Page/Page";
+import styles from "./Entry.module.css";
+import { useContext, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
-
+import { Button } from "@/components/atomic/Button/Button";
+import { Headline } from "@/components/structure/Headline/Headline";
 interface EntryProps {
     user: User | null;
 }
 
 export const Entry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
+    const [message, setMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [entryText, setEntryText] = useState<string>("")
 
-    console.log(user);
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>): void {
-        e.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const entry = formData.get('entry') as string;
+
+        if (!user) {
+            console.error('User is not authenticated');
+            return;
+        }
+
+        if (!entry.trim()) {
+            setErrorMessage("Entry cannot be empty");
+            return;
+        }
+
+        const userId = user.uid;
+
+        try {
+            await addDoc(collection(db, `entries/${userId}/entry`), {
+                entry,
+                email: user.email,
+                timestamp: new Date()
+            });
+            setMessage("Entry sent successfully");
+            setEntryText("");
+        } catch (error) {
+            console.log(error);
+            setErrorMessage("Error sending entry");
+        }
     }
 
     return (
@@ -24,9 +56,7 @@ export const Entry = ({ user }: EntryProps) => {
                 styles["entry__area"],
                 styles[mode])
             }>
-                <h2 className={classNames(
-                    styles["entry__headline"],
-                    styles[mode])}>Your new entry </h2>
+                <Headline text="new entry" />
                 <form
                     action=""
                     method="get"
@@ -49,17 +79,17 @@ export const Entry = ({ user }: EntryProps) => {
                         autoSave=""
                         spellCheck
                         required
+                        value={entryText}
+                        onChange={(e) => setEntryText(e.target.value)}
                     >
-
                     </textarea>
-                    <input
-                        type="submit"
-                        value="Add"
-                        className={classNames(
-                            styles["entry__input"],
-                            styles[mode]
-                        )}
-                    />
+                    {message && <div className={classNames(
+                        styles["entry__message"],
+                        styles[mode])}>{message}</div>}
+                    {errorMessage && <div className={classNames(
+                        styles["entry__error-message"],
+                        styles[mode])}>{errorMessage}</div>}
+                    <Button type="submit">Add</Button>
                 </form>
             </div>
         </Page>
