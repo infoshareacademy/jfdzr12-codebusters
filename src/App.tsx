@@ -12,6 +12,8 @@ import { NotFound } from './components/page/NotFound/NotFound';
 import { Account } from './components/page/Account/Account';
 import { ChangePassword } from './components/page/ChangePassword/ChangePassword';
 import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
+import { DeleteAccount } from './components/page/DeleteAccount/DeleteAccount';
+import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -29,15 +31,20 @@ function App(): JSX.Element {
         <HashRouter>
           <Header user={user} />
           <Routes>
-            {!user && <>
+            {!user && 
+            <>
               <Route path="/" element={<Welcome />} />
-              <Route path="/reset-password" element={<ResetPassword user={user} />} /></>
+              <Route path="/reset-password" element={<ResetPassword user={user} />} />
+              <Route path="/confirm-delete" element={<ConfirmDelete />} />
+            </>
             }
             {user &&
               <>
                 <Route path="/entry" element={<Entry user={user} />} />
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
+                <Route path="/delete-account" element={<DeleteAccount user={user} />} />
+                
               </>
             }
             <Route path="*" element={<NotFound />} />
