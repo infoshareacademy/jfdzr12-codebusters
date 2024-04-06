@@ -11,7 +11,12 @@
 }
 
 .login-form__register-link {
+  font-weight: bold;
   color: var(--violet-dark);
+}
+
+.login-form__register-link.dark {
+  color: var(--violet-light);
 }
 
 .login-modal__container.dark {
@@ -20,6 +25,16 @@
   box-shadow: 0 0 60px rgba(99, 105, 111, 0.292);
 }
 
-.login-form__register-link.dark {
+.login-form__reset-password-text {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.login-form__reset-password-link {
+  font-weight: bold;
+  color: var(--violet-dark);
+}
+
+.login-form__reset-password-link.dark {
   color: var(--violet-light);
 }
