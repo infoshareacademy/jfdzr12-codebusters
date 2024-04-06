@@ -1,12 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import classnames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config.js";
 import { ModeContext } from "@/providers/mode.js";
 import { AuthForm } from "../AuthForm/AuthForm.js";
-
 import styles from "./LoginModal.module.css";
+import { HeaderModal } from "@/components/atomic/HeaderModal/HeaderModal.js";
 
 
 interface LoginModalProps {
@@ -14,8 +14,10 @@ interface LoginModalProps {
 }
 
 export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
-    const { mode } = useContext(ModeContext);
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
+    const { mode } = useContext(ModeContext);
 
     const handleSubmit = ({ login, password }: { login: string; password: string }) => {
         signInWithEmailAndPassword(auth, login, password)
@@ -26,29 +28,29 @@ export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
             })
             .catch((error) => {
                 console.error("Error signing in:", error);
+                setError(true);
+                setMessage("The email or password provided is incorrect");
             });
     };
 
     return (
-        <div className={classnames(
-            styles["login-modal__container"],
-            styles[mode]
-        )}>
+        <HeaderModal>
             <div className={classnames(styles["login__form"], styles[mode])}>
-                <AuthForm submitText="Login" handleSubmit={handleSubmit}></AuthForm>
+                <AuthForm submitText="Login" handleSubmit={handleSubmit} error={error} message={message}></AuthForm>
                 <div className="login-form__register-container">
                     <p className={classnames(
                         styles["login-form__register-text"],
                         styles[mode]
-                    )}>Don't have account yet? <Link to="/register" className={classnames(
-                        styles["login-form__register-link"],
-                        styles[mode]
-                    )} onClick={() => { setIsLoginModalOpen(false) }}>
+                    )}>Don't have account yet?
+                        <Link to="/register" className={classnames(
+                            styles["login-form__register-link"],
+                            styles[mode]
+                        )} onClick={() => { setIsLoginModalOpen(false) }}>
                             Register
-                        </Link></p>
+                        </Link>
+                    </p>
                 </div>
             </div>
-        </div>
-
+        </HeaderModal>
     );
 };

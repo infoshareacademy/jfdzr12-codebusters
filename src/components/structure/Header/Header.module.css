@@ -99,6 +99,8 @@
 
 .header__icons-container {
   width: 10%;
+  display: flex;
+  flex-direction: row;
 }
 
 .header-mode__container,

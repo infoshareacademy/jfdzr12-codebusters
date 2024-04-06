@@ -13,7 +13,15 @@
   --indigo-black: #040819;
   --pink-light: #eee7e9;
   --pink-medium: #ff9fb3;
-  --pink-dark: #cd8090;
+  --pink-dark: #d1687d;
+  --green-medium: #9bcbc0;
+  --green-dark: #62aa9a;
+  --medium-grey: #c4c4c4;
+  --dark-grey: #939393;
+
+  --monospace-font: "Roboto Mono", monospace;
+  --sans-serif-font: Rubik, sans-serif;
+  --cursive-font: "Satisfy", cursive;
 }
 
 * {

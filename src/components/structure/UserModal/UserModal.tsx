@@ -5,6 +5,7 @@ import { ModeContext } from "../../../providers/mode";
 import { useNavigate } from "react-router-dom";
 import { User, signOut } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
+import { HeaderModal } from "@/components/atomic/HeaderModal/HeaderModal";
 
 interface UserModalProps {
     setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,10 +28,7 @@ export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
     }
 
     return (
-        <div className={classnames(
-            styles["user-modal__container"],
-            styles[mode]
-        )}>
+        <HeaderModal>
             <div className={classnames(
                 styles["user-modal__list-container"],
                 styles[mode]
@@ -39,7 +37,7 @@ export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
                     {user && <li className={classnames(
                         styles["user-modal__list-option"],
                         styles[mode]
-                    )}> {user?.email}
+                    )} onClick={() => { navigate("/account") }}>Account
                     </li>}
                     {user && <li className={classnames(
                         styles["user-modal__list-option"],
@@ -48,6 +46,6 @@ export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
                     </li>}
                 </ul>
             </div>
-        </div>
+        </HeaderModal>
     )
 }
