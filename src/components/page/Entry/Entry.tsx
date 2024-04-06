@@ -1,21 +1,49 @@
-import { Page } from "../../structure/Page/Page"
-import styles from "./Entry.module.css"
-import { FormEvent, useContext } from "react";
+import { Page } from "../../structure/Page/Page";
+import styles from "./Entry.module.css";
+import { useContext, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
-
+import { Button } from "@/components/atomic/Button/Button";
 interface EntryProps {
     user: User | null;
 }
 
 export const Entry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
+    const [message, setMessage] = useState<string | null>(null);
 
-    console.log(user);
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>): void {
-        e.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const entry = formData.get('entry') as string;
+
+        if (!user) {
+            console.error('User is not authenticated');
+            return;
+        }
+
+        if (!entry.trim()) {
+            setMessage("Entry cannot be empty");
+            return;
+        }
+
+        const userId = user.uid;
+
+        try {
+            await addDoc(collection(db, `entries/${userId}/entry`), {
+                entry,
+                email: user.email,
+                timestamp: new Date()
+            });
+            setMessage("Entry sent successfully");
+        } catch (error) {
+            console.log(error);
+            setMessage("Error sending entry");
+        }
     }
 
     return (
@@ -50,16 +78,10 @@ export const Entry = ({ user }: EntryProps) => {
                         spellCheck
                         required
                     >
-
                     </textarea>
-                    <input
-                        type="submit"
-                        value="Add"
-                        className={classNames(
-                            styles["entry__input"],
-                            styles[mode]
-                        )}
-                    />
+                    {message && <div>{message}</div>}
+                    <button>Add</button>
+                    {/* <Button>Add</Button> */}
                 </form>
             </div>
         </Page>
