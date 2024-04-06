@@ -7,7 +7,7 @@ interface ButtonProps {
     children: React.ReactNode;
     type?: "button" | "submit" | "reset";
     disabled?: boolean;
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLButtonElement>) => void;
 }
 
 export const Button = ({ type = "button", children, disabled, onClick }: ButtonProps) => {
