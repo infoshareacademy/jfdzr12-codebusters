@@ -8,6 +8,7 @@ import loupe from '/images/icons/Welcome/loupe.png'
 import feather from '/images/main/feather-pen.png'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
+import { Headline } from "@/components/structure/Headline/Headline";
 
 
 interface EntryProps {
@@ -55,12 +56,13 @@ export const Home = ({ user }: EntryProps) => {
 
     return (
         <Page>
+            <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
-                <div className={classnames(styles["home-header"], styles[mode])}>
+                {/* <div className={classnames(styles["home-header"], styles[mode])}>
                     <p><img src={feather} alt="feather" /></p>
                     <h1>Your (user) diary</h1>
                     <p>Here you can see your entries and add new ones</p>
-                </div>
+                </div> */}
                 <div className={classnames(styles["home-section"], styles[mode])}>
                     <div className={classnames(styles["home-section_entries"], styles[mode])}>
                         {entries.map((entry, id) => (
@@ -70,7 +72,7 @@ export const Home = ({ user }: EntryProps) => {
                         ))}
                     </div>
                 </div>
-                <div className={classnames(styles["home-panel"], styles[mode])}>
+                {/* <div className={classnames(styles["home-panel"], styles[mode])}>
                     <div className={classnames(styles["home-panel_search-container"], styles[mode])}>
                         <div className={classnames(styles["home-panel_search"], styles[mode])}>
                             <p><img src={loupe} alt="loupe" /></p>
@@ -80,7 +82,7 @@ export const Home = ({ user }: EntryProps) => {
                     </div>
                     <div className={classnames(styles["home-panel_calendar"], styles[mode])}>
                     </div>
-                </div>
+                </div> */}
             </div>
         </Page >
     )
