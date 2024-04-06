@@ -23,7 +23,9 @@ export const ConfirmDelete = () => {
                 styles["confirm-delete__text"],
                 styles[mode]
             )}>Your account has been deleted</h2>
-
+{mode === "light" ? (
+                    <img className={styles["byeLight"]} src="images/icons/delete/byeLight.png" />) : (<img className={styles["byeNight"]} src="images/icons/delete/byeNight.png" />)}
+                
                 </div>
             </Paper>
                 </div>
