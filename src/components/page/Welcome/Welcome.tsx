@@ -4,16 +4,15 @@ import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
+import { Paper } from "@/components/structure/Paper/Paper";
 
 export const Welcome = () => {
     const { mode } = useContext(ModeContext);
     return (
         <Page>
             <Headline text="diary daze" />
-            <div className={classNames(
-                styles["main__paper-area"],
-                styles[mode])
-            }>
+            <Paper>
+                <>
                 <p className={classNames(
                     styles["main__handwriting"],
                     styles[mode])}>keep a private online diary</p>
@@ -24,7 +23,8 @@ export const Welcome = () => {
                     <img className={styles["main__book-image"]} src="images/main/open-book.png" />) : (<img className={styles["main__book-image"]} src="images/main/open-lightbook.png" />)}
                 <p className={classNames(styles["main__strong-text"],
                     styles[mode])}>the safest place for your thoughts</p>
-            </div>
+                    </>
+            </Paper>
             {/* <div className={styles["main__headline-area"]}>
                 {mode === "light" ? (<img className={styles["main__feather-image"]}
                     src="images/main/feather-pen.png" />) : (<img className={styles["main__feather-image"]}

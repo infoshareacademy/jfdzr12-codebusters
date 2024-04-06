@@ -3,23 +3,26 @@ import styles from "./Entry.module.css";
 import { FormEvent, useContext } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
-import { doc,setDoc } from "firebase/firestore";
+import { doc,setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
-
 interface EntryProps {
     user: User | null;
 }
 
 export const Entry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
+    const userUid = user.uid;
 
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
         try {
-                await setDoc(doc(db, "entries", ), {
-                    entry: "data"
+                await setDoc(doc(db, "entries", userUid), {
+                    username: "",
+                    userUid: "",
+                    timestamp: serverTimestamp(),
+                    entry: "data",
                 }
                 )}
         catch (error){console.log(error)}

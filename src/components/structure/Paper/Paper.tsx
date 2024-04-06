@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react"
-import styles from "./Page.module.css"
+import styles from "./Paper.module.css"
 import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
