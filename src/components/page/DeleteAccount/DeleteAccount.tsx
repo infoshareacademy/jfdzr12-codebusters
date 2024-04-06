@@ -38,7 +38,7 @@ const handleDeleteAccount = async () => {
 
 } catch (error) {
             console.error(error); 
-            setError("Account hasn't delete")
+            setError("Account hasn't been deleted")
         }
 };
 
@@ -65,12 +65,16 @@ return (
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
-            <Button onClick={handleDeleteAccount}>Confirm</Button>
+            <div className={classNames(
+                        styles["delete-account__buttons"],
+                        styles[mode]
+                    )}><Button onClick={handleDeleteAccount}>Confirm</Button>
             {error && <p
                 className={classNames(
                     styles["delete-account__error-message"],
                     styles[mode]
                 )}>{error}</p>}
+            <Button onClick={() => { navigate("/") }}>Cancel</Button></div>
     </Page>
 );
                 };

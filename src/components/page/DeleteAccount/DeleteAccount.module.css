@@ -11,6 +11,11 @@
     color: var(--beige-light);
 }
 
+.delete-account__buttons {
+    display: flex;
+    flex-direction: row;
+}
+
 .delete-account__label {
     margin: 7px;
 }
