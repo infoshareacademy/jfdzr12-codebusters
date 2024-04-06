@@ -32,6 +32,7 @@ function App(): JSX.Element {
             {!user && <Route path="/" element={<Welcome />} />}
             {user &&
               <>
+                <Route path="/home" element={<Home user={user} />} />
                 <Route path="/entry" element={<Entry user={user} />} />
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
