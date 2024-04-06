@@ -9,6 +9,8 @@ import feather from '/images/main/feather-pen.png'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { Headline } from "@/components/structure/Headline/Headline";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/atomic/Button/Button";
 
 
 interface EntryProps {
@@ -21,6 +23,7 @@ interface EntriesData {
 }
 export const Home = ({ user }: EntryProps) => {
     const { mode, } = useContext(ModeContext);
+    const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
 
@@ -87,6 +90,7 @@ export const Home = ({ user }: EntryProps) => {
                     </div>
                 </div> */}
             </div>
+            <Button onClick={() => { navigate("entry") }}>New entry</Button>
         </Page >
     )
 }
