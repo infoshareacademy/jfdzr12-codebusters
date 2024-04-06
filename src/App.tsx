@@ -11,6 +11,7 @@ import { auth } from '../firebase-config';
 import { NotFound } from './components/page/NotFound/NotFound';
 import { Account } from './components/page/Account/Account';
 import { ChangePassword } from './components/page/ChangePassword/ChangePassword';
+import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -28,7 +29,10 @@ function App(): JSX.Element {
         <HashRouter>
           <Header user={user} />
           <Routes>
-            {!user && <Route path="/" element={<Welcome />} />}
+            {!user && <>
+              <Route path="/" element={<Welcome />} />
+              <Route path="/reset-password" element={<ResetPassword user={user} />} /></>
+            }
             {user &&
               <>
                 <Route path="/entry" element={<Entry user={user} />} />
