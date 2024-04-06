@@ -31,12 +31,12 @@ function App(): JSX.Element {
         <HashRouter>
           <Header user={user} />
           <Routes>
-            {!user && 
-            <>
-              <Route path="/" element={<Welcome />} />
-              <Route path="/reset-password" element={<ResetPassword user={user} />} />
-              <Route path="/confirm-delete" element={<ConfirmDelete />} />
-            </>
+            {!user &&
+              <>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/confirm-delete" element={<ConfirmDelete />} />
+              </>
             }
             {user &&
               <>
@@ -44,7 +44,7 @@ function App(): JSX.Element {
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
                 <Route path="/delete-account" element={<DeleteAccount user={user} />} />
-                
+
               </>
             }
             <Route path="*" element={<NotFound />} />
