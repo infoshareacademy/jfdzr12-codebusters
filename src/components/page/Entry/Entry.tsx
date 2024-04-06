@@ -7,6 +7,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
+import { Headline } from "@/components/structure/Headline/Headline";
 interface EntryProps {
     user: User | null;
 }
@@ -14,6 +15,8 @@ interface EntryProps {
 export const Entry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
     const [message, setMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [entryText, setEntryText] = useState<string>("")
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,7 +30,7 @@ export const Entry = ({ user }: EntryProps) => {
         }
 
         if (!entry.trim()) {
-            setMessage("Entry cannot be empty");
+            setErrorMessage("Entry cannot be empty");
             return;
         }
 
@@ -40,9 +43,10 @@ export const Entry = ({ user }: EntryProps) => {
                 timestamp: new Date()
             });
             setMessage("Entry sent successfully");
+            setEntryText("");
         } catch (error) {
             console.log(error);
-            setMessage("Error sending entry");
+            setErrorMessage("Error sending entry");
         }
     }
 
@@ -52,9 +56,7 @@ export const Entry = ({ user }: EntryProps) => {
                 styles["entry__area"],
                 styles[mode])
             }>
-                <h2 className={classNames(
-                    styles["entry__headline"],
-                    styles[mode])}>Your new entry </h2>
+                <Headline text="new entry" />
                 <form
                     action=""
                     method="get"
@@ -77,11 +79,17 @@ export const Entry = ({ user }: EntryProps) => {
                         autoSave=""
                         spellCheck
                         required
+                        value={entryText}
+                        onChange={(e) => setEntryText(e.target.value)}
                     >
                     </textarea>
-                    {message && <div>{message}</div>}
-                    <button>Add</button>
-                    {/* <Button>Add</Button> */}
+                    {message && <div className={classNames(
+                        styles["entry__message"],
+                        styles[mode])}>{message}</div>}
+                    {errorMessage && <div className={classNames(
+                        styles["entry__error-message"],
+                        styles[mode])}>{errorMessage}</div>}
+                    <Button type="submit">Add</Button>
                 </form>
             </div>
         </Page>
