@@ -11,15 +11,33 @@
 }
 
 .entry__textarea {
-  font-size: 12px;
+  display: block;
+  font-size: 1rem;
   padding: 20px;
-  resize: both;
+  resize: none;
   word-spacing: 2px;
-  border-radius: 5%;
+  overflow: auto;
+  outline:none;
+  border:none;
+  word-wrap: break-word;
+  overflow-wrap:break-word;
+  white-space:pre-wrap;
+}
+
+.entry__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+}
+
+.entry__textarea:active {
+  border: none;
 }
 
 .entry__textarea:focus {
-  border: 1px solid var(--violet-light);
+  border: none;
 }
 
 .entry__input {
@@ -57,4 +75,8 @@
 
 .entry__error-message.dark {
   color: var(--pink-medium);
+}
+
+.entry__textarea.dark {
+background: var(--indigo-medium-dark);
 }
