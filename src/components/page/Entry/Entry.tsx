@@ -18,7 +18,7 @@ export const Entry = ({ user }: EntryProps) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
         try {
-                await setDoc(doc(db, "entries", user && user.uid), {
+                await setDoc(doc(db, "entries", ), {
                     entry: "data"
                 }
                 )}
