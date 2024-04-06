@@ -26,6 +26,11 @@
   padding: 5px 10px;
 }
 
+.auth-form__input.dark {
+  border: 0.5px solid var(--black);
+  background-color: var(--black);
+}
+
 .auth-form__submit-button {
   padding: 10px 20px;
 }

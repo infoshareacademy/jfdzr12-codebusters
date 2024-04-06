@@ -29,7 +29,8 @@ export const NotFound = () => {
                             styles[mode]
                         )} />
                     )}
-                </div></div>
+                </div>
+            </div>
 
         </Page>
     )
