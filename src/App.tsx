@@ -11,6 +11,7 @@ import { auth } from '../firebase-config';
 import { NotFound } from './components/page/NotFound/NotFound';
 import { Account } from './components/page/Account/Account';
 import { ChangePassword } from './components/page/ChangePassword/ChangePassword';
+import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
 import { DeleteAccount } from './components/page/DeleteAccount/DeleteAccount';
 import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
 
@@ -32,8 +33,9 @@ function App(): JSX.Element {
           <Routes>
             {!user && 
             <>
-            <Route path="/" element={<Welcome />}/>
-            <Route path="/confirm-delete" element={<ConfirmDelete />} />
+              <Route path="/" element={<Welcome />} />
+              <Route path="/reset-password" element={<ResetPassword user={user} />} />
+              <Route path="/confirm-delete" element={<ConfirmDelete />} />
             </>
             }
             {user &&

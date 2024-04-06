@@ -37,15 +37,27 @@ export const LoginModal = ({ setIsLoginModalOpen }: LoginModalProps) => {
         <HeaderModal>
             <div className={classnames(styles["login__form"], styles[mode])}>
                 <AuthForm submitText="Login" handleSubmit={handleSubmit} error={error} message={message}></AuthForm>
+                <div className="login-form__reset-password-container">
+                    <p className={classnames(
+                        styles["login-form__reset-password-text"],
+                        styles[mode]
+                    )}>
+                        <Link to="/reset-password" className={classnames(
+                            styles["login-form__reset-password-link"],
+                            styles[mode]
+                        )} onClick={() => { setIsLoginModalOpen(false) }}>
+                            Forgot password?
+                        </Link>
+                    </p>
+                </div>
                 <div className="login-form__register-container">
                     <p className={classnames(
                         styles["login-form__register-text"],
                         styles[mode]
-                    )}>Don't have account yet?
-                        <Link to="/register" className={classnames(
-                            styles["login-form__register-link"],
-                            styles[mode]
-                        )} onClick={() => { setIsLoginModalOpen(false) }}>
+                    )}>Don't have account yet?  <Link to="/register" className={classnames(
+                        styles["login-form__register-link"],
+                        styles[mode]
+                    )} onClick={() => { setIsLoginModalOpen(false) }}>
                             Register
                         </Link>
                     </p>
