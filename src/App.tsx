@@ -31,7 +31,7 @@ function App(): JSX.Element {
           <Routes>
             {!user && <>
               <Route path="/" element={<Welcome />} />
-              <Route path="/reset-password" element={<ResetPassword user={user} />} /></>
+              <Route path="/reset-password" element={<ResetPassword />} /></>
             }
             {user &&
               <>
