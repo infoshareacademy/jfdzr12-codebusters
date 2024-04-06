@@ -38,3 +38,15 @@
 .auth-form__label {
   margin: 5px;
 }
+
+.auth-form__error-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin: 15px;
+  color: var(--pink-dark);
+}
+
+.auth-form__error-message.dark {
+  color: var(--pink-medium);
+}
