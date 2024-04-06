@@ -1,0 +1,11 @@
+.confirm-delete__container {
+    margin-top: 100px;
+    display: flex;
+}
+
+.confirm-delete__text {
+    font-family: var(--cursive-font);
+    font-size: 30px;
+    text-align: center;
+    color: var(--violet-dark);
+}

@@ -61,6 +61,7 @@ export const Account = ({ user }: AccountProps) => {
             </div>
 
             <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
+            <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
         </Page>
     )
 }
