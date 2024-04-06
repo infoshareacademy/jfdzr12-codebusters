@@ -32,12 +32,29 @@ export const ResetPassword = () => {
             <Headline text="Reset password" />
             <div className={styles["reset-password__container"]}>
                 <form className={styles["reset-password__form"]} onSubmit={handleResetPassword}>
-                    <label htmlFor='email'>Your email:</label>
-                    <input type="email" name="email" required onChange={(e) => { setEmail(e.target.value) }} value={email}></input>
+                    <label htmlFor='email' className={classNames(
+                        styles["reset-password__label"],
+                        styles[mode]
+                    )}>Your email:</label>
+                    <div className={classNames(
+                        styles["reset-password__input-container"],
+                        styles[mode]
+                    )}>
+                        <input className={classNames(
+                            styles["reset-password__input"],
+                            styles[mode]
+                        )} type="email" name="email" required onChange={(e) => { setEmail(e.target.value) }} value={email}></input>
+                    </div>
                     <Button type="submit">Reset</Button>
                 </form>
-                {successMessage && <div>{successMessage}</div>}
-                {errorMessage && <div>{errorMessage}</div>}
+                {successMessage && <div className={classNames(
+                    styles["reset-password__success-message"],
+                    styles[mode]
+                )}>{successMessage}</div>}
+                {errorMessage && <div className={classNames(
+                    styles["reset-password__error-message"],
+                    styles[mode]
+                )}>{errorMessage}</div>}
             </div>
 
         </Page>
