@@ -4,8 +4,9 @@
   margin: 30px;
   background-color: var(--violet-lighter);
   padding: 20px;
-  width: 80%;
+  width: 80vw;
   border-radius: 15px;
+  position: relative;
 }
 
 .home-section_entry.dark {
@@ -14,9 +15,11 @@
 }
 
 .home-section_entry--text {
-  margin: 20px;
+  margin: 40px 20px;
   text-align: justify;
   font-size: 1.2rem;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .home-section_entry--date {
@@ -25,11 +28,10 @@
 }
 
 .home-section_entry--icons {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  align-self: flex-start;
-  justify-items: flex-end;
+  position: absolute;
+  right: 10px;
 }
 
 .home-section_entry--delete,
