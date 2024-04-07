@@ -1,0 +1,25 @@
+.home-section_entry {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  background-color: var(--violet-lighter);
+  padding: 20px;
+  width: 80%;
+  border-radius: 15px;
+}
+
+.home-section_entry.dark {
+  background-color: var(--violet-dark);
+  color: var(--beige-light);
+}
+
+.home-section_entry--text {
+  margin: 20px;
+  text-align: justify;
+  font-size: 1.2rem;
+}
+
+.home-section_entry--date {
+  margin: 20px;
+  font-size: 0.8rem;
+}
