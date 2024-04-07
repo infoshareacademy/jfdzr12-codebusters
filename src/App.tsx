@@ -14,6 +14,7 @@ import { ChangePassword } from './components/page/ChangePassword/ChangePassword'
 import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
 import { DeleteAccount } from './components/page/DeleteAccount/DeleteAccount';
 import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
+import { Home } from './components/page/Home/Home';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -40,6 +41,7 @@ function App(): JSX.Element {
             }
             {user &&
               <>
+                <Route path="/" element={<Home user={user} />} />
                 <Route path="/entry" element={<Entry user={user} />} />
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
