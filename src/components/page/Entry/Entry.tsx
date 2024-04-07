@@ -89,15 +89,15 @@ export const Entry = ({ user }: EntryProps) => {
                     >
                     </textarea>
                     </div>
-                    {message && <div className={classNames(
+                    <Button type="submit">Add</Button>
+                
+                </form>
+                {message && <div className={classNames(
                         styles["entry__message"],
                         styles[mode])}>{message}</div>}
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}</div>}
-                    
-                    <Button type="submit">Add</Button>
-                </form>
                 </Paper>
             </div>
         </Page>

@@ -9,7 +9,6 @@ import classNames from 'classnames';
 
 export const ResetPassword = () => {
     const { mode } = useContext(ModeContext);
-
     const [email, setEmail] = useState("");
     const auth = getAuth();
     const [successMessage, setSuccessMessage] = useState<string | null>(null);

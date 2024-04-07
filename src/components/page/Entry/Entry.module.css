@@ -61,7 +61,8 @@
 
 .entry__message {
   color: var(--green-dark);
-  margin: 10px;
+  text-align: center;
+  margin: -10px;
 }
 
 .entry__message.dark {
@@ -70,7 +71,7 @@
 
 .entry__error-message {
   color: var(--pink-dark);
-  margin: 10px;
+  margin-bottom: -50px;
 }
 
 .entry__error-message.dark {
