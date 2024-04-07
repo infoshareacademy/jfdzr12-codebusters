@@ -67,17 +67,21 @@ export const Home = ({ user }: EntryProps) => {
                     <h1>Your diary</h1>
                     <p>Here you can see your entries and add new ones</p>
                 </div>
-                <div className={classnames(styles["home-section"], styles[mode])}>
-                    <div className={classnames(styles["home-section_entries"], styles[mode])}>
-                        {entries.map((entry) => (
-                            <div key={entry.id} className={classnames(styles["home-section_entry"], styles[mode])}>
-                                <p className={classnames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
-                                <p className={classnames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+                <div className={classnames(styles["home__content"], styles[mode])}>
+                    <Button onClick={() => { navigate("entry") }}>New entry</Button>
+                    <div className={classnames(styles["home-section"], styles[mode])}>
+                        <div className={classnames(styles["home-section_entries"], styles[mode])}>
+                            {entries.map((entry) => (
+                                <div key={entry.id} className={classnames(styles["home-section_entry"], styles[mode])}>
+                                    <p className={classnames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
+                                    <p className={classnames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
 
-                            </div>
-                        ))}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
+
                 {/* <div className={classnames(styles["home-panel"], styles[mode])}>
                     <div className={classnames(styles["home-panel_search-container"], styles[mode])}>
                         <div className={classnames(styles["home-panel_search"], styles[mode])}>
@@ -89,8 +93,8 @@ export const Home = ({ user }: EntryProps) => {
                     <div className={classnames(styles["home-panel_calendar"], styles[mode])}>
                     </div>
                 </div> */}
+
             </div>
-            <Button onClick={() => { navigate("entry") }}>New entry</Button>
         </Page >
     )
 }
