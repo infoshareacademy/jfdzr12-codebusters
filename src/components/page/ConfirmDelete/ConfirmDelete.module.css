@@ -9,3 +9,9 @@
     text-align: center;
     color: var(--violet-dark);
 }
+
+.byeLight {
+    display: flex;
+    align-self: flex-end;
+width: 70%;
+}
