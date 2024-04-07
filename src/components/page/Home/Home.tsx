@@ -20,15 +20,17 @@ interface EntriesData {
     entry: string;
     timestamp: any;
 }
+
 export const Home = ({ user }: EntryProps) => {
     const { mode, } = useContext(ModeContext);
+    // const [editEntry, setEditEntry] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
 
     if (!user) {
         console.error('User is not authenticated');
-        return;
+        return <div>User is not authenticated</div>;
     }
 
     useEffect(() => {

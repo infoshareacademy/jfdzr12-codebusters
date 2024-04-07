@@ -1,37 +1,87 @@
 import { Page } from "../../structure/Page/Page";
 import styles from "./EditEntry.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Paper } from "@/components/structure/Paper/Paper";
-interface EntryProps {
+import { useParams } from "react-router-dom";
+import { update } from "firebase/database";
+import { setDoc } from "firebase/firestore";
+
+interface EditEntryProps {
     user: User | null;
-    id?: string;
 }
 
-export const EditEntry = ({ user, id }: EntryProps) => {
+interface EntriesData {
+    id: string;
+    entry: string;
+    timestamp: any;
+}
+
+export const EditEntry = ({ user }: EditEntryProps) => {
     const { mode } = useContext(ModeContext);
     const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [entryText, setEntryText] = useState<string>("")
+    const [entryText, setEntryText] = useState<string | undefined>("");
+    const { entryId }: any = useParams();
+    console.log(entryId);
+
+    const [entry, setEntry] = useState<string | null | undefined>(null);
+
+    if (!user) {
+        console.error('User is not authenticated');
+        return <div>User is not authenticated</div>;
+    }
+
+    useEffect(() => {
+        if (!user) {
+            console.log("User is empty");
+            return;
+        }
+
+        const fetchEntry = async () => {
+            try {
+                const q = query(collection(db, `entries/${user.uid}/entry`), where("email", "==", user.email));
+                const querySnapshot = await getDocs(q);
+                const fetchedEntries = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as EntriesData[];
+
+                const entry = fetchedEntries.find((entry) => entry.id === entryId);
+                console.log("Fetched entry:", entry);
+                setEntry(entry?.entry);
+                setEntryText(entry?.entry)
+
+            } catch (error) {
+                console.error("Error fetching entries:", error);
+                return [];
+            }
+        };
+
+        fetchEntry();
+    }, [user, entryId]);
+
+    console.log("ENTRY", entry);
+
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const entry = formData.get('entry') as string;
+        const updatedEntry = formData.get('entry') as string;
 
         if (!user) {
             console.error('User is not authenticated');
             return;
         }
 
-        if (!entry.trim()) {
+        if (!updatedEntry.trim()) {
             setErrorMessage("Entry cannot be empty");
             return;
         }
@@ -39,18 +89,21 @@ export const EditEntry = ({ user, id }: EntryProps) => {
         const userId = user.uid;
 
         try {
-            await addDoc(collection(db, `entries/${userId}/entry`), {
-                entry,
-                email: user.email,
-                timestamp: new Date()
+            const entryRef = doc(db, `entries/${userId}/entry`, entry[0].id);
+
+            await updateDoс(entryRef, {
+                entry: updatedEntry,
+                timestamp: new Date() // You may want to update the timestamp as well
             });
-            setMessage("Entry sent successfully");
-            setEntryText("");
+
+            setMessage("Entry updated successfully");
+            setEntryText(updatedEntry);
         } catch (error) {
-            console.log(error);
-            setErrorMessage("Error sending entry");
+            console.error("Error updating entry:", error);
+            setErrorMessage("Error updating entry");
         }
-    }
+    };
+
 
     return (
         <Page>
@@ -58,7 +111,7 @@ export const EditEntry = ({ user, id }: EntryProps) => {
                 styles["entry__area"],
                 styles[mode])
             }>
-                <Headline text="new entry" />
+                <Headline text="edit entry" />
                 <Paper>
                     <form
                         action=""
@@ -87,8 +140,7 @@ export const EditEntry = ({ user, id }: EntryProps) => {
                                 required
                                 value={entryText}
                                 onChange={(e) => setEntryText(e.target.value)}
-                            >
-                            </textarea>
+                            />
                         </div>
                         <Button type="submit">Add</Button>
 
@@ -102,5 +154,5 @@ export const EditEntry = ({ user, id }: EntryProps) => {
                 </Paper>
             </div>
         </Page>
-    )
-}
+    );
+};
