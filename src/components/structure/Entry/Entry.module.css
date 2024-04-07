@@ -23,3 +23,23 @@
   margin: 20px;
   font-size: 0.8rem;
 }
+
+.home-section_entry--icons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  justify-items: flex-end;
+}
+
+.home-section_entry--delete,
+.home-section_entry--edit {
+  width: 25px;
+  margin: 5px 10px;
+}
+
+.entry__delete-icon,
+.entry__edit-icon {
+  min-height: 20px;
+  min-width: 20px;
+}

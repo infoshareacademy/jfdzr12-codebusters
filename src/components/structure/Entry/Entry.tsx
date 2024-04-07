@@ -12,15 +12,39 @@ interface EntryTypes {
 }
 export const Entry = ({ entry }: EntryTypes) => {
     const { mode } = useContext(ModeContext);
+    const handleClickEditEntry = () => {
+        console.log("EDIT ENTRY")
+    }
+
+    const handleClickDeleteEntry = () => {
+        console.log("DELETE ENTRY")
+
+    }
 
     return (
         <div key={entry.id} className={classNames(styles["home-section_entry"], styles[mode])}>
             <div className={classNames(styles["home-section_entry--icons"], styles[mode])}>
-                <div className={classNames(styles["home-section_entry--icon"], styles[mode])}>
+                <div className={classNames(styles["home-section_entry--edit"], styles[mode])}>
+                    <button onClick={handleClickEditEntry}>
+                        {mode === "light" ? (
 
+                            <img src="/images/icons/home/writing-color.png" className={styles["entry__edit-icon"]} />
+                        ) : (
+
+                            <img src="/images/icons/home/writing-color.png" className={styles["entry__edit-icon"]} />
+                        )}
+                    </button>
                 </div>
-                <div className={classNames(styles["home-section_entry--icon"], styles[mode])}>
+                <div className={classNames(styles["home-section_entry--delete"], styles[mode])}>
+                    <button onClick={handleClickDeleteEntry}>
+                        {mode === "light" ? (
 
+                            <img src="/images/icons/home/delete-color.png" className={styles["entry__delete-icon"]} />
+                        ) : (
+
+                            <img src="/images/icons/home/delete-color.png" className={styles["entry__delete-icon"]} />
+                        )}
+                    </button>
                 </div >
             </div>
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
