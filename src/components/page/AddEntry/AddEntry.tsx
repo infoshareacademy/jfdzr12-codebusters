@@ -9,15 +9,16 @@ import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Paper } from "@/components/structure/Paper/Paper";
+import { useNavigate } from "react-router-dom";
 interface EntryProps {
     user: User | null;
 }
 
 export const AddEntry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
-    const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [entryText, setEntryText] = useState<string>("")
+    const [entryText, setEntryText] = useState<string>("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -43,8 +44,8 @@ export const AddEntry = ({ user }: EntryProps) => {
                 email: user.email,
                 timestamp: new Date()
             });
-            setMessage("Entry sent successfully");
             setEntryText("");
+            navigate("/")
         } catch (error) {
             console.log(error);
             setErrorMessage("Error sending entry");
@@ -90,14 +91,10 @@ export const AddEntry = ({ user }: EntryProps) => {
                             </textarea>
                         </div>
                         <Button type="submit">Add</Button>
-
+                        {errorMessage && <div className={classNames(
+                            styles["entry__error-message"],
+                            styles[mode])}>{errorMessage}</div>}
                     </form>
-                    {message && <div className={classNames(
-                        styles["entry__message"],
-                        styles[mode])}>{message}</div>}
-                    {errorMessage && <div className={classNames(
-                        styles["entry__error-message"],
-                        styles[mode])}>{errorMessage}</div>}
                 </Paper>
             </div>
         </Page>

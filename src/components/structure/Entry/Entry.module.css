@@ -24,7 +24,13 @@
 
 .home-section_entry--date {
   margin: 20px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+}
+
+.home-section_entry--date-updated {
+  margin: 0 30px;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 .home-section_entry--icons {

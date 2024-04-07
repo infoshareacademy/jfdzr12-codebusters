@@ -9,14 +9,12 @@ interface EntryTypes {
         entry: string;
         timestamp: any;
         id: string;
+        updatedTimestamp?: any
     }
 }
 export const Entry = ({ entry }: EntryTypes) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
-    // const handleClickEditEntry = () => {
-    //     navigate("/edit-entry")
-    // }
 
     const handleClickDeleteEntry = () => {
         console.log("DELETE ENTRY")
@@ -52,6 +50,11 @@ export const Entry = ({ entry }: EntryTypes) => {
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
                 <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
                 <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+                {entry.updatedTimestamp && (<>
+                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
+                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
+                </>)
+                }
             </div>
         </div>
     )

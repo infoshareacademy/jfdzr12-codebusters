@@ -3,16 +3,13 @@ import styles from "./EditEntry.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
-import { addDoc, collection, doc, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Paper } from "@/components/structure/Paper/Paper";
-import { useParams } from "react-router-dom";
-import { update } from "firebase/database";
-import { setDoc } from "firebase/firestore";
-
+import { useNavigate, useParams } from "react-router-dom";
 interface EditEntryProps {
     user: User | null;
 }
@@ -21,17 +18,15 @@ interface EntriesData {
     id: string;
     entry: string;
     timestamp: any;
+    updatedTimestamp?: any
 }
 
 export const EditEntry = ({ user }: EditEntryProps) => {
     const { mode } = useContext(ModeContext);
-    const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string | undefined>("");
     const { entryId }: any = useParams();
-    console.log(entryId);
-
-    const [entry, setEntry] = useState<string | null | undefined>(null);
+    const navigate = useNavigate();
 
     if (!user) {
         console.error('User is not authenticated');
@@ -54,8 +49,6 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                 })) as EntriesData[];
 
                 const entry = fetchedEntries.find((entry) => entry.id === entryId);
-                console.log("Fetched entry:", entry);
-                setEntry(entry?.entry);
                 setEntryText(entry?.entry)
 
             } catch (error) {
@@ -67,21 +60,18 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         fetchEntry();
     }, [user, entryId]);
 
-    console.log("ENTRY", entry);
-
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const updatedEntry = formData.get('entry') as string;
+        const entry = formData.get('entry') as string;
 
         if (!user) {
             console.error('User is not authenticated');
             return;
         }
 
-        if (!updatedEntry.trim()) {
+        if (!entry.trim()) {
             setErrorMessage("Entry cannot be empty");
             return;
         }
@@ -89,21 +79,16 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         const userId = user.uid;
 
         try {
-            const entryRef = doc(db, `entries/${userId}/entry`, entry[0].id);
-
-            await updateDoс(entryRef, {
-                entry: updatedEntry,
-                timestamp: new Date() // You may want to update the timestamp as well
+            await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
+                entry: entryText,
+                updatedTimestamp: new Date()
             });
-
-            setMessage("Entry updated successfully");
-            setEntryText(updatedEntry);
+            navigate("/")
         } catch (error) {
-            console.error("Error updating entry:", error);
-            setErrorMessage("Error updating entry");
+            console.log(error);
+            setErrorMessage("Error editing entry");
         }
     };
-
 
     return (
         <Page>
@@ -145,9 +130,6 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                         <Button type="submit">Add</Button>
 
                     </form>
-                    {message && <div className={classNames(
-                        styles["entry__message"],
-                        styles[mode])}>{message}</div>}
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}</div>}

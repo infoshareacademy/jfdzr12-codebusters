@@ -19,11 +19,11 @@ interface EntriesData {
     id: string;
     entry: string;
     timestamp: any;
+    updatedTimestamp?: any
 }
 
 export const Home = ({ user }: EntryProps) => {
     const { mode, } = useContext(ModeContext);
-    // const [editEntry, setEditEntry] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
@@ -47,7 +47,6 @@ export const Home = ({ user }: EntryProps) => {
                     id: doc.id,
                     ...doc.data()
                 })) as EntriesData[];
-                console.log("Fetched Entries:", fetchedEntries);
                 setEntries(fetchedEntries)
 
             } catch (error) {
@@ -68,7 +67,7 @@ export const Home = ({ user }: EntryProps) => {
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
                             {entries.map((entry) => (
-                                <Entry entry={entry}></Entry>
+                                <Entry entry={entry} key={entry.id}></Entry>
                             ))}
                         </div>
                     </div>
