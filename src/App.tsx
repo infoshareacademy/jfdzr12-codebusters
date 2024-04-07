@@ -14,7 +14,7 @@ import { ChangePassword } from './components/page/ChangePassword/ChangePassword'
 import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
 import { DeleteAccount } from './components/page/DeleteAccount/DeleteAccount';
 import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
-import { Home } from './components/page/Home/Home';
+import { Home } from './components/page/Home/Main';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
