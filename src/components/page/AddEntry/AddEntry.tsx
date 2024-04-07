@@ -1,5 +1,5 @@
 import { Page } from "../../structure/Page/Page";
-import styles from "./Entry.module.css";
+import styles from "./AddEntry.module.css";
 import { useContext, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
@@ -13,7 +13,7 @@ interface EntryProps {
     user: User | null;
 }
 
-export const Entry = ({ user }: EntryProps) => {
+export const AddEntry = ({ user }: EntryProps) => {
     const { mode } = useContext(ModeContext);
     const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -59,40 +59,40 @@ export const Entry = ({ user }: EntryProps) => {
             }>
                 <Headline text="new entry" />
                 <Paper>
-                <form
-                    action=""
-                    method="get"
-                    className={classNames(styles["entry__form"])}
-                    onSubmit={handleSubmit}
-                >
-                    <div className={classNames(
-                        styles["entry__container"],
-                        styles[mode])}>
-                    <textarea
-                        placeholder="Write your thoughts here..."
-                        id="entry"
-                        className={classNames(
-                            styles["entry__textarea"],
-                            styles[mode]
-                        )}
-                        minLength={10}
-                        maxLength={500}
-                        name="entry"
-                        rows={18}
-                        cols={50}
-                        wrap="off"
-                        autoSave=""
-                        spellCheck
-                        required
-                        value={entryText}
-                        onChange={(e) => setEntryText(e.target.value)}
+                    <form
+                        action=""
+                        method="get"
+                        className={classNames(styles["entry__form"])}
+                        onSubmit={handleSubmit}
                     >
-                    </textarea>
-                    </div>
-                    <Button type="submit">Add</Button>
-                
-                </form>
-                {message && <div className={classNames(
+                        <div className={classNames(
+                            styles["entry__container"],
+                            styles[mode])}>
+                            <textarea
+                                placeholder="Write your thoughts here..."
+                                id="entry"
+                                className={classNames(
+                                    styles["entry__textarea"],
+                                    styles[mode]
+                                )}
+                                minLength={10}
+                                maxLength={500}
+                                name="entry"
+                                rows={18}
+                                cols={50}
+                                wrap="off"
+                                autoSave=""
+                                spellCheck
+                                required
+                                value={entryText}
+                                onChange={(e) => setEntryText(e.target.value)}
+                            >
+                            </textarea>
+                        </div>
+                        <Button type="submit">Add</Button>
+
+                    </form>
+                    {message && <div className={classNames(
                         styles["entry__message"],
                         styles[mode])}>{message}</div>}
                     {errorMessage && <div className={classNames(

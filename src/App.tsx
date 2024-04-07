@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import { Header } from './components/structure/Header/Header';
 import { Welcome } from './components/page/Welcome/Welcome';
-import { Entry } from './components/page/Entry/Entry'
+import { AddEntry } from './components/page/AddEntry/AddEntry'
 import { Footer } from './components/structure/Footer/Footer';
 import { ModeProvider } from './providers/mode';
 import { useState, useEffect } from 'react';
@@ -15,6 +15,7 @@ import { ResetPassword } from './components/page/ResetPassword/ResetPassword';
 import { DeleteAccount } from './components/page/DeleteAccount/DeleteAccount';
 import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
 import { Home } from './components/page/Home/Home';
+import { EditEntry } from './components/page/EditEntry/EditEntry';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -42,7 +43,8 @@ function App(): JSX.Element {
             {user &&
               <>
                 <Route path="/" element={<Home user={user} />} />
-                <Route path="/entry" element={<Entry user={user} />} />
+                <Route path="/add-entry" element={<AddEntry user={user} />} />
+                <Route path="/edit-entry" element={<EditEntry user={user} />} />
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
                 <Route path="/delete-account" element={<DeleteAccount user={user} />} />
