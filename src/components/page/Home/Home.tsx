@@ -4,11 +4,9 @@ import classnames from "classnames";
 import styles from "./Home.module.css";
 import { ModeContext } from "@/providers/mode";
 import { User } from "firebase/auth";
-import loupe from '/images/icons/Welcome/loupe.png'
 import feather from '/images/main/feather-pen.png'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
-import { Headline } from "@/components/structure/Headline/Headline";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 

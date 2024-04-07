@@ -1,4 +1,4 @@
-import { User, deleteUser, signInWithEmailAndPassword } from "firebase/auth";
+import { User, deleteUser } from "firebase/auth";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { useContext, useState } from "react";
@@ -13,39 +13,39 @@ interface DeleteAccountProps {
 }
 
 export const DeleteAccount = ({ user }: DeleteAccountProps) => {
-const { mode } = useContext(ModeContext);
-const navigate = useNavigate();
-const [confirmPassword, setConfirmPassword] = useState<string>('');
-const [error, setError] = useState<string | null>(null);
+    const { mode } = useContext(ModeContext);
+    const navigate = useNavigate();
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
 
-const handleDeleteAccount = async () => {
-    
-    if (!user) {
-        console.error('User is not authenticated');
-        return;
-    }
+    const handleDeleteAccount = async () => {
 
-    if (!confirmPassword) {
-        setError('Please, confirm your password');
-        return;
-    }
-    
-    try {
-        await deleteUser(user);
-        setConfirmPassword('');
-        navigate("/confirm-delete")
-        
+        if (!user) {
+            console.error('User is not authenticated');
+            return;
+        }
 
-} catch (error) {
-            console.error(error); 
+        if (!confirmPassword) {
+            setError('Please, confirm your password');
+            return;
+        }
+
+        try {
+            await deleteUser(user);
+            setConfirmPassword('');
+            navigate("/confirm-delete")
+
+
+        } catch (error) {
+            console.error(error);
             setError("Account hasn't been deleted")
         }
-};
+    };
 
-return (
-    <Page>
-    <Headline text="Delete account" />
-    <div className={classNames(
+    return (
+        <Page>
+            <Headline text="Delete account" />
+            <div className={classNames(
                 styles["delete-account__container"],
                 styles[mode]
             )}>
@@ -71,10 +71,10 @@ return (
                     styles[mode]
                 )}>{error}</p>}
             <div className={classNames(
-                        styles["delete-account__buttons"],
-                        styles[mode]
-                    )}><Button onClick={handleDeleteAccount}>Confirm</Button>
-            <Button onClick={() => { navigate("/") }}>Cancel</Button></div>
-    </Page>
-);
-                };
+                styles["delete-account__buttons"],
+                styles[mode]
+            )}><Button onClick={handleDeleteAccount}>Confirm</Button>
+                <Button onClick={() => { navigate("/") }}>Cancel</Button></div>
+        </Page>
+    );
+};
