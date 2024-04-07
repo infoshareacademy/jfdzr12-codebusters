@@ -1,7 +1,7 @@
 import { Page } from "../../structure/Page/Page"
 import { useContext, useEffect, useState } from "react";
 import classnames from "classnames";
-import styles from "./Main.module.css";
+import styles from "./Home.module.css";
 import { ModeContext } from "@/providers/mode";
 import { User } from "firebase/auth";
 import loupe from '/images/icons/Welcome/loupe.png'
