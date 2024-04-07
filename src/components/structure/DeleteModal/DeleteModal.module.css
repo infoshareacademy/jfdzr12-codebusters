@@ -1,0 +1,10 @@
+
+.delete-modal__text {
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.delete-modal__text.dark {
+    color: var(--violet-light);
+}
