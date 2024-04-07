@@ -20,6 +20,11 @@
   width: 100%;
 }
 
+.home-header.dark {
+  background-color: var(--violet-dark);
+  color: var(--beige-light);
+}
+
 .home__content {
   display: flex;
   flex-direction: column;
@@ -83,6 +88,11 @@
   padding: 20px;
   width: 80%;
   border-radius: 15px;
+}
+
+.home-section_entry.dark {
+  background-color: var(--violet-dark);
+  color: var(--beige-light);
 }
 
 .home-section_entry--text {
