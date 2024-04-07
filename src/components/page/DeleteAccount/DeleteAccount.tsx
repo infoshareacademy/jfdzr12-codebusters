@@ -65,15 +65,15 @@ return (
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
-            <div className={classNames(
-                        styles["delete-account__buttons"],
-                        styles[mode]
-                    )}><Button onClick={handleDeleteAccount}>Confirm</Button>
             {error && <p
                 className={classNames(
                     styles["delete-account__error-message"],
                     styles[mode]
                 )}>{error}</p>}
+            <div className={classNames(
+                        styles["delete-account__buttons"],
+                        styles[mode]
+                    )}><Button onClick={handleDeleteAccount}>Confirm</Button>
             <Button onClick={() => { navigate("/") }}>Cancel</Button></div>
     </Page>
 );
