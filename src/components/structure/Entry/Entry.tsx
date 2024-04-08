@@ -2,19 +2,19 @@ import classNames from "classnames";
 import styles from "./Entry.module.css";
 import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
+import { useNavigate } from "react-router-dom";
 
 interface EntryTypes {
     entry: {
         entry: string;
         timestamp: any;
         id: string;
+        updatedTimestamp?: any
     }
 }
 export const Entry = ({ entry }: EntryTypes) => {
     const { mode } = useContext(ModeContext);
-    const handleClickEditEntry = () => {
-        console.log("EDIT ENTRY")
-    }
+    const navigate = useNavigate();
 
     const handleClickDeleteEntry = () => {
         console.log("DELETE ENTRY")
@@ -25,7 +25,7 @@ export const Entry = ({ entry }: EntryTypes) => {
         <div key={entry.id} className={classNames(styles["home-section_entry"], styles[mode])}>
             <div className={classNames(styles["home-section_entry--icons"], styles[mode])}>
                 <div className={classNames(styles["home-section_entry--edit"], styles[mode])}>
-                    <button onClick={handleClickEditEntry}>
+                    <button onClick={() => { navigate(`/edit-entry/${entry.id}`) }}>
                         {mode === "light" ? (
 
                             <img src="/images/icons/home/writing-color.png" className={styles["entry__edit-icon"]} />
@@ -50,6 +50,11 @@ export const Entry = ({ entry }: EntryTypes) => {
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
                 <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
                 <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+                {entry.updatedTimestamp && (<>
+                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
+                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
+                </>)
+                }
             </div>
         </div>
     )
