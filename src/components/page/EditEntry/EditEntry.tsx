@@ -1,24 +1,64 @@
 import { Page } from "../../structure/Page/Page";
 import styles from "./EditEntry.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Paper } from "@/components/structure/Paper/Paper";
-interface EntryProps {
+import { useNavigate, useParams } from "react-router-dom";
+interface EditEntryProps {
     user: User | null;
-    id?: string;
 }
 
-export const EditEntry = ({ user, id }: EntryProps) => {
+interface EntriesData {
+    id: string;
+    entry: string;
+    timestamp: any;
+    updatedTimestamp?: any
+}
+
+export const EditEntry = ({ user }: EditEntryProps) => {
     const { mode } = useContext(ModeContext);
-    const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [entryText, setEntryText] = useState<string>("")
+    const [entryText, setEntryText] = useState<string | undefined>("");
+    const { entryId }: any = useParams();
+    const navigate = useNavigate();
+
+    if (!user) {
+        console.error('User is not authenticated');
+        return <div>User is not authenticated</div>;
+    }
+
+    useEffect(() => {
+        if (!user) {
+            console.log("User is empty");
+            return;
+        }
+
+        const fetchEntry = async () => {
+            try {
+                const q = query(collection(db, `entries/${user.uid}/entry`), where("email", "==", user.email));
+                const querySnapshot = await getDocs(q);
+                const fetchedEntries = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as EntriesData[];
+
+                const entry = fetchedEntries.find((entry) => entry.id === entryId);
+                setEntryText(entry?.entry)
+
+            } catch (error) {
+                console.error("Error fetching entries:", error);
+                return [];
+            }
+        };
+
+        fetchEntry();
+    }, [user, entryId]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -39,18 +79,16 @@ export const EditEntry = ({ user, id }: EntryProps) => {
         const userId = user.uid;
 
         try {
-            await addDoc(collection(db, `entries/${userId}/entry`), {
-                entry,
-                email: user.email,
-                timestamp: new Date()
+            await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
+                entry: entryText,
+                updatedTimestamp: new Date()
             });
-            setMessage("Entry sent successfully");
-            setEntryText("");
+            navigate("/")
         } catch (error) {
             console.log(error);
-            setErrorMessage("Error sending entry");
+            setErrorMessage("Error editing entry");
         }
-    }
+    };
 
     return (
         <Page>
@@ -58,7 +96,7 @@ export const EditEntry = ({ user, id }: EntryProps) => {
                 styles["entry__area"],
                 styles[mode])
             }>
-                <Headline text="new entry" />
+                <Headline text="edit entry" />
                 <Paper>
                     <form
                         action=""
@@ -87,20 +125,16 @@ export const EditEntry = ({ user, id }: EntryProps) => {
                                 required
                                 value={entryText}
                                 onChange={(e) => setEntryText(e.target.value)}
-                            >
-                            </textarea>
+                            />
                         </div>
                         <Button type="submit">Add</Button>
 
                     </form>
-                    {message && <div className={classNames(
-                        styles["entry__message"],
-                        styles[mode])}>{message}</div>}
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}</div>}
                 </Paper>
             </div>
         </Page>
-    )
-}
+    );
+};

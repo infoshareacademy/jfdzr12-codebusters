@@ -13,7 +13,6 @@
 .entry__textarea {
   display: block;
   font-size: 1rem;
-  padding: 20px;
   resize: none;
   word-spacing: 2px;
   overflow: auto;
@@ -51,14 +50,6 @@
   color: var(--violet-dark);
 }
 
-/* text */
-.entry__headline {
-  margin-bottom: 50px;
-  font-family: "Satisfy", cursive;
-  font-size: 50px;
-  text-align: center;
-}
-
 .entry__message {
   color: var(--green-dark);
   text-align: center;
@@ -72,6 +63,7 @@
 .entry__error-message {
   color: var(--pink-dark);
   margin-bottom: -50px;
+  text-align: center;
 }
 
 .entry__error-message.dark {

@@ -44,7 +44,7 @@ function App(): JSX.Element {
               <>
                 <Route path="/" element={<Home user={user} />} />
                 <Route path="/add-entry" element={<AddEntry user={user} />} />
-                <Route path="/edit-entry" element={<EditEntry user={user} />} />
+                <Route path="/edit-entry/:entryId" element={<EditEntry user={user} />} />
                 <Route path="/account" element={<Account user={user} />} />
                 <Route path="/change-password" element={<ChangePassword user={user} />} />
                 <Route path="/delete-account" element={<DeleteAccount user={user} />} />
