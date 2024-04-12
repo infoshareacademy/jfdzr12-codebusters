@@ -2,9 +2,10 @@
   text-transform: uppercase;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   font-size: 2rem;
   transform: translateY(-50%);
-  margin: 120px 120px 30px 120px;
+  margin: 120px 20px 20px;
   text-align: center;
   font-weight: 600;
   color: var(--beige-dark);
@@ -17,25 +18,26 @@
   transform: rotateX(35deg), translateY(-50%);
 }
 
-.headline:hover > span {
+.headline:hover > .headline__symbol {
   color: var(--violet-dark);
 }
 
-.headline:hover > span:nth-child(odd) {
+.headline:hover > .headline__symbol:nth-child(odd) {
   transform: skewY(15deg);
 }
 
-.headline:hover > span:nth-child(even) {
+.headline:hover > .headline__symbol:nth-child(even) {
   transform: skewY(-15deg);
   background-color: var(--violet-light);
 }
 
-.headline > span {
-  display: block;
+.headline__symbol {
+  display: flex;
   background-color: var(--pink-light);
   width: 60px;
   height: 60px;
-  line-height: 60px;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
   box-shadow: 0 5px 10px #0000001a;
@@ -45,15 +47,39 @@
   color: var(--beige-light);
 }
 
-.headline.dark:hover > span {
+.headline.dark:hover > .headline__symbol {
   color: var(--pink-light);
 }
 
-.headline.dark:hover > span:nth-child(even) {
+.headline.dark:hover > .headline__symbol:nth-child(even) {
   background-color: var(--indigo-medium-dark);
 }
 
-.headline.dark > span {
+.headline.dark > .headline__symbol {
   background-color: var(--violet-dark);
   box-shadow: 0 5px 10px #2128441a;
+}
+
+@media screen and (max-width: 768px) {
+  .headline {
+    font-size: 1.5rem;
+    margin: 100px 10px 10px;
+  }
+
+  .headline__symbol {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .headline {
+    font-size: 1.3rem;
+    margin: 100px 20px 20px;
+  }
+
+  .headline__symbol {
+    width: 35px;
+    height: 35px;
+  }
 }
