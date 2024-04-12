@@ -19,11 +19,11 @@ export const Header = ({ user }: HeaderProps) => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     const toggleAccountModal = (): void => {
-        setIsUserModalOpen((prevState) => (prevState === false ? true : false));
+        setIsUserModalOpen((prevState) => !prevState);
     };
 
     const toggleLoginModal = (): void => {
-        setIsLoginModalOpen((prevState) => (prevState === false ? true : false));
+        setIsLoginModalOpen((prevState) => !prevState);
     };
 
     return (
