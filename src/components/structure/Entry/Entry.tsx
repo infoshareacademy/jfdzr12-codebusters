@@ -1,8 +1,9 @@
 import classNames from "classnames";
 import styles from "./Entry.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import { useNavigate } from "react-router-dom";
+import { DeleteModal } from "../DeleteModal/DeleteModal"
 
 interface EntryTypes {
     entry: {
@@ -17,8 +18,8 @@ export const Entry = ({ entry }: EntryTypes) => {
     const navigate = useNavigate();
 
     const handleClickDeleteEntry = () => {
-        console.log("DELETE ENTRY")
-
+        const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+            setIsUserModalOpen((prevState) => !prevState);
     }
 
     return (
@@ -56,6 +57,7 @@ export const Entry = ({ entry }: EntryTypes) => {
                 </>)
                 }
             </div>
+            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen}></DeleteModal>}
         </div>
     )
 }
