@@ -134,37 +134,38 @@ export const Account = ({ user }: AccountProps) => {
                     styles[mode]
                 )}>{createdAt?.toLocaleString()}</p>
             </div>
-            {accountModal && <div className={classNames(
-                styles["account-modal"],
-                styles[mode]
-            )}>
-                <form onSubmit={handleSubmit} className={styles["account-modal__form"]}>
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Surname:
-                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Username:
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Gender:
-                        <select name="male" value={formData.male.toString()} onChange={handleChange}>
-                            <option value="true">Male</option>
-                            <option value="false">Female</option>
-                        </select>
-                    </label>
-                    <label>
-                        Birth Date:
-                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
-                    </label>
-                    <Button type="submit">Save</Button>
-                </form>
-            </div>}
+            {accountModal &&
+                <div className={classNames(
+                    styles["account-modal"],
+                    styles[mode]
+                )}>
+                    <form onSubmit={handleSubmit} className={styles["account-modal__form"]}>
+                        <label>
+                            Name:
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                        </label>
+                        <label>
+                            Surname:
+                            <input type="text" name="surname" value={formData.surname} onChange={handleChange} />
+                        </label>
+                        <label>
+                            Username:
+                            <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                        </label>
+                        <label>
+                            Gender:
+                            <select name="male" value={formData.male.toString()} onChange={handleChange}>
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                            </select>
+                        </label>
+                        <label>
+                            Birth Date:
+                            <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+                        </label>
+                        <Button type="submit">Save</Button>
+                    </form>
+                </div>}
             <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
             <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
         </Page >
