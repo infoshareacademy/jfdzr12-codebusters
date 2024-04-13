@@ -1,5 +1,5 @@
 .modal__container {
-  height: 300px;
+  padding: 20px;
   min-width: 40%;
   position: absolute;
   z-index: 100;
@@ -22,4 +22,11 @@
   border: 1px solid var(--indigo-medium-dark);
   box-shadow: 0 0 60px #63696f4a;
   color: var(--beige-light);
+}
+
+.modal__button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

@@ -19,8 +19,11 @@ export const Modal = ({ children, onClickSubmit, onClickCancel }: ModalTypes) =>
             styles[mode]
         )} onSubmit={onClickSubmit}>
             {children}
+            <div className={classnames(
+            styles["modal__button-container"],
+            styles[mode])}>
             {onClickCancel && <Button type="reset" onClick={onClickCancel}>Cancel</Button>}
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Submit</Button></div>
         </form>
     )
 }

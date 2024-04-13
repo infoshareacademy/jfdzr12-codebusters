@@ -36,7 +36,7 @@ export const DeleteModal = ({ setIsUserModalOpen, user, id }: DeleteModalProps) 
 
 
     return (
-        <Modal onClickSubmit={handleSubmit}>
+        <Modal onClickSubmit={handleSubmit} onClickCancel={() => {setIsUserModalOpen(false)}}>
 
             <p className={classnames(
                 styles["delete-modal__text"],
