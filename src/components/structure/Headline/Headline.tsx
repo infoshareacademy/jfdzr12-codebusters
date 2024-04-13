@@ -12,15 +12,17 @@ export const Headline = ({ text }: HeadlineProps) => {
 
     const textArr = text.split("");
     return (
-        <h1 className={classNames(
+        <div className={classNames(
             styles["headline"],
             styles[mode])} >
             {textArr.map((symbol, index) => {
-                return (<span key={index}>
+                return (<div className={classNames(
+                    styles["headline__symbol"],
+                    styles[mode])} key={index}>
                     {symbol}
-                </span>)
+                </div>)
             })}
-        </h1>
+        </div>
     )
 
 }
