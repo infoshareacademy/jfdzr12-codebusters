@@ -54,7 +54,7 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    }, [user, entries]);
+    }, [user]);
 
     return (
         <Page>
