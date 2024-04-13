@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import { useNavigate } from "react-router-dom";
 import { DeleteModal } from "../DeleteModal/DeleteModal"
+import { User } from "firebase/auth";
 
 interface EntryTypes {
     entry: {
@@ -11,15 +12,16 @@ interface EntryTypes {
         timestamp: any;
         id: string;
         updatedTimestamp?: any
-    }
+    };
+    user: User | null;
 }
-export const Entry = ({ entry }: EntryTypes) => {
+export const Entry = ({ entry, user }: EntryTypes) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
+    const [isUserModalOpen, setIsUserModalOpen] = useState<boolean>(false);
 
     const handleClickDeleteEntry = () => {
-        const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-            setIsUserModalOpen((prevState) => !prevState);
+        setIsUserModalOpen((prevState) => !prevState);
     }
 
     return (
@@ -57,7 +59,7 @@ export const Entry = ({ entry }: EntryTypes) => {
                 </>)
                 }
             </div>
-            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen}></DeleteModal>}
+            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id}></DeleteModal>}
         </div>
     )
 }

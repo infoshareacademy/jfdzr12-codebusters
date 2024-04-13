@@ -10,7 +10,7 @@ interface ButtonProps {
     onClick?: (event: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = ({ type = "button", children, disabled, onClick }: ButtonProps) => {
+export const Button = ({ type = "submit", children, disabled, onClick }: ButtonProps) => {
     const { mode } = useContext(ModeContext);
     return (
         <div className={classNames(

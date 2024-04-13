@@ -56,7 +56,7 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    }, [user]);
+    }, [user, entries]);
 
     return (
         <Page>
@@ -67,7 +67,7 @@ export const Home = ({ user }: EntryProps) => {
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
                             {entries.map((entry) => (
-                                <Entry entry={entry} key={entry.id}></Entry>
+                                <Entry entry={entry} key={entry.id} user={user}></Entry>
                             ))}
                         </div>
                     </div>
