@@ -5,7 +5,6 @@ import { ModeContext } from "@/providers/mode";
 import { useNavigate } from "react-router-dom";
 import { DeleteModal } from "../DeleteModal/DeleteModal"
 import { User } from "firebase/auth";
-
 interface EntryTypes {
     entry: {
         entry: string;

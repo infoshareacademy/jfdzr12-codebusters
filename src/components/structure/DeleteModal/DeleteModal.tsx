@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import classnames from "classnames";
 import styles from "./DeleteModal.module.css";
 import { Modal } from "@/components/atomic/Modal/Modal.js";
-import { useNavigate } from "react-router-dom";
 import { ModeContext } from "@/providers/mode";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
@@ -46,7 +45,6 @@ export const DeleteModal = ({ setIsUserModalOpen, user, id }: DeleteModalProps) 
                 Are you sure you want to delete this entry?
             </p>
             {errorMessage && <div>{errorMessage}</div>}
-
         </Modal>
     );
 };
