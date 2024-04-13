@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 100;
   background-color: var(--white);
-  top: 80px;
+  top: var(--header-hight);
   right: 40px;
   border: 1px solid #f4f4f4;
   border-top: none;
@@ -16,4 +16,10 @@
   border: 1px solid var(--indigo-medium-dark);
   box-shadow: 0 0 60px #63696f4a;
   color: var(--beige-light);
+}
+
+@media screen and (max-width: 768px) {
+  .modal__container {
+    top: calc(var(--header-hight) * 0.75);
+  }
 }
