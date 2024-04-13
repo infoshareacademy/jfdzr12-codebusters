@@ -45,3 +45,50 @@
 .account__user-email.dark {
   color: var(--violet-light);
 }
+
+.account--button-container--edit {
+  width: 25px;
+  margin: 5px 10px;
+  position: absolute;
+  right: 20vh;
+  top: 240px;
+}
+
+.account--button--edit-icon {
+  min-height: 20px;
+  min-width: 20px;
+}
+
+/* ACCOUNT MODAL ------>*/
+.account-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  width: 400px;
+  max-width: 90%;
+  /* display: none; */
+  border-radius: 8px;
+  box-shadow: 0 0 60px #11305121;
+  background-color: var(--white);
+  border: 1px solid #f4f4f4;
+}
+
+.account-modal.dark {
+  background-color: var(--indigo-medium-dark);
+  border: 1px solid var(--indigo-medium-dark);
+  box-shadow: 0 0 60px #63696f4a;
+  color: var(--beige-light);
+}
+
+.account-modal__form {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*<------ ACCOUNT MODAL*/
