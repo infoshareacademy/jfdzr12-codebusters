@@ -73,3 +73,17 @@
 .entry__textarea.dark {
   background: var(--indigo-medium-dark);
 }
+
+
+@media screen and (max-width: 768px) {
+  .entry__textarea,
+  .entry__container {
+    width: 60%;}
+  }
+
+
+@media screen and (max-width: 600px) {
+  .entry__textarea,
+  .entry__container {
+    width: 40%;}
+}
