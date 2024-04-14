@@ -100,66 +100,84 @@ export const Account = ({ user }: AccountProps) => {
         <Page>
             <Headline text="account" />
             <div className={classNames(
-                styles["account__user-email-text-container"],
+                styles["account__container"],
                 styles[mode]
             )}>
-                <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
-                    <button onClick={() => { setAccountModal(true) }}>
-                        {mode === "light" ? (
+                <div className={classNames(
+                    styles["account__user-email-text-container"],
+                    styles[mode]
+                )}>
+                    <div className={classNames(
+                        styles["account__user-email-text"],
+                        styles[mode]
+                    )}>Hello, <span className={classNames(
+                        styles["account__user-email"],
+                        styles[mode]
+                    )}>{user?.email}</span></div>
+                    <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
+                        <button onClick={() => { setAccountModal(true) }}>
+                            {mode === "light" ? (
 
-                            <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
-                        ) : (
+                                <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
+                            ) : (
 
-                            <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
-                        )}
-                    </button>
+                                <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
+                            )}
+                        </button>
+                    </div>
                 </div>
-                <p className={classNames(
-                    styles["account__user-email-text"],
+                <div className={classNames(
+                    styles["account__user-updated-container"],
                     styles[mode]
-                )}>Hello, <span className={classNames(
-                    styles["account__user-email"],
-                    styles[mode]
-                )}>{user?.email}</span></p>
+                )}>
+                    <p className={classNames(
+                        styles["account__user-updated-text"],
+                        styles[mode]
+                    )}>Last authentication:</p>
+                    <p className={classNames(
+                        styles["account__user-updated-text-date"],
+                        styles[mode]
+                    )}>{createdAt?.toLocaleString()}</p>
+                </div>
             </div>
-            <div className={classNames(
-                styles["account__user-updated-container"],
-                styles[mode]
-            )}>
-                <p className={classNames(
-                    styles["account__user-updated-text"],
-                    styles[mode]
-                )}>Last authentication:</p>
-                <p className={classNames(
-                    styles["account__user-updated-text-date"],
-                    styles[mode]
-                )}>{createdAt?.toLocaleString()}</p>
-            </div>
+
 
             {accountModal && <Modal onClickSubmit={handleSubmit} onClickCancel={() => { setAccountModal(false) }}>
-                <label>
-                    Name:
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                </label>
-                <label>
-                    Surname:
-                    <input type="text" name="surname" value={formData.surname} onChange={handleChange} />
-                </label>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={formData.username} onChange={handleChange} />
-                </label>
-                <label>
-                    Gender:
-                    <select name="male" value={formData.male.toString()} onChange={handleChange}>
-                        <option value="true">Male</option>
-                        <option value="false">Female</option>
-                    </select>
-                </label>
-                <label>
-                    Birth Date:
-                    <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
-                </label>
+                <div>
+                    <div>
+                        <label htmlFor="name">
+                            Name:
+                        </label>
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="surname">
+                            Surname:
+                        </label>
+                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="username">
+                            Username:
+                        </label>
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="male">
+                            Gender:
+                        </label>
+                        <select name="male" value={formData.male.toString()} onChange={handleChange}>
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="birthDate">
+                            Birth Date:
+                        </label>
+                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+                    </div>
+                </div>
             </Modal>}
 
             <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
