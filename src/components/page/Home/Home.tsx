@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
+
 interface EntryProps {
     user: User | null;
 }
@@ -54,7 +55,7 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    }, []);
+    });
 
     return (
         <Page>
