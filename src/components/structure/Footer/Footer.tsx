@@ -25,15 +25,16 @@ export const Footer = () => {
                     </div>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Partners:</h3>
-                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/https://infoshareacademy.com/kursy/">Infoshare Academy</a>
+                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])}
+                            href="/https://infoshareacademy.com/kursy/">Infoshare Academy</a>
                     </div>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Coming soon</h3>
                         <div className={classnames(styles["socialmedia"], styles[mode])}>
-                            <p><img src={fb} alt="Facebook link" /></p>
-                            <p><img src={insta} alt="Instagram link" /></p>
-                            <p><img src={twitter} alt="Twitter link" /></p>
-                            <p><img src={linkedin} alt="Linkedin link" /></p>
+                            <p><a href="https://www.facebook.com/diary-daze"> <img src={fb} alt="Facebook link" /></a></p>
+                            <p><a href="https://www.instagram.com/diary-daze"><img src={insta} alt="Instagram link" /></a></p>
+                            <p><a href="https://twitter.com/?lang=pl/diary-daze"><img src={twitter} alt="Twitter link" /></a></p>
+                            <p><a href="https://pl.linkedin.com/diary-daze"><img src={linkedin} alt="Linkedin link" /></a></p>
                         </div>
                     </div>
                 </div>
