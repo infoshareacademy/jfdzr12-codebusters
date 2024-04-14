@@ -45,7 +45,9 @@ export const Home = ({ user }: EntryProps) => {
                     id: doc.id,
                     ...doc.data()
                 })) as EntriesData[];
-                setEntries(fetchedEntries)
+                setEntries(fetchedEntries.sort((x, y) => {
+                    return y.timestamp - x.timestamp;
+                }))
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
