@@ -86,7 +86,6 @@
   z-index: 1000;
   width: 400px;
   max-width: 90%;
-  /* display: none; */
   border-radius: 8px;
   box-shadow: 0 0 60px #11305121;
   background-color: var(--white);

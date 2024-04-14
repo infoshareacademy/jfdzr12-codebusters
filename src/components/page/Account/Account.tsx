@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
-import { read } from "fs";
 interface AccountProps {
     user: User | null;
 }
@@ -62,14 +61,14 @@ export const Account = ({ user }: AccountProps) => {
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     setAccountData(docSnap.data() as AccountData);
-                    console.log("ACCOUNT DATA:", accountData)
+                    setFormData(docSnap.data() as AccountData)
                 }
+                console.log("ACCOUNT DATA:", accountData)
+
             } catch (error) {
                 console.error("Error fetching account data:", error);
             }
         };
-
-
         fetchAccountData();
     }, [user]);
 
@@ -126,23 +125,10 @@ export const Account = ({ user }: AccountProps) => {
                         </button>
                     </div>
                 </div>
-                {/* <div className={classNames(
-                    styles["account__user-updated-container"],
-                    styles[mode]
-                )}>
-                    <p className={classNames(
-                        styles["account__user-updated-text"],
-                        styles[mode]
-                    )}>Last authentication:</p>
-                    <p className={classNames(
-                        styles["account__user-updated-text-date"],
-                        styles[mode]
-                    )}>{createdAt?.toLocaleString()}</p>
-                </div> */}
             </div>
 
 
-            {user && <form onSubmit={handleSubmit}>
+            {accountData && user && <form onSubmit={handleSubmit}>
                 <div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
