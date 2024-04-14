@@ -1,6 +1,7 @@
 .entry__form {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -28,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70vw;
+  width: 100%;
 }
 
 .entry__textarea:active {
@@ -71,4 +72,17 @@
 
 .entry__textarea.dark {
   background: var(--indigo-medium-dark);
+}
+
+@media screen and (max-width: 768px) {
+  .entry__textarea,
+  .entry__container {
+    width: 60%;}
+  }
+
+
+@media screen and (max-width: 600px) {
+  .entry__textarea,
+  .entry__container {
+    width: 40%;}
 }
