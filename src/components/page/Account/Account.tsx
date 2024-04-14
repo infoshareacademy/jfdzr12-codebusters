@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
-import { Modal } from "@/components/atomic/Modal/Modal";
 interface AccountProps {
     user: User | null;
 }
@@ -24,7 +23,7 @@ interface AccountData {
 
 export const Account = ({ user }: AccountProps) => {
     const { mode } = useContext(ModeContext);
-    const [accountModal, setAccountModal] = useState(false)
+    const [readonly, setReadOnly] = useState<boolean>(true)
     const [createdAt, setCreatedAt] = useState<Date | null>(null);
     const [accountData, setAccountData] = useState<AccountData | null>(null);
     const [formData, setFormData] = useState<AccountData>({
@@ -77,7 +76,7 @@ export const Account = ({ user }: AccountProps) => {
         try {
             await setDoc(doc(db, `accountData/${user?.uid}`), data);
             setAccountData(data);
-            console.log("SAVED")
+            setReadOnly(true)
         } catch (error) {
             console.error("Error saving data:", error);
         }
@@ -115,7 +114,7 @@ export const Account = ({ user }: AccountProps) => {
                         styles[mode]
                     )}>{user?.email}</span></div>
                     <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
-                        <button onClick={() => { setAccountModal(true) }}>
+                        <button onClick={() => { setReadOnly(false) }}>
                             {mode === "light" ? (
 
                                 <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
@@ -126,7 +125,7 @@ export const Account = ({ user }: AccountProps) => {
                         </button>
                     </div>
                 </div>
-                <div className={classNames(
+                {/* <div className={classNames(
                     styles["account__user-updated-container"],
                     styles[mode]
                 )}>
@@ -138,50 +137,91 @@ export const Account = ({ user }: AccountProps) => {
                         styles["account__user-updated-text-date"],
                         styles[mode]
                     )}>{createdAt?.toLocaleString()}</p>
-                </div>
+                </div> */}
             </div>
 
 
-            {accountModal && <Modal onClickSubmit={handleSubmit} onClickCancel={() => { setAccountModal(false) }}>
+            {user && <form onSubmit={handleSubmit}>
                 <div>
-                    <div>
-                        <label htmlFor="name">
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="name" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
+                            Email:
+                        </label>
+                        <div>{user.email}</div>
+                    </div>
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="name" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
                             Name:
                         </label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} readOnly={readonly} />
                     </div>
-                    <div>
-                        <label htmlFor="surname">
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="surname" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
                             Surname:
                         </label>
-                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} />
+                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly} />
                     </div>
-                    <div>
-                        <label htmlFor="username">
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="username" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
                             Username:
                         </label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly} />
                     </div>
-                    <div>
-                        <label htmlFor="male">
-                            Gender:
-                        </label>
-                        <select name="male" value={formData.male.toString()} onChange={handleChange}>
-                            <option value="true">Male</option>
-                            <option value="false">Female</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="birthDate">
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="birthDate" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
                             Birth Date:
                         </label>
-                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} readOnly={readonly} />
+                    </div>
+                    <div className={classNames(
+                        styles["account__form--inputs-container"],
+                        styles[mode]
+                    )}>
+                        <label htmlFor="name" className={classNames(
+                            styles["account__form--label"],
+                            styles[mode]
+                        )}>
+                            Last authentication:
+                        </label>
+                        <div>{createdAt?.toLocaleString()}</div>
                     </div>
                 </div>
-            </Modal>}
-
-            <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
-            <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
+                {!readonly && <Button type="submit">Submit</Button>}
+            </form>}
+            <div className={styles["account__buttons--container"]}>
+                <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
+                <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
+            </div>
         </Page >
     );
 };

@@ -70,7 +70,12 @@
   min-width: 20px;
 }
 
-/* ACCOUNT MODAL ------>*/
+.account__buttons--container {
+  display: flex;
+  margin: 30px;
+}
+
+/* ACCOUNT EDIT FORM ------>*/
 .account-modal {
   position: fixed;
   top: 50%;
@@ -102,4 +107,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.account__form--inputs-container {
+  display: flex;
+  margin: 10px;
+}
+
+.account__form--label {
+  color: grey;
+}
+
+.account__form--label.dark {
+  color: white;
+}
+
 /*<------ ACCOUNT MODAL*/
