@@ -6,6 +6,7 @@ import fb from '/images/icons/footer/facebook.png'
 import twitter from '/images/icons/footer/twitter.png'
 import linkedin from '/images/icons/footer/linkedin.png'
 import insta from '/images/icons/footer/instagram.png'
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
     const { mode, } = useContext(ModeContext);
@@ -16,8 +17,8 @@ export const Footer = () => {
                 <div className={classnames(styles["sb_footer-links"], styles[mode])}>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Company</h3>
-                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/about"></a>
-                        <p>About</p>
+                        <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/about">
+                            <p>About</p></Link>
                         <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/career"></a>
                         <p>Career</p>
                         <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/contact"></a>
