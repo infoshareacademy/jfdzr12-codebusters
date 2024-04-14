@@ -253,7 +253,9 @@ export const Account = ({ user }: AccountProps) => {
                 </div>
 
                 {!readonly && <div className={styles["account__buttons--container"]}>
-                    <Button type="reset" onClick={() => { setReadOnly(true) }}>Cancel</Button>
+                    <Button type="reset" onClick={() => {
+                        setReadOnly(true);
+                    }}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>
                 }
