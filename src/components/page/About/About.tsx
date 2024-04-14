@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import classnames from "classnames";
 import styles from "./About.module.css";
 import { ModeContext } from "@/providers/mode";
