@@ -57,10 +57,10 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    });
+    }, []);
 
     return (
-        <Page>
+        <Page>g
             <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
                 <div className={classnames(styles["home__content"], styles[mode])}>
