@@ -1,47 +1,79 @@
 .about-container {
-    max-width: 600px;
-    margin: 100px auto;
-    display: flex;
+  margin: 30px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.about-container h1.dark {
+  color: var(--violet-light);
+}
+
+.about-container h2 {
+  font-size: 1.2rem;
+}
+
+.about-container h2.dark {
+  color: var(--violet-light);
+}
+
+.about__paragraph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 30px;
+  width: 50%;
+}
+
+.about-text {
+  text-align: justify;
+  color: var(--indigo-deep-dark);
+}
+
+.about-text.dark {
+  color: var(--violet-light);
+}
+
+.about-text-span {
+  font-weight: 600;
+}
+
+.about-section-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+}
+
+.about__image-container {
+  width: 50%;
+}
+
+@media screen and (max-width: 680px) {
+  .about-section-container {
     flex-direction: column;
-    align-items: center;
+    margin: 20px 10px;
+    font-size: 0.8rem;
   }
 
-  .about-container h1{
-    font-size: 2rem;
-    font-weight:600;
-    padding-bottom: 50px;
-  }
-  .about-container h1.dark{
-    color:var(--violet-light) ;
+  .about__paragraph-container {
+    padding: 10px;
+    width: 100%;
   }
 
-  .about-container h2{
-    font-size: 1.2rem;
-    padding-bottom: 30px;
+  .about__image-container {
+    width: 80%;
   }
+}
 
-  .about-container h2.dark{
-    color:var(--violet-light) ;
+@media screen and (max-width: 450px) {
+  .about-section-container {
+    flex-direction: column;
+    margin: 20px 0;
   }
-  
-  .about-text {
-    padding-bottom: 20px;
-    text-align: justify;
-    color: var(--indigo-deep-dark);
-  }
-  .about-text.dark{
-    color: var(--violet-light);
-  }
-  @media screen and (max-width: 680px){
-    .about-container{
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-  }
-
-  @media screen and (max-width: 450px){
-    .about-container{
-        margin-left: 25px;
-        margin-right: 25px;
-    }
-  }
+}
