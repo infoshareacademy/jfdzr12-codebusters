@@ -1,5 +1,18 @@
+.account__container {
+  position: relative;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .account__user-email-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 20px;
+  width: 100%;
 }
 
 .account__user-updated-container {
@@ -30,6 +43,7 @@
 }
 
 .account__user-email-text {
+  max-width: 80%;
   font-size: 1.3rem;
 }
 
@@ -45,3 +59,102 @@
 .account__user-email.dark {
   color: var(--violet-light);
 }
+
+.account--button-container--edit {
+  width: 25px;
+  margin: 10px;
+}
+
+.account--button--edit-icon {
+  min-height: 20px;
+  min-width: 20px;
+}
+
+.account__buttons--container {
+  display: flex;
+  margin: 30px;
+}
+
+/* ACCOUNT EDIT FORM ------>*/
+.account-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 60px #11305121;
+  background-color: var(--white);
+  border: 1px solid #f4f4f4;
+}
+
+.account-modal.dark {
+  background-color: var(--indigo-medium-dark);
+  border: 1px solid var(--indigo-medium-dark);
+  box-shadow: 0 0 60px #63696f4a;
+  color: var(--beige-light);
+}
+
+.account-modal__form {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.account__form--inputs-container {
+  display: flex;
+  margin: 20px;
+  align-items: center;
+}
+
+.account__form--label {
+  color: grey;
+  margin-right: 10px;
+}
+
+.account__form--label.dark {
+  color: var(--violet-dark);
+}
+
+.account__form--input-readonly,
+.account__form--input-text {
+  background-color: inherit;
+  color: var(--violet-dark);
+  font-weight: 500;
+}
+
+.account__form--input-readonly:focus,
+.account__form--input-readonly:active {
+  outline: none;
+  border: none;
+}
+
+.account__form--input {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.account__form--input:focus,
+.account__form--input:active {
+  outline: none;
+  border: none;
+}
+
+.account__form--input-readonly.dark,
+.account__form--input-text.dark {
+  background-color: inherit;
+  color: var(--violet-medium);
+}
+
+.account__form--input.dark {
+  background-color: var(--violet-dark);
+}
+
+/*<------ ACCOUNT EDIT FORM*/

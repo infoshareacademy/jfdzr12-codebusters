@@ -4,7 +4,7 @@ import classnames from "classnames";
 import styles from "./Home.module.css";
 import { ModeContext } from "@/providers/mode";
 import { User } from "firebase/auth";
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
