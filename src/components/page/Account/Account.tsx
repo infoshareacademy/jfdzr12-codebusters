@@ -108,160 +108,150 @@ export const Account = ({ user }: AccountProps) => {
                 styles["account__container"],
                 styles[mode]
             )}>
-                <div className={classNames(
-                    styles["account__user-email-text-container"],
-                    styles[mode]
-                )}>
-                    <div className={classNames(
-                        styles["account__user-email-text"],
-                        styles[mode]
-                    )}>Hello, <span className={classNames(
-                        styles["account__user-email"],
-                        styles[mode]
-                    )}>{user?.email}</span></div>
-                    <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
-                        <button onClick={() => { setReadOnly(false) }}>
-                            {mode === "light" ? (
+                <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
+                    <button onClick={() => { setReadOnly(false) }}>
+                        {mode === "light" ? (
 
-                                <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
-                            ) : (
+                            <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
+                        ) : (
 
-                                <img src="/images/icons/home/writing-color.png" className={styles["account--button--edit-icon"]} />
-                            )}
-                        </button>
-                    </div>
+                            <img src="/images/icons/account/user-avatar-color-dark.png" className={styles["account--button--edit-icon"]} />
+                        )}
+                    </button>
                 </div>
+                {user && <form onSubmit={handleSubmit}>
+                    <div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="name" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Email:
+                            </label>
+                            <div className={classNames(
+                                styles["account__form--input-text"],
+                                styles[mode]
+                            )}>{user.email}</div>
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="name" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Name:
+                            </label>
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} readOnly={readonly}
+                                className={readonly ?
+                                    classNames(
+                                        styles["account__form--input-readonly"],
+                                        styles[mode]) :
+                                    classNames(
+                                        styles["account__form--input"],
+                                        styles[mode])
+                                }
+                            />
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="surname" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Surname:
+                            </label>
+                            <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly}
+                                className={readonly ?
+                                    classNames(
+                                        styles["account__form--input-readonly"],
+                                        styles[mode]) :
+                                    classNames(
+                                        styles["account__form--input"],
+                                        styles[mode])
+                                }
+                            />
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="username" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Username:
+                            </label>
+                            <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly}
+                                className={readonly ?
+                                    classNames(
+                                        styles["account__form--input-readonly"],
+                                        styles[mode]) :
+                                    classNames(
+                                        styles["account__form--input"],
+                                        styles[mode])
+                                }
+                            />
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="birthDate" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Birth Date:
+                            </label>
+                            <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} readOnly={readonly}
+                                className={readonly ?
+                                    classNames(
+                                        styles["account__form--input-readonly"],
+                                        styles[mode]) :
+                                    classNames(
+                                        styles["account__form--input"],
+                                        styles[mode])
+                                }
+                            />
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="name" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Last authentication:
+                            </label>
+                            <div className={classNames(
+                                styles["account__form--input-text"],
+                                styles[mode]
+                            )}>{createdAt?.toLocaleString()}</div>
+                        </div>
+                    </div>
+                    {!readonly && <div className={styles["account__buttons--container"]}>
+                        <Button type="reset" onClick={() => {
+                            setReadOnly(true);
+                        }}>Cancel</Button>
+                        <Button type="submit">Submit</Button>
+                    </div>
+                    }
+                </form>}
+                {readonly && <div className={styles["account__buttons--container"]}>
+                    <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
+                    <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
+                </div>}
             </div>
 
 
-            {user && <form onSubmit={handleSubmit}>
-                <div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="name" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Email:
-                        </label>
-                        <div className={classNames(
-                            styles["account__form--input-text"],
-                            styles[mode]
-                        )}>{user.email}</div>
-                    </div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="name" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Name:
-                        </label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} readOnly={readonly}
-                            className={readonly ?
-                                classNames(
-                                    styles["account__form--input-readonly"],
-                                    styles[mode]) :
-                                classNames(
-                                    styles["account__form--input"],
-                                    styles[mode])
-                            }
-                        />
-                    </div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="surname" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Surname:
-                        </label>
-                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly}
-                            className={readonly ?
-                                classNames(
-                                    styles["account__form--input-readonly"],
-                                    styles[mode]) :
-                                classNames(
-                                    styles["account__form--input"],
-                                    styles[mode])
-                            }
-                        />
-                    </div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="username" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Username:
-                        </label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly}
-                            className={readonly ?
-                                classNames(
-                                    styles["account__form--input-readonly"],
-                                    styles[mode]) :
-                                classNames(
-                                    styles["account__form--input"],
-                                    styles[mode])
-                            }
-                        />
-                    </div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="birthDate" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Birth Date:
-                        </label>
-                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} readOnly={readonly}
-                            className={readonly ?
-                                classNames(
-                                    styles["account__form--input-readonly"],
-                                    styles[mode]) :
-                                classNames(
-                                    styles["account__form--input"],
-                                    styles[mode])
-                            }
-                        />
-                    </div>
-                    <div className={classNames(
-                        styles["account__form--inputs-container"],
-                        styles[mode]
-                    )}>
-                        <label htmlFor="name" className={classNames(
-                            styles["account__form--label"],
-                            styles[mode]
-                        )}>
-                            Last authentication:
-                        </label>
-                        <div className={classNames(
-                            styles["account__form--input-text"],
-                            styles[mode]
-                        )}>{createdAt?.toLocaleString()}</div>
-                    </div>
-                </div>
 
-                {!readonly && <div className={styles["account__buttons--container"]}>
-                    <Button type="reset" onClick={() => { setReadOnly(true) }}>Cancel</Button>
-                    <Button type="submit">Submit</Button>
-                </div>
-                }
-            </form>}
-            {readonly && <div className={styles["account__buttons--container"]}>
-                <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
-                <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
-            </div>}
         </Page >
     );
 };
