@@ -73,8 +73,10 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
             <div className={classNames(
                 styles["delete-account__buttons"],
                 styles[mode]
-            )}><Button onClick={handleDeleteAccount}>Confirm</Button>
-                <Button onClick={() => { navigate("/") }}>Cancel</Button></div>
+            )}>
+                <Button onClick={() => { navigate("/account") }}>Cancel</Button>
+                <Button onClick={handleDeleteAccount}>Confirm</Button>
+            </div>
         </Page>
     );
 };
