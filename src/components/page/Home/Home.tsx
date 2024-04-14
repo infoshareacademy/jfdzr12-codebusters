@@ -60,7 +60,7 @@ export const Home = ({ user }: EntryProps) => {
     }, []);
 
     return (
-        <Page>g
+        <Page>
             <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
                 <div className={classnames(styles["home__content"], styles[mode])}>
