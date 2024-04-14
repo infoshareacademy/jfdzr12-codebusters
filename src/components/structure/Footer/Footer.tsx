@@ -21,8 +21,8 @@ export const Footer = () => {
                             <p>About</p></Link>
                         <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/career"></a>
                         <p>Career</p>
-                        <a className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} href="/contact"></a>
-                        <p>Contact</p>
+                        <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/contact">
+                            <p>Contact</p></Link>
                     </div>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Partners:</h3>
