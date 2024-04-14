@@ -73,6 +73,20 @@ export const Header = ({ user }: HeaderProps) => {
                                         )}>Home</div>
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link
+                                        className={classnames(
+                                            styles["header-nav__list-item-link"],
+                                            styles["header-nav__list-item-link--home"],
+                                            styles[mode])}
+                                        to="/about"
+                                    >
+                                        <div className={classnames(
+                                            styles["header-nav__list-item"],
+                                            { [styles.active]: location.pathname === '/about' }
+                                        )}>About</div>
+                                    </Link>
+                                </li>
                                 {!user && <li>
                                     <div
                                         className={classnames(
