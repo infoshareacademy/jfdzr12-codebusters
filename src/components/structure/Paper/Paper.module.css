@@ -49,3 +49,13 @@
     background-repeat: space no-repeat;
     background-position: center top, center 6px, center 6px;
 }
+
+@media screen and (max-width: 768px) {
+    .paper-container {
+        width: 60%;}
+}
+
+@media screen and (max-width: 600px) {
+    .paper-container {
+        width: 40%;}
+}

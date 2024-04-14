@@ -14,7 +14,8 @@ export const Modal = ({ children, onClickSubmit, onClickCancel }: ModalTypes) =>
     const { mode } = useContext(ModeContext);
 
     return (
-        <form className={classnames(
+        <div className={classnames(styles["background__container"],styles[mode])}>
+            <form className={classnames(
             styles["modal__container"],
             styles[mode]
         )} onSubmit={onClickSubmit}>
@@ -24,6 +25,6 @@ export const Modal = ({ children, onClickSubmit, onClickCancel }: ModalTypes) =>
             styles[mode])}>
             {onClickCancel && <Button type="reset" onClick={onClickCancel}>Cancel</Button>}
             <Button type="submit">Submit</Button></div>
-        </form>
+        </form></div>
     )
 }
