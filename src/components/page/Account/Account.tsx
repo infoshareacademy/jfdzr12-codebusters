@@ -95,6 +95,12 @@ export const Account = ({ user }: AccountProps) => {
         handleSaveData(formData);
     };
 
+    {
+        if (!accountData) {
+            console.log("No account data yet")
+        }
+    }
+
     return (
         <Page>
             <Headline text="account" />
@@ -128,7 +134,7 @@ export const Account = ({ user }: AccountProps) => {
             </div>
 
 
-            {accountData && user && <form onSubmit={handleSubmit}>
+            {user && <form onSubmit={handleSubmit}>
                 <div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
