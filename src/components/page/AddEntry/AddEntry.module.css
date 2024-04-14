@@ -29,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70vw;
+  width: 100%;
 }
 
 .entry__textarea:active {
@@ -75,24 +75,14 @@
 }
 
 @media screen and (max-width: 768px) {
-  .entry__textarea {
-    width: 60%;}
-
-  .entry__area {
-    width: 60%;}
-
-  .entry__form  {
+  .entry__textarea,
+  .entry__container {
     width: 60%;}
   }
 
 
 @media screen and (max-width: 600px) {
-  .entry__textarea {
-    width: 40%;}
-
-  .entry__area {
-    width: 40%;}
-
-  .entry__form  {
+  .entry__textarea,
+  .entry__container {
     width: 40%;}
 }
