@@ -110,15 +110,52 @@
 
 .account__form--inputs-container {
   display: flex;
-  margin: 10px;
+  margin: 20px;
+  align-items: center;
 }
 
 .account__form--label {
   color: grey;
+  margin-right: 10px;
 }
 
 .account__form--label.dark {
-  color: white;
+  color: var(--violet-dark);
 }
 
-/*<------ ACCOUNT MODAL*/
+.account__form--input-readonly,
+.account__form--input-text {
+  background-color: inherit;
+  color: var(--violet-dark);
+  font-weight: 500;
+}
+
+.account__form--input-readonly:focus,
+.account__form--input-readonly:active {
+  outline: none;
+  border: none;
+}
+
+.account__form--input {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.account__form--input:focus,
+.account__form--input:active {
+  outline: none;
+  border: none;
+}
+
+.account__form--input-readonly.dark,
+.account__form--input-text.dark {
+  background-color: inherit;
+  color: var(--violet-medium);
+}
+
+.account__form--input.dark {
+  background-color: var(--violet-dark);
+}
+
+/*<------ ACCOUNT EDIT FORM*/

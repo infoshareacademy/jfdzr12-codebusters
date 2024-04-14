@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
+import { read } from "fs";
 interface AccountProps {
     user: User | null;
 }
@@ -153,7 +154,10 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Email:
                         </label>
-                        <div>{user.email}</div>
+                        <div className={classNames(
+                            styles["account__form--input-text"],
+                            styles[mode]
+                        )}>{user.email}</div>
                     </div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
@@ -165,7 +169,16 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Name:
                         </label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} readOnly={readonly} />
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} readOnly={readonly}
+                            className={readonly ?
+                                classNames(
+                                    styles["account__form--input-readonly"],
+                                    styles[mode]) :
+                                classNames(
+                                    styles["account__form--input"],
+                                    styles[mode])
+                            }
+                        />
                     </div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
@@ -177,7 +190,16 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Surname:
                         </label>
-                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly} />
+                        <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly}
+                            className={readonly ?
+                                classNames(
+                                    styles["account__form--input-readonly"],
+                                    styles[mode]) :
+                                classNames(
+                                    styles["account__form--input"],
+                                    styles[mode])
+                            }
+                        />
                     </div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
@@ -189,7 +211,16 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Username:
                         </label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly} />
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly}
+                            className={readonly ?
+                                classNames(
+                                    styles["account__form--input-readonly"],
+                                    styles[mode]) :
+                                classNames(
+                                    styles["account__form--input"],
+                                    styles[mode])
+                            }
+                        />
                     </div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
@@ -201,7 +232,16 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Birth Date:
                         </label>
-                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} readOnly={readonly} />
+                        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} readOnly={readonly}
+                            className={readonly ?
+                                classNames(
+                                    styles["account__form--input-readonly"],
+                                    styles[mode]) :
+                                classNames(
+                                    styles["account__form--input"],
+                                    styles[mode])
+                            }
+                        />
                     </div>
                     <div className={classNames(
                         styles["account__form--inputs-container"],
@@ -213,15 +253,23 @@ export const Account = ({ user }: AccountProps) => {
                         )}>
                             Last authentication:
                         </label>
-                        <div>{createdAt?.toLocaleString()}</div>
+                        <div className={classNames(
+                            styles["account__form--input-text"],
+                            styles[mode]
+                        )}>{createdAt?.toLocaleString()}</div>
                     </div>
                 </div>
-                {!readonly && <Button type="submit">Submit</Button>}
+
+                {!readonly && <div className={styles["account__buttons--container"]}>
+                    <Button type="reset" onClick={() => { setReadOnly(true) }}>Cancel</Button>
+                    <Button type="submit">Submit</Button>
+                </div>
+                }
             </form>}
-            <div className={styles["account__buttons--container"]}>
+            {readonly && <div className={styles["account__buttons--container"]}>
                 <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
                 <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
-            </div>
+            </div>}
         </Page >
     );
 };
