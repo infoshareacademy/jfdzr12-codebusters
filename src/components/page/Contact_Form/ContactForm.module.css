@@ -5,14 +5,6 @@
     align-items: center;
       }
   
-  .modal__header {
-    margin: 100px auto 80px;
-    text-align: center;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 2.4rem;
-  }
-  
   .modal {
     height: 500px;
     width: 500px;
@@ -128,8 +120,7 @@
   .light .form__input--email:focus,
   .light .form__input--textarea:focus {
     border: 2px solid var(--violet-medium);
-    background-color: ;
-  }
+      }
   
   .dark .form__input--text,
   .dark .form__input--email,
@@ -149,10 +140,7 @@
   margin-left: 25px;
   margin-right: 25px;
    }
-  .modal__header{
-    font-size: 1.5rem;
-    margin: 80px auto 20px;
-  }
+  
   .form__label{
     font-size: 0.95rem;
     margin: 0 40px 5px;
