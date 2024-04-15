@@ -4,32 +4,32 @@ import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
-import { Paper } from "@/components/structure/Paper/Paper";
+import { Button } from "@/components/atomic/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 export const Welcome = () => {
     const { mode } = useContext(ModeContext);
+    const navigate = useNavigate();
+
     return (
         <Page>
-            <Headline text="diary daze" />
-            <Paper>
-                <>
-                <p className={classNames(
-                    styles["main__handwriting"],
-                    styles[mode])}>keep a private online diary</p>
-                <p className={classNames(
-                    styles["main__normal-text"],
-                    styles[mode])}>You want to keep your thoughts in a place where no one can find them? Or capture great ideas so they do not get lost? The online Diary Daze offers you a safe place for your very personal topics.</p>
-                {mode === "light" ? (
-                    <img className={styles["main__book-image"]} src="images/main/open-book.png" />) : (<img className={styles["main__book-image"]} src="images/main/open-lightbook.png" />)}
-                <p className={classNames(styles["main__strong-text"],
-                    styles[mode])}>the safest place for your thoughts</p>
-                    </>
-            </Paper>
-            {/* <div className={styles["main__headline-area"]}>
-                {mode === "light" ? (<img className={styles["main__feather-image"]}
-                    src="images/main/feather-pen.png" />) : (<img className={styles["main__feather-image"]}
-                        src="images/main/feather-lightpen.png" />)}
-            </div> */}
+            <div className={classNames(
+                styles["welcome__main--container"],
+                styles[mode])}>
+                <div className={classNames(
+                    styles["welcome__headline--container"],
+                    styles[mode])}>
+                    <Headline text="diary daze" />
+                    <div className={classNames(
+                        styles["welcome__headline--paragraph"],
+                        styles[mode])}>write history of your life</div>
+                    <div className={classNames(
+                        styles["welcome__headline--button"],
+                        styles[mode])}>
+                        <Button onClick={() => { navigate("/register") }}>Register</Button>
+                    </div>
+                </div>
+            </div>
         </Page>
     )
 }

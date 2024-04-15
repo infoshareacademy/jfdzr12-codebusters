@@ -7,59 +7,6 @@
   align-items: center;
 }
 
-.account__user-email-text-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  width: 100%;
-}
-
-.account__user-updated-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
-
-.account__user-updated-text {
-  margin: 3px;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.account__user-updated-text-date {
-  margin: 3px;
-  font-size: 1.1rem;
-}
-
-.account__user-updated-text.dark {
-  color: var(--violet-medium);
-}
-
-.account__user-updated-text-date.dark {
-  color: var(--violet-medium);
-}
-
-.account__user-email-text {
-  max-width: 80%;
-  font-size: 1.3rem;
-}
-
-.account__user-email-text.dark {
-  color: var(--violet-medium);
-}
-
-.account__user-email {
-  font-weight: 600;
-  color: var(--violet-dark);
-}
-
-.account__user-email.dark {
-  color: var(--violet-light);
-}
-
 .account--button-container--edit {
   position: absolute;
   top: 10px;
@@ -117,12 +64,12 @@
 }
 
 .account__form--label {
-  color: grey;
+  color: var(--beige-dark);
   margin-right: 10px;
 }
 
 .account__form--label.dark {
-  color: var(--violet-dark);
+  color: var(--violet-medium);
 }
 
 .account__form--input-readonly,
@@ -153,11 +100,12 @@
 .account__form--input-readonly.dark,
 .account__form--input-text.dark {
   background-color: inherit;
-  color: var(--violet-medium);
+  color: var(--beige-light);
 }
 
 .account__form--input.dark {
   background-color: var(--violet-dark);
+  color: var(--beige-light);
 }
 
 /*<------ ACCOUNT EDIT FORM*/
