@@ -1,5 +1,5 @@
 import { ModeContext } from "@/providers/mode";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
@@ -25,6 +25,21 @@ export const Header = ({ user }: HeaderProps) => {
     const toggleLoginModal = (): void => {
         setIsLoginModalOpen((prevState) => !prevState);
     };
+
+    useEffect(() => {
+        const handleEscapePress = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsLoginModalOpen(false);
+                setIsUserModalOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscapePress);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapePress);
+        };
+    }, []);
 
     return (
         <>
