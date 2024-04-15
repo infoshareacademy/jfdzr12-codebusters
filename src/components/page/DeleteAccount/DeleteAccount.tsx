@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import styles from './DeleteAccount.module.css';
 import { Button } from "@/components/atomic/Button/Button";
+import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
 
 interface DeleteAccountProps {
     user: User | null;
@@ -74,7 +75,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
                 styles["delete-account__buttons"],
                 styles[mode]
             )}>
-                <Button onClick={() => { navigate("/account") }}>Cancel</Button>
+                <ButtonTransparent onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
                 <Button onClick={handleDeleteAccount}>Confirm</Button>
             </div>
         </Page>

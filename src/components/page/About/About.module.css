@@ -31,11 +31,11 @@
 
 .about-text {
   text-align: justify;
-  color: var(--indigo-deep-dark);
+  color: var(--violet-dark);
 }
 
 .about-text.dark {
-  color: var(--violet-light);
+  color: var(--beige-light);
 }
 
 .about-text-span {

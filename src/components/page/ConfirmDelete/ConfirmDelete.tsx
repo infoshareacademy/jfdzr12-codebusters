@@ -1,5 +1,4 @@
 import { Page } from "@/components/structure/Page/Page";
-import { Paper } from "@/components/structure/Paper/Paper";
 import { useContext } from "react";
 import styles from "./ConfirmDelete.module.css"
 import classNames from "classnames";

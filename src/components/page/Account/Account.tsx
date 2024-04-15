@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
+import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
 interface AccountProps {
     user: User | null;
 }
@@ -246,7 +247,7 @@ export const Account = ({ user }: AccountProps) => {
                         </div>
                     </div>
                     {!readonly && <div className={styles["account__buttons--container"]}>
-                        <Button type="reset" onClick={handleReset}>Cancel</Button>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Cancel</ButtonTransparent>
                         <Button type="submit">Submit</Button>
                     </div>
                     }
