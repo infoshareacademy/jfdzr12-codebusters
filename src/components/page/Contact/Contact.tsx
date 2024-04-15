@@ -1,11 +1,11 @@
-import styles from "./ContactForm.module.css";
+import styles from "./Contact.module.css";
 import classnames from "classnames";
 import { validateEmail } from "./validationEmail.js";
 import { useContext, useRef, useState } from "react";
 import { ModeContext } from "@/providers/mode";
-import { Button } from "@/components/ui/button.js";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
+import { Button } from "@/components/atomic/Button/Button.js";
 
 export const ContactForm = () => {
     const [emailMessage, setEmailMessage] = useState("");
@@ -23,9 +23,7 @@ export const ContactForm = () => {
     return (
         <Page>
             <Headline text="Contact Us"></Headline>
-            <div
-                className={classnames(styles["contact-form__container"], styles[mode])}
-            >
+            <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <div className={classnames(styles["modal"])} id="contact">
                     <form
                         action=""
@@ -93,15 +91,7 @@ export const ContactForm = () => {
                             cols="50"
                             required
                         ></textarea>
-                        <Button
-                            type="submit"
-                            value="Send"
-                            className={classnames(
-                                styles["form__input"],
-                                styles["form__input--submit"],
-                                styles[mode]
-                            )}
-                        />
+                        <Button>Send</Button>
                     </form>
                 </div>
             </div >
