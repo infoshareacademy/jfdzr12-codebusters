@@ -50,7 +50,7 @@ export const Account = ({ user }: AccountProps) => {
 
     useEffect(() => {
         if (!user) {
-            console.log("User is empty");
+            console.error("User is empty");
             return;
         }
 
@@ -62,7 +62,6 @@ export const Account = ({ user }: AccountProps) => {
                     setAccountData(docSnap.data() as AccountData);
                     setFormData(docSnap.data() as AccountData)
                 }
-                console.log("ACCOUNT DATA:", accountData)
 
             } catch (error) {
                 console.error("Error fetching account data:", error);
