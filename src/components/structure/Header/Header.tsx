@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { User } from "firebase/auth";
-
 interface HeaderProps {
     user: User | null;
 }

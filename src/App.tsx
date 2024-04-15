@@ -58,7 +58,7 @@ function App(): JSX.Element {
             <Route path="/contact" element={<ContactForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
+          <Footer user={user} />
         </HashRouter>
       </ModeProvider>
     </>
