@@ -12,7 +12,6 @@ import styles from "./Account.module.css"
 interface AccountProps {
     user: User | null;
 }
-
 interface AccountData {
     name: string;
     surname: string;
@@ -83,10 +82,10 @@ export const Account = ({ user }: AccountProps) => {
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target;
+        const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
-            [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value
+            [name]: value
         }));
     };
 
@@ -95,11 +94,22 @@ export const Account = ({ user }: AccountProps) => {
         handleSaveData(formData);
     };
 
-    {
-        if (!accountData) {
-            console.log("No account data yet")
+    const handleReset = () => {
+        setReadOnly(true);
+        if (accountData) {
+            setFormData(accountData);
+        } else {
+            setFormData(
+                {
+                    name: "",
+                    surname: "",
+                    username: "",
+                    male: true,
+                    birthDate: ""
+                }
+            )
         }
-    }
+    };
 
     return (
         <Page>
@@ -237,21 +247,16 @@ export const Account = ({ user }: AccountProps) => {
                         </div>
                     </div>
                     {!readonly && <div className={styles["account__buttons--container"]}>
-                        <Button type="reset" onClick={() => {
-                            setReadOnly(true);
-                        }}>Cancel</Button>
+                        <Button type="reset" onClick={handleReset}>Cancel</Button>
                         <Button type="submit">Submit</Button>
                     </div>
                     }
                 </form>}
                 {readonly && <div className={styles["account__buttons--container"]}>
-                    <Button onClick={() => { navigate("/change-password") }}>Change Password</Button>
-                    <Button onClick={() => { navigate("/delete-account") }}>Delete Account</Button>
+                    <Button onClick={() => { navigate("/change-password") }}>Change password</Button>
+                    <Button onClick={() => { navigate("/delete-account") }}>Delete account</Button>
                 </div>}
             </div>
-
-
-
         </Page >
     );
 };
