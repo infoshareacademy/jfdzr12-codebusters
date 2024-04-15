@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { validateEmail } from "./validationEmail.js";
 import { useContext, useRef, useState } from "react";
 import { ModeContext } from "@/providers/mode";
+import { Button } from "@/components/ui/button.js";
 
 export const ContactForm = () => {
     const [emailMessage, setEmailMessage] = useState("");
@@ -91,7 +92,7 @@ export const ContactForm = () => {
                         cols="50"
                         required
                     ></textarea>
-                    <input
+                    <Button
                         type="submit"
                         value="Send"
                         className={classnames(
@@ -102,6 +103,6 @@ export const ContactForm = () => {
                     />
                 </form>
             </div>
-        </div>
+        </div >
     );
 };

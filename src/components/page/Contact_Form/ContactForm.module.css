@@ -8,7 +8,6 @@
   .modal__header {
     margin: 100px auto 80px;
     text-align: center;
-    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
     font-weight: 800;
     text-transform: uppercase;
     font-size: 2.4rem;
@@ -28,7 +27,7 @@
     align-items: center;
     font-size: 1.1rem;
     padding-top: 20px;
-    border: 0.5px solid rgba(63, 63, 54, 30%);
+    border: 0.5px solid var(--indigo-black);
     border-radius: 20px;
   }
   
@@ -47,6 +46,7 @@
     margin: 0 10px 6px;
     border-radius: 5px;
     cursor: text;
+    color: var(--indigo-medium-dark);
   }
   
   .form__input--textarea {
@@ -77,13 +77,11 @@
   }
   
   .light {
-    background: var(--box-light-color-light);
-    color: var(--main-text-color-light);
+    color: var(--violet-deep-dark);
   }
   
   .dark {
-    background: var(--box-light-color-dark);
-    color: var(--main-text-color-dark);
+    color: var(--violet-medium);
   }
   
   .dark.form__input {
@@ -91,55 +89,87 @@
   }
   
   .light.form__input--submit {
-    color: var(--dark-text-color-light);
-    background-color: var(--box-dark-color-light);
+    color: var(--violet-deep-dark);
+    background-color: var(--violet-medium);
   }
   
   .light.form__input--submit:hover {
-    color: var(--box-light-color-light);
-    background-color: var(--dark-hover-color-light);
+    color: var(--violet-medium);
+    background-color: var(--violet-light);
   }
   
   .dark.form__input--submit {
-    color: var(--dark-text-color-dark);
-    background-color: var(--box-dark-color-dark);
+    color: var(--violet-light);
+    background-color: var(--violet-lighter);
   }
   
   .dark.form__input--submit:hover {
-    color: var(--box-light-color-dark);
-    background-color: var(--dark-hover-color-dark);
+    color: var(--violet-lighter);
+    background-color: var(--beige-light);
   }
   
   .light .modal__form {
-    box-shadow: 0 8px 32px 0 var(--box-dark-color);
+    box-shadow: 0 8px 32px 0 var(--violet-lighter);
   }
   
   .dark .modal__form {
-    box-shadow: 0 8px 32px 0 var(--shadow-color-dark);
+    box-shadow: 0 8px 32px 0 var(--violet-light);
   }
   
   .light .form__input--text,
   .light .form__input--email,
   .light .form__input--textarea {
-    border: 2px solid var(--box-lighter-color-light);
-    box-shadow: 0 0 5px var(--box-lighter-color-light);
+    border: 2px solid var(--violet-light);
+    box-shadow: 0 0 5px var(--violet-lighter);
+    color: var(--indigo-black)
   }
   
   .light .form__input--text:focus,
   .light .form__input--email:focus,
   .light .form__input--textarea:focus {
-    border: 2px solid var(--borders-color-light);
+    border: 2px solid var(--violet-medium);
+    background-color: ;
   }
   
   .dark .form__input--text,
   .dark .form__input--email,
   .dark .form__input--textarea {
-    border: 2px solid var(--box-lighter-color-dark);
+    border: 2px solid var(--violet-medium);
+    color: var(--indigo-black);
   }
   
   .dark .form__input--text:focus,
   .dark .form__input--email:focus,
   .dark .form__input--textarea:focus {
-    border: 2px solid var(--main-text-color-dark);
+    border: 2px solid var(--violet-light);
+  }
+
+  @media screen and (max-width: 500px){
+.contact-form__container{
+  margin-left: 25px;
+  margin-right: 25px;
+   }
+  .modal__header{
+    font-size: 1.5rem;
+    margin: 80px auto 20px;
+  }
+  .form__label{
+    font-size: 0.95rem;
+    margin: 0 40px 5px;
+  }
+  
+  .form__input--text,
+  .form__input--email,
+  .form__input--textarea {
+    width: 50%;
+    padding: 5px;
+    margin: 0 5px 3px;
+    }
+    .modal {
+      height: 500px;
+      width: 400px;
+      border-radius: 20px;
+      padding-bottom: 20px;
+    }
   }
   

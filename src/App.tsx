@@ -17,7 +17,7 @@ import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
 import { Home } from './components/page/Home/Home';
 import { EditEntry } from './components/page/EditEntry/EditEntry';
 import { About } from './components/page/About/About'
-import { ContactForm } from './components/page/Contact/Contact'
+import { ContactForm } from './components/page/Contact_Form/ContactForm'
 import { Contact } from 'lucide-react';
 
 function App(): JSX.Element {
@@ -55,7 +55,7 @@ function App(): JSX.Element {
               </>
             }
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ContactForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
