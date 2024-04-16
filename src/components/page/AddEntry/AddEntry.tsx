@@ -65,7 +65,15 @@ export const AddEntry = ({ user }: EntryProps) => {
                         method="get"
                         className={classNames(styles["entry__form"])}
                         onSubmit={handleSubmit}
-                    >
+                    > <div className={classNames(
+                        styles["form-controls"],
+                        styles[mode])}>
+    <span className={classNames(
+                        styles["controls-button"],
+                        styles[mode])} title="bold" data-button-type="addStrong"><strong>b</strong></span>
+    <span className={classNames(
+                        styles["controls-button"],
+                        styles[mode])} title="italic" data-button-type="addEmphasis"><strong><em>i</em></strong></span></div>
                         <div className={classNames(
                             styles["entry__container"],
                             styles[mode])}>
@@ -86,9 +94,9 @@ export const AddEntry = ({ user }: EntryProps) => {
                                 spellCheck
                                 required
                                 value={entryText}
-                                onChange={(e) => setEntryText(e.target.value)}
-                            >
+                                onChange={(e) => setEntryText(e.target.value)}>
                             </textarea>
+                            
                         </div>
                         <Button type="submit">Add</Button>
                         {errorMessage && <div className={classNames(

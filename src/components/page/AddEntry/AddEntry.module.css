@@ -30,6 +30,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top:30px;
 }
 
 .entry__textarea:active {
@@ -56,6 +57,42 @@
   text-align: center;
   margin: -10px;
 }
+
+.form-controls{
+    display: flex;
+    width:100%;
+    height: 6px;
+    padding: 0  1.5rem/2;
+    border-top: 1px solid  #D8D8D8;
+    border-left: 1px solid  #D8D8D8;
+    border-right: 1px solid  #D8D8D8;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    z-index: 50;
+      .controls-button {
+        margin-right:5px;
+      }
+
+  }
+  
+  .controls-button{
+    border-radius: 0 4px 0 4px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1rem;
+    line-height: 1rem;
+    font-size: 1em;
+    font-family: inherit;
+    text-decoration: none;
+    appearance:none;
+    padding: 0 1.5rem/2;
+
+  white-space: nowrap;
+  vertical-align: middle;
+  }
+
+/* darkMode */
 
 .entry__message.dark {
   color: var(--green-medium);
