@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import styles from "./Contact.module.css";
 import classnames from "classnames";
 import { ModeContext } from "@/providers/mode";
@@ -14,6 +14,7 @@ export const Contact: React.FC = () => {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [messageId, setMessageId] = useState<string | null>(null);
     const { mode } = useContext(ModeContext);
+    const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -35,8 +36,11 @@ export const Contact: React.FC = () => {
                 message,
                 timestamp: new Date()
             });
-            setMessageId(docRef.id); // Store the message ID
+            setMessageId(docRef.id);
             setSuccessMessage("Message has been successfully sent");
+            setTimeout(() => {
+                formRef.current?.reset();
+            }, 0);
         } catch (error) {
             console.error("Error sending data: ", error);
             setErrorMessage("Error sending message. Please try again later.");
@@ -54,6 +58,7 @@ export const Contact: React.FC = () => {
             <Headline text="Contact Us" />
             <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <form
+                    ref={formRef}
                     onSubmit={handleSubmit}
                     className={styles["contact-content__modal-form"]}
                 >
@@ -121,7 +126,7 @@ export const Contact: React.FC = () => {
                     )}>Message ID: {messageId}</div>}
                     <div className={styles["contact-form__button-container"]}>
                         <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
-                        <Button>Send</Button>
+                        <Button type="submit">Send</Button>
                     </div>
                 </form>
             </div>
