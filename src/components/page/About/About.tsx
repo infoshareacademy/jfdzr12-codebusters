@@ -4,6 +4,7 @@ import styles from "./About.module.css";
 import { ModeContext } from "@/providers/mode";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
+import { Link } from "react-router-dom";
 
 export const About = () => {
     const { mode, } = useContext(ModeContext);
@@ -68,7 +69,7 @@ export const About = () => {
                     </div>
                     <div className={classnames(styles["about__paragraph-container"], styles[mode])}>
                         <p className={classnames(styles["about-text"], styles[mode])}>
-                            If you have any questions or feedback, feel free to contact us!
+                            If you have any questions or feedback, feel free to <Link to="/contact" className={classnames(styles["about__contact-link"], styles[mode])}>contact us</Link>!
                         </p>
                     </div>
                 </section>

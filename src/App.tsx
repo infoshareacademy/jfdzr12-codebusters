@@ -17,8 +17,7 @@ import { ConfirmDelete } from './components/page/ConfirmDelete/ConfirmDelete';
 import { Home } from './components/page/Home/Home';
 import { EditEntry } from './components/page/EditEntry/EditEntry';
 import { About } from './components/page/About/About'
-import { ContactForm } from './components/page/Contact_Form/ContactForm'
-import { Contact } from 'lucide-react';
+import { Contact } from './components/page/Contact/Contact';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -55,10 +54,10 @@ function App(): JSX.Element {
               </>
             }
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<ContactForm />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
+          <Footer user={user} />
         </HashRouter>
       </ModeProvider>
     </>

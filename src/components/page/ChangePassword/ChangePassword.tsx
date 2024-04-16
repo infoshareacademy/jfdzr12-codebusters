@@ -7,6 +7,8 @@ import { Button } from '@/components/atomic/Button/Button';
 import styles from './ChangePassword.module.css';
 import { ModeContext } from '@/providers/mode';
 import classNames from 'classnames';
+import { ButtonTransparent } from '@/components/atomic/ButtonTransparent/ButtonTransparent';
+import { useNavigate } from 'react-router-dom';
 
 interface ChangePasswordProps {
     user: User | null;
@@ -20,6 +22,8 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const navigate = useNavigate();
+
     const handleChangePassword = async () => {
         if (!email || !currentPassword || !newPassword || !confirmPassword) {
             setError('Please, fill all fields');
@@ -116,7 +120,12 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
-            <Button onClick={handleChangePassword}>Submit</Button>
+            <div className={classNames(
+                styles["change-password__buttons-container"],
+                styles[mode]
+            )}>
+                <ButtonTransparent type="reset" onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <Button onClick={handleChangePassword}>Submit</Button></div>
             {error && <p
                 className={classNames(
                     styles["change-password__error-message"],
