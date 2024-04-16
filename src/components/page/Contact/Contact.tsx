@@ -38,9 +38,7 @@ export const Contact: React.FC = () => {
             });
             setMessageId(docRef.id);
             setSuccessMessage("Message has been successfully sent");
-            setTimeout(() => {
-                formRef.current?.reset();
-            }, 0);
+            formRef.current?.reset();
         } catch (error) {
             console.error("Error sending data: ", error);
             setErrorMessage("Error sending message. Please try again later.");
