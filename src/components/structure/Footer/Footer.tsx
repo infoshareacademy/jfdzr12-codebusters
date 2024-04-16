@@ -17,18 +17,18 @@ export const Footer = ({ user }: FooterProps) => {
 
     return (
         <div className={classnames(styles["footer"], styles[mode])}>
-            <div className={classnames(styles["sb_footer section_padding"], styles[mode])}>
+            <div className={classnames(styles["sb_footer-section_padding"], styles[mode])}>
                 <div className={classnames(styles["sb_footer-links"], styles[mode])}>
                     <div className={classnames(styles["sb_footer-links-div"], styles[mode])}>
                         <h3>Company</h3>
-                        <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/">
+                        <Link className={classnames(styles["sb_footer-below-links-pages"], styles[mode])} to="/">
                             Home</Link>
-                        <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/about">
+                        <Link className={classnames(styles["sb_footer-below-links-pages"], styles[mode])} to="/about">
                             About</Link>
-                        <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/contact">
+                        <Link className={classnames(styles["sb_footer-below-links-pages"], styles[mode])} to="/contact">
                             Contact</Link>
                         {user && <>
-                            <Link className={classnames(styles["sb_footer-below-links-policy"], styles[mode])} to="/account">
+                            <Link className={classnames(styles["sb_footer-below-links-pages"], styles[mode])} to="/account">
                                 Account</Link>
                         </>}
                     </div>

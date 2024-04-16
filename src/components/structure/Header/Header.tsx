@@ -111,20 +111,21 @@ export const Header = ({ user }: HeaderProps) => {
                             </div>
                         </Link>
                     </div>
-                    {!user && <>
-                        <div
-                            className={classnames(
-                                styles["header-nav__list-item-login"],
-                                styles[mode]
-                            )}
-                            onClick={toggleLoginModal}
-                        >
-                            <div className={classnames(
-                                styles["header-nav__list-login"],
-                            )}>Login</div>
-                        </div>
-                    </>}
+
                     <div className={styles["header__icons-container"]}>
+                        {!user && <>
+                            <div
+                                className={classnames(
+                                    styles["header-nav__list-item-login"],
+                                    styles[mode]
+                                )}
+                                onClick={toggleLoginModal}
+                            >
+                                <div className={classnames(
+                                    styles["header-nav__list-login"],
+                                )}>Login</div>
+                            </div>
+                        </>}
                         {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
                         >
                             {mode === "light" ? (
@@ -132,13 +133,13 @@ export const Header = ({ user }: HeaderProps) => {
 
                                     className={styles["header__account-button"]}
                                 >
-                                    <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
+                                    <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
                                 </div>
                             ) : (
                                 <div
                                     className={styles["header__account-button"]}
                                 >
-                                    <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
+                                    <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
                                 </div>
                             )}
                         </div>}
@@ -149,13 +150,13 @@ export const Header = ({ user }: HeaderProps) => {
 
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/day-mode-dark.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/night-light.png" className={styles["header-mode__icon"]} />
                                 </button>
                             ) : (
                                 <button
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/night-mode-light.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/sun-dark.png" className={styles["header-mode__icon"]} />
                                 </button>
                             )}
                         </div>
