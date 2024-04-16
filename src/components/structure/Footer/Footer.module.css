@@ -43,6 +43,16 @@
   text-decoration: none;
 }
 
+.sb_footer-below-links-policy.dark {
+  color: var(--beige-medium);
+  text-decoration: none;
+}
+
+.sb_footer-below-links-policy.dark:hover {
+  color: var(--violet-light);
+  text-decoration: none;
+}
+
 .sb_footer-links-div.dark {
   width: 150px;
   margin: 1rem;

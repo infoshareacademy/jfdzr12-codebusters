@@ -47,29 +47,6 @@ export const Header = ({ user }: HeaderProps) => {
                     styles["header__container"],
                     styles[mode]
                 )}>
-                    <div className={styles["header__logo"]}>
-                        <Link className={styles["header__logo-link"]} to="/">
-                            <div className={styles["header__logo-link-container"]}>
-                                {mode === "light" ? (
-                                    <img src="/images/icons/dairy/diary-light.png" alt="diary-daze logo" className={classnames(
-                                        styles["header__logo-img"],
-                                        styles[mode])} />
-                                ) : (
-                                    <img src="/images/icons/dairy/diary-dark.png" alt="diary-daze logo" className={classnames(
-                                        styles["header__logo-img"],
-                                        styles[mode]
-                                    )} />
-                                )}
-                                <div className={classnames(
-                                    styles["header__logo-link-paragraph-container"],
-                                    styles[mode])}>
-                                    <p className={classnames(
-                                        styles["header__logo-link-paragraph"],
-                                        styles[mode])}>diary daze</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
                     <div className={styles["header-nav__container"]}>
                         <nav className={styles["header-nav"]}>
                             <ul className={styles["header-nav__list"]}>
@@ -118,6 +95,22 @@ export const Header = ({ user }: HeaderProps) => {
                             </ul>
                         </nav>
                     </div>
+                    <div className={styles["header__logo"]}>
+                        <Link className={styles["header__logo-link"]} to="/">
+                            <div className={styles["header__logo-link-container"]}>
+                                {mode === "light" ? (
+                                    <img src="/images/icons/dairy/diary-light.png" alt="diary-daze logo" className={classnames(
+                                        styles["header__logo-img"],
+                                        styles[mode])} />
+                                ) : (
+                                    <img src="/images/icons/dairy/diary-dark.png" alt="diary-daze logo" className={classnames(
+                                        styles["header__logo-img"],
+                                        styles[mode]
+                                    )} />
+                                )}
+                            </div>
+                        </Link>
+                    </div>
                     {!user && <>
                         <div
                             className={classnames(
@@ -139,13 +132,13 @@ export const Header = ({ user }: HeaderProps) => {
 
                                     className={styles["header__account-button"]}
                                 >
-                                    <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
+                                    <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
                                 </div>
                             ) : (
                                 <div
                                     className={styles["header__account-button"]}
                                 >
-                                    <img src="/images/icons/user/user-dark.png" className={styles["header__user-icon"]} />
+                                    <img src="/images/icons/user/user-light.png" className={styles["header__user-icon"]} />
                                 </div>
                             )}
                         </div>}
@@ -156,13 +149,13 @@ export const Header = ({ user }: HeaderProps) => {
 
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/day-mode-light.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/day-mode-dark.png" className={styles["header-mode__icon"]} />
                                 </button>
                             ) : (
                                 <button
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/night-mode-dark.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/night-mode-light.png" className={styles["header-mode__icon"]} />
                                 </button>
                             )}
                         </div>
