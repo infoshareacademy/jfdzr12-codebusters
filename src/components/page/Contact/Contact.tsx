@@ -1,24 +1,43 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Contact.module.css";
 import classnames from "classnames";
-import { validateEmail } from "./validationEmail";
 import { ModeContext } from "@/providers/mode";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Button } from "@/components/atomic/Button/Button";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 
-export const ContactForm: React.FC = () => {
-    const [emailMessage, setEmailMessage] = useState<string>("");
-
-    const inputEmailEl = useRef<HTMLInputElement>(null);
+export const Contact: React.FC = () => {
+    const [message, setMessage] = useState<string | null>(null);
     const { mode } = useContext(ModeContext);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const emailValue = inputEmailEl.current?.value ?? "";
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-        setEmailMessage(validateEmail(emailValue) ?? "");
-        console.log(emailValue);
+        const formData = new FormData(event.currentTarget);
+        const title = formData.get('title') as string;
+        const email = formData.get('email') as string;
+        const message = formData.get('message') as string;
+
+        if (!title.trim() || !email.trim() || !message.trim()) {
+            setMessage("Inputs cannot be empty");
+            return;
+        }
+
+        // Update this line to correct the collection path
+        try {
+            await addDoc(collection(db, 'contacts'), {
+                title,
+                email,
+                message,
+                timestamp: new Date()
+            });
+            setMessage("Message sent successfully");
+        } catch (error) {
+            console.error("Error sending data: ", error);
+            setMessage("Error sending message. Please try again later.");
+        }
     };
 
     return (
@@ -27,13 +46,11 @@ export const ContactForm: React.FC = () => {
             <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <div className={classnames(styles["modal"])} id="contact">
                     <form
-                        className={classnames(styles["modal__form"])}
                         onSubmit={handleSubmit}
+                        id="contact-content__form"
+                        className={styles["contact-content__modal-form"]}
                     >
-                        <label
-                            htmlFor="title"
-                            className={classnames(styles["form__label"], styles[mode])}
-                        >
+                        <label htmlFor="title" className={styles["contact-content__form-label"]}>
                             Title
                         </label>
                         <input
@@ -42,58 +59,55 @@ export const ContactForm: React.FC = () => {
                             id="title"
                             name="title"
                             className={classnames(
-                                styles["form__input"],
-                                styles["form__input--text"],
+                                styles["contact-content__form-input"],
+                                styles["contact-content__form-input--text"],
                                 styles[mode]
                             )}
+                            minLength={3}
                             required
+                            aria-label="Title"
                         />
-                        <label
-                            htmlFor="email"
-                            className={classnames(styles["form__label"], styles[mode])}
-                        >
+                        <label htmlFor="email" className={styles["contact-content__form-label"]}>
                             Email
                         </label>
                         <input
-                            ref={inputEmailEl}
                             placeholder=""
                             type="email"
                             id="email"
                             name="email"
                             className={classnames(
-                                styles["form__input"],
-                                styles["form__input--email"],
+                                styles["contact-content__form-input"],
+                                styles["contact-content__form-input--email"],
                                 styles[mode]
                             )}
+                            minLength={3}
                             required
+                            aria-label="Email"
                         />
-                        <p className={classnames(styles["form__error-message"])}>
-                            {emailMessage}
-                        </p>
-                        <label
-                            htmlFor="message"
-                            className={classnames(styles["form__label"], styles[mode])}
-                        >
+                        <label htmlFor="message" className={styles["contact-content__form-label"]}>
                             Message
                         </label>
                         <textarea
                             placeholder=""
                             id="message"
                             className={classnames(
-                                styles["form__input"],
-                                styles["form__input--textarea"],
+                                styles["contact-content__form-input"],
+                                styles["contact-content__form-input--textarea"],
                                 styles[mode]
                             )}
-                            minLength={20}
                             name="message"
                             rows={4}
                             cols={50}
+                            minLength={1}
+                            maxLength={500}
                             required
+                            aria-label="Message"
                         ></textarea>
+                        {message && <div>{message}</div>}
                         <Button>Send</Button>
                     </form>
                 </div>
-            </div >
+            </div>
         </Page>
     );
 };
