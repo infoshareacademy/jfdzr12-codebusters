@@ -12,6 +12,7 @@ import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonT
 export const Contact: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [messageId, setMessageId] = useState<string | null>(null);
     const { mode } = useContext(ModeContext);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,12 +29,13 @@ export const Contact: React.FC = () => {
         }
 
         try {
-            await addDoc(collection(db, 'contacts'), {
+            const docRef = await addDoc(collection(db, 'contacts'), {
                 title,
                 email,
                 message,
                 timestamp: new Date()
             });
+            setMessageId(docRef.id); // Store the message ID
             setSuccessMessage("Message has been successfully sent");
         } catch (error) {
             console.error("Error sending data: ", error);
@@ -41,9 +43,10 @@ export const Contact: React.FC = () => {
         }
     };
 
-    const handleChange = () => {
+    const handleReset = () => {
         setErrorMessage(null);
         setSuccessMessage(null);
+        setMessageId(null);
     }
 
     return (
@@ -52,7 +55,6 @@ export const Contact: React.FC = () => {
             <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <form
                     onSubmit={handleSubmit}
-                    id="contact-content__form"
                     className={styles["contact-content__modal-form"]}
                 >
                     <label htmlFor="title" className={styles["contact-content__form-label"]}>
@@ -61,7 +63,6 @@ export const Contact: React.FC = () => {
                     <input
                         placeholder=""
                         type="text"
-                        id="title"
                         name="title"
                         className={classnames(
                             styles["contact-content__form-input"],
@@ -78,7 +79,6 @@ export const Contact: React.FC = () => {
                     <input
                         placeholder=""
                         type="email"
-                        id="email"
                         name="email"
                         className={classnames(
                             styles["contact-content__form-input"],
@@ -94,7 +94,6 @@ export const Contact: React.FC = () => {
                     </label>
                     <textarea
                         placeholder=""
-                        id="message"
                         className={classnames(
                             styles["contact-content__form-input"],
                             styles["contact-content__form-input--textarea"],
@@ -116,8 +115,12 @@ export const Contact: React.FC = () => {
                         styles["contact-form__success-message"],
                         styles[mode]
                     )}>{successMessage}</div>}
+                    {messageId && <div className={classnames(
+                        styles["contact-form__messageid-container"],
+                        styles[mode]
+                    )}>Message ID: {messageId}</div>}
                     <div className={styles["contact-form__button-container"]}>
-                        <ButtonTransparent type="reset" onClick={handleChange}>Cancel</ButtonTransparent>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
                         <Button>Send</Button>
                     </div>
                 </form>
