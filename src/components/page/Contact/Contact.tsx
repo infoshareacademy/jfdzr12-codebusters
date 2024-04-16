@@ -34,15 +34,16 @@ export const Contact: React.FC = () => {
                 message,
                 timestamp: new Date()
             });
-            setSuccessMessage("Message sent successfully");
+            setSuccessMessage("Message has been successfully sent");
         } catch (error) {
             console.error("Error sending data: ", error);
             setErrorMessage("Error sending message. Please try again later.");
         }
     };
 
-    const handleCancel = () => {
-        console.log("Cancel");
+    const handleChange = () => {
+        setErrorMessage(null);
+        setSuccessMessage(null);
     }
 
     return (
@@ -116,7 +117,7 @@ export const Contact: React.FC = () => {
                         styles[mode]
                     )}>{successMessage}</div>}
                     <div className={styles["contact-form__button-container"]}>
-                        <ButtonTransparent onClick={handleCancel}>Cancel</ButtonTransparent>
+                        <ButtonTransparent type="reset" onClick={handleChange}>Cancel</ButtonTransparent>
                         <Button>Send</Button>
                     </div>
                 </form>

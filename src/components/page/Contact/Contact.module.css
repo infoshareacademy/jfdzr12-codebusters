@@ -12,10 +12,11 @@
 .contact-content__form-input--text,
 .contact-content__form-input--email,
 .contact-content__form-input--textarea {
-  width: 100%;
+  width: 80%;
   border: 0.5px solid rgb(201, 201, 201);
   border-radius: 5px;
   padding: 5px 10px;
+  margin: 0 10px;
 }
 
 .contact-content__form-input--text.dark,
@@ -27,6 +28,7 @@
 
 .contact-content__form-label {
   margin: 7px;
+  font-weight: 400;
 }
 
 .contact-content__form-input--textarea {
@@ -36,6 +38,7 @@
 .contact-form__error-message {
   font-weight: 500;
   color: var(--pink-dark);
+  margin: 20px auto;
 }
 
 .contact-form__error-message.dark {
@@ -45,6 +48,7 @@
 .contact-form__success-message {
   font-weight: 500;
   color: var(--green-dark);
+  margin: 20px auto;
 }
 
 .contact-form__success-message.dark {
