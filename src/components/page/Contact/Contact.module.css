@@ -29,6 +29,7 @@
 .contact-content__form-label {
   margin: 7px;
   font-weight: 400;
+  font-size: 1.1rem;
 }
 
 .contact-content__form-input--textarea {

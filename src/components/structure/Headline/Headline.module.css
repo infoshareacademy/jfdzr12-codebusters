@@ -33,7 +33,7 @@
 
 .headline__symbol {
   display: flex;
-  background-color: var(--pink-light);
+  background-color: var(--beige-medium);
   width: 60px;
   height: 60px;
   justify-content: center;
@@ -48,7 +48,7 @@
 }
 
 .headline.dark:hover > .headline__symbol {
-  color: var(--pink-light);
+  color: var(--beige-light);
 }
 
 .headline.dark:hover > .headline__symbol:nth-child(even) {

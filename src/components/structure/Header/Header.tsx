@@ -77,12 +77,12 @@ export const Header = ({ user }: HeaderProps) => {
                                     <Link
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
-                                            styles["header-nav__list-item-link--home"],
                                             styles[mode])}
                                         to="/"
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
+                                            styles[mode],
                                             { [styles.active]: location.pathname === '/' }
                                         )}>Home</div>
                                     </Link>
@@ -91,12 +91,12 @@ export const Header = ({ user }: HeaderProps) => {
                                     <Link
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
-                                            styles["header-nav__list-item-link--home"],
                                             styles[mode])}
                                         to="/about"
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
+                                            styles[mode],
                                             { [styles.active]: location.pathname === '/about' }
                                         )}>About</div>
                                     </Link>
@@ -105,33 +105,32 @@ export const Header = ({ user }: HeaderProps) => {
                                     <Link
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
-                                            styles["header-nav__list-item-link--home"],
                                             styles[mode])}
                                         to="/contact"
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
+                                            styles[mode],
                                             { [styles.active]: location.pathname === '/contact' }
                                         )}>Contact</div>
                                     </Link>
                                 </li>
-                                {!user && <li>
-                                    <div
-                                        className={classnames(
-                                            styles["header-nav__list-item-link"],
-                                            styles[mode]
-                                        )}
-                                        onClick={toggleLoginModal}
-                                    >
-                                        <div className={classnames(
-                                            styles["header-nav__list-item"],
-                                        )}>Login</div>
-                                    </div>
-                                </li>}
-
                             </ul>
                         </nav>
                     </div>
+                    {!user && <>
+                        <div
+                            className={classnames(
+                                styles["header-nav__list-item-login"],
+                                styles[mode]
+                            )}
+                            onClick={toggleLoginModal}
+                        >
+                            <div className={classnames(
+                                styles["header-nav__list-login"],
+                            )}>Login</div>
+                        </div>
+                    </>}
                     <div className={styles["header__icons-container"]}>
                         {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
                         >
