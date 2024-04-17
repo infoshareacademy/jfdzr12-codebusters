@@ -1,7 +1,7 @@
 .welcome__main--container {
   width: 100vw;
   height: 100vh;
-  background-image: url("images/main/1.avif");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/codebusters-7638e.appspot.com/o/welcome%2F1.avif?alt=media&token=8efb59d3-2c47-4f61-9c73-b35421c59afd");
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
