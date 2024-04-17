@@ -11,23 +11,24 @@ interface DeleteModalProps {
     user: User | null;
     setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     id: string;
+    handleDeleteConfirmed: () => void;
 }
-
-export const DeleteModal = ({ setIsUserModalOpen, user, id }: DeleteModalProps) => {
+export const DeleteModal = ({ setIsUserModalOpen, user, id, handleDeleteConfirmed }: DeleteModalProps) => {
     const { mode } = useContext(ModeContext);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!user) {
-            return <div>User is empty</div>
+            setErrorMessage("User is empty");
+            return;
         }
 
         const userId = user.uid;
 
         try {
-            deleteDoc(doc(db, `entries/${userId}/entry`, id)),
-                setIsUserModalOpen(false);
+            await deleteDoc(doc(db, `entries/${userId}/entry`, id));
+            handleDeleteConfirmed();
         } catch (error) {
             console.log(error);
             setErrorMessage("Error");
@@ -36,7 +37,7 @@ export const DeleteModal = ({ setIsUserModalOpen, user, id }: DeleteModalProps) 
 
 
     return (
-        <Modal onClickSubmit={handleSubmit} onClickCancel={() => {setIsUserModalOpen(false)}}>
+        <Modal onClickSubmit={handleSubmit} onClickCancel={() => { setIsUserModalOpen(false) }}>
 
             <p className={classnames(
                 styles["delete-modal__text"],
