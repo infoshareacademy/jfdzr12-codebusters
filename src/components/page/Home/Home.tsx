@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
-
 interface EntryProps {
     user: User | null;
 }
@@ -59,6 +58,10 @@ export const Home = ({ user }: EntryProps) => {
         fetchEntries();
     }, []);
 
+    const updateEntries = (deletedEntryId: string) => {
+        setEntries(entries.filter(entry => entry.id !== deletedEntryId));
+    };
+
     return (
         <Page>
             <Headline text="Your diary" />
@@ -68,7 +71,7 @@ export const Home = ({ user }: EntryProps) => {
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
                             {entries.map((entry) => (
-                                <Entry entry={entry} key={entry.id} user={user}></Entry>
+                                <Entry entry={entry} key={entry.id} user={user} updateEntries={updateEntries}></Entry>
                             ))}
                         </div>
                     </div>

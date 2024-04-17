@@ -10,17 +10,23 @@ interface EntryTypes {
         entry: string;
         timestamp: any;
         id: string;
-        updatedTimestamp?: any
+        updatedTimestamp?: any;
     };
     user: User | null;
+    updateEntries: (deletedEntryId: string) => void;
 }
-export const Entry = ({ entry, user }: EntryTypes) => {
+
+export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
     const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
     const [isUserModalOpen, setIsUserModalOpen] = useState<boolean>(false);
 
     const handleClickDeleteEntry = () => {
         setIsUserModalOpen((prevState) => !prevState);
+    }
+
+    const handleDeleteConfirmed = async () => {
+        await updateEntries(entry.id);
     }
 
     return (
@@ -58,7 +64,7 @@ export const Entry = ({ entry, user }: EntryTypes) => {
                 </>)
                 }
             </div>
-            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id}></DeleteModal>}
+            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id} handleDeleteConfirmed={handleDeleteConfirmed} ></DeleteModal>}
         </div>
     )
 }
