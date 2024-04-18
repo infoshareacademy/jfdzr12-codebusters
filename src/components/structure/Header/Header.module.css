@@ -146,7 +146,7 @@
   color: var(--violet-dark);
   padding: 10px 10px;
   border-radius: 10px;
-  margin: 0 30px;
+  margin: 15px 30px;
   display: flex;
   align-items: center;
 }
@@ -224,7 +224,7 @@
   }
 
   .header-nav__container {
-    margin-left: 80px;
+    margin-left: 100px;
   }
 
   .header__logo-img {
@@ -258,6 +258,10 @@
     min-width: 70px;
     height: 100%;
   }
+
+  .header-nav__container {
+    margin-left: 90px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -290,8 +294,8 @@
 
   .header__user-icon,
   .header-mode__icon {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
   }
 
   .header-nav__list-item-login {
@@ -329,8 +333,8 @@
 
   .header__user-icon,
   .header-mode__icon {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
   }
 
   .header-nav__list-item-login {
@@ -368,8 +372,8 @@
 
   .header__user-icon,
   .header-mode__icon {
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
   }
 
   .header-nav__list-item-login {

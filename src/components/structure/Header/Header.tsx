@@ -1,11 +1,13 @@
-import { ModeContext } from "@/providers/mode";
 import { useContext, useEffect, useState } from "react";
+import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { User } from "firebase/auth";
+const WINDOW_MOBILE_WITH = 992;
+
 interface HeaderProps {
     user: User | null;
 }
@@ -16,6 +18,7 @@ export const Header = ({ user }: HeaderProps) => {
 
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleAccountModal = (): void => {
         setIsUserModalOpen((prevState) => !prevState);
@@ -26,17 +29,14 @@ export const Header = ({ user }: HeaderProps) => {
     };
 
     useEffect(() => {
-        const handleEscapePress = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                setIsLoginModalOpen(false);
-                setIsUserModalOpen(false);
-            }
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
         };
 
-        document.addEventListener('keydown', handleEscapePress);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            document.removeEventListener('keydown', handleEscapePress);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -98,20 +98,27 @@ export const Header = ({ user }: HeaderProps) => {
                     <div className={styles["header__logo"]}>
                         <Link className={styles["header__logo-link"]} to="/">
                             <div className={styles["header__logo-link-container"]}>
-                                {mode === "light" ? (
-                                    <img src="/images/icons/dairy/logo-web.png" alt="diary-daze logo" className={classnames(
-                                        styles["header__logo-img"],
-                                        styles[mode])} />
-                                ) : (
-                                    <img src="/images/icons/dairy/logo-web-dark.png" alt="diary-daze logo" className={classnames(
+                                {windowWidth <= WINDOW_MOBILE_WITH ? (
+                                    <img src="/images/icons/dairy/logo-mob.png" alt="diary-daze logo" className={classnames(
                                         styles["header__logo-img"],
                                         styles[mode]
                                     )} />
+                                ) : (
+                                    mode === "light" ? (
+                                        <img src="/images/icons/dairy/logo-web.png" alt="diary-daze logo" className={classnames(
+                                            styles["header__logo-img"],
+                                            styles[mode]
+                                        )} />
+                                    ) : (
+                                        <img src="/images/icons/dairy/logo-web-dark.png" alt="diary-daze logo" className={classnames(
+                                            styles["header__logo-img"],
+                                            styles[mode]
+                                        )} />
+                                    )
                                 )}
                             </div>
                         </Link>
                     </div>
-
                     <div className={styles["header__icons-container"]}>
                         {!user && <>
                             <div
@@ -165,5 +172,6 @@ export const Header = ({ user }: HeaderProps) => {
                     {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}></LoginModal>}
                 </div>
             </header >
-        </>)
-}
+        </>
+    );
+};
