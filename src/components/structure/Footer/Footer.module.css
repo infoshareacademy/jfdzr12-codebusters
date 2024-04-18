@@ -210,12 +210,12 @@ hr.dark {
 }
 
 @media screen and (max-width: 400px) {
-  .sb_footer-links-div h3 {
+  .sb_footer-links-div h3,
+  .sb_footer-below-links-pages,
+  .sb_footer-below-links-policy {
     font-size: 0.9rem;
   }
-  .sb_footer-links-div p {
-    font-size: 0.8rem;
-  }
+
   .sb_footer-below-links p {
     font-size: 0.7rem;
   }
