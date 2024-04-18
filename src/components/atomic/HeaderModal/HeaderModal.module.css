@@ -3,7 +3,7 @@
   z-index: 100;
   background-color: var(--white);
   top: var(--header-hight);
-  right: 40px;
+  right: 50px;
   border: 1px solid #f4f4f4;
   border-top: none;
   border-bottom-left-radius: 8px;
@@ -18,8 +18,29 @@
   color: var(--beige-light);
 }
 
-@media screen and (max-width: 768px) {
-  .modal__container {
-    top: calc(var(--header-hight) * 0.75);
+@media screen and (max-width: 992px) {
+  .modal-header__container {
+    top: calc(var(--header-hight) * 0.8);
+    right: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal-header__container {
+    right: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-header__container {
+    margin: 0 10px;
+    right: 0;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-header__container {
+    margin: auto;
   }
 }
