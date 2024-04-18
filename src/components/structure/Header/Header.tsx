@@ -99,11 +99,11 @@ export const Header = ({ user }: HeaderProps) => {
                         <Link className={styles["header__logo-link"]} to="/">
                             <div className={styles["header__logo-link-container"]}>
                                 {mode === "light" ? (
-                                    <img src="/images/icons/dairy/diary-light.png" alt="diary-daze logo" className={classnames(
+                                    <img src="/images/icons/dairy/logo-web.png" alt="diary-daze logo" className={classnames(
                                         styles["header__logo-img"],
                                         styles[mode])} />
                                 ) : (
-                                    <img src="/images/icons/dairy/diary-dark.png" alt="diary-daze logo" className={classnames(
+                                    <img src="/images/icons/dairy/logo-web-dark.png" alt="diary-daze logo" className={classnames(
                                         styles["header__logo-img"],
                                         styles[mode]
                                     )} />
