@@ -40,6 +40,21 @@ export const Header = ({ user }: HeaderProps) => {
         };
     }, []);
 
+    useEffect(() => {
+        const handleEscapePress = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsLoginModalOpen(false);
+                setIsUserModalOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscapePress);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapePress);
+        };
+    }, []);
+
     return (
         <>
             <header className={styles["header"]}>
