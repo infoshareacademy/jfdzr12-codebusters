@@ -26,7 +26,7 @@ export const Welcome = () => {
                     </div>
                     <div className={classNames(
                         styles["welcome__headline--paragraph"],
-                        styles[mode])}>write history of your life</div>
+                        styles[mode])}>Write history of your life</div>
                     <div className={classNames(
                         styles["welcome__headline--button"],
                         styles[mode])}>
