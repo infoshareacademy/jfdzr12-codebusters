@@ -73,8 +73,20 @@ export const AddEntry = ({ user }: EntryProps) => {
                         styles[mode])} title="bold" data-button-type="addStrong"><strong>b</strong></span>
     <span className={classNames(
                         styles["controls-button"],
-                        styles[mode])} title="italic" data-button-type="addEmphasis"><strong><em>i</em></strong></span></div>
-                        <div className={classNames(
+                        styles[mode])} title="italic" data-button-type="addEmphasis"><strong><em>i</em></strong></span>
+    {(mode === "light" ? (
+                                        <img src="/images/icons/upload/upload-photo-dark.png" alt="upload photo" className={classNames(
+                                            styles["controls-image"],
+                                            styles[mode]
+                                        )} />
+                                    ) : (
+                                        <img src="/images/icons/upload/upload-photo-light.png" alt="upload photo" className={classNames(
+                                            styles["controls-image"],
+                                            styles[mode]
+                                        )} />
+                                    )
+                                )}</div>
+    <div className={classNames(
                             styles["entry__container"],
                             styles[mode])}>
                             <textarea
