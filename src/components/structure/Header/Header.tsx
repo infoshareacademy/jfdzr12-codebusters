@@ -139,6 +139,7 @@ export const Header = ({ user }: HeaderProps) => {
                             <div
                                 className={classnames(
                                     styles["header-nav__list-item-login"],
+                                    { [styles.inactive]: location.pathname === '/login' },
                                     styles[mode]
                                 )}
                                 onClick={toggleLoginModal}

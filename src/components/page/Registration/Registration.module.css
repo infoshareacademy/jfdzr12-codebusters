@@ -1,0 +1,23 @@
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration__form.dark {
+  color: var(--beige-light);
+}
+
+.registration__login-link {
+  font-weight: 600;
+  color: var(--violet-dark);
+}
+
+.registration__login-link.dark {
+  color: var(--violet-light);
+}
+
+.registration__register-text {
+  margin: 10px auto;
+}

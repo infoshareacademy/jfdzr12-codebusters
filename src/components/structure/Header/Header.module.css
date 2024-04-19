@@ -199,6 +199,10 @@
   color: var(--beige-light);
 }
 
+.header-nav__list-item-login.inactive {
+  display: none;
+}
+
 @media only screen and (max-width: 1200px) {
   .header__container {
     height: calc(var(--header-hight) * 0.8);

@@ -18,6 +18,8 @@ import { Home } from './components/page/Home/Home';
 import { EditEntry } from './components/page/EditEntry/EditEntry';
 import { About } from './components/page/About/About'
 import { Contact } from './components/page/Contact/Contact';
+import { Registration } from './components/page/Registration/Registration';
+import { Login } from './components/page/Login/Login';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
@@ -40,6 +42,8 @@ function App(): JSX.Element {
                 <Route path="/" element={<Welcome />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/confirm-delete" element={<ConfirmDelete />} />
+                <Route path="/register" element={<Registration />} />
+                <Route path="/login" element={<Login />} />
               </>
             }
             {user &&
