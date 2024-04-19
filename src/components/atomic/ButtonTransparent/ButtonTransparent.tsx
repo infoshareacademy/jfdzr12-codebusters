@@ -2,7 +2,6 @@ import { useContext } from "react";
 import styles from "./ButtonTransparent.module.css";
 import classNames from "classnames";
 import { ModeContext } from "@/providers/mode";
-
 interface ButtonTransparentProps {
     children: React.ReactNode;
     type?: "button" | "submit" | "reset";
