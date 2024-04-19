@@ -1,11 +1,12 @@
+import { useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
-import { useContext, useState } from "react";
 import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { User } from "firebase/auth";
+const WINDOW_MOBILE_WITH = 992;
 
 interface HeaderProps {
     user: User | null;
@@ -17,6 +18,7 @@ export const Header = ({ user }: HeaderProps) => {
 
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleAccountModal = (): void => {
         setIsUserModalOpen((prevState) => !prevState);
@@ -26,6 +28,33 @@ export const Header = ({ user }: HeaderProps) => {
         setIsLoginModalOpen((prevState) => !prevState);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleEscapePress = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsLoginModalOpen(false);
+                setIsUserModalOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscapePress);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapePress);
+        };
+    }, []);
+
     return (
         <>
             <header className={styles["header"]}>
@@ -33,29 +62,6 @@ export const Header = ({ user }: HeaderProps) => {
                     styles["header__container"],
                     styles[mode]
                 )}>
-                    <div className={styles["header__logo"]}>
-                        <Link className={styles["header__logo-link"]} to="/">
-                            <div className={styles["header__logo-link-container"]}>
-                                {mode === "light" ? (
-                                    <img src="/images/icons/dairy/diary-light.png" alt="diary-daze logo" className={classnames(
-                                        styles["header__logo-img"],
-                                        styles[mode])} />
-                                ) : (
-                                    <img src="/images/icons/dairy/diary-dark.png" alt="diary-daze logo" className={classnames(
-                                        styles["header__logo-img"],
-                                        styles[mode]
-                                    )} />
-                                )}
-                                <div className={classnames(
-                                    styles["header__logo-link-paragraph-container"],
-                                    styles[mode])}>
-                                    <p className={classnames(
-                                        styles["header__logo-link-paragraph"],
-                                        styles[mode])}>diary daze</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
                     <div className={styles["header-nav__container"]}>
                         <nav className={styles["header-nav"]}>
                             <ul className={styles["header-nav__list"]}>
@@ -63,34 +69,85 @@ export const Header = ({ user }: HeaderProps) => {
                                     <Link
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
-                                            styles["header-nav__list-item-link--home"],
                                             styles[mode])}
                                         to="/"
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
+                                            styles[mode],
                                             { [styles.active]: location.pathname === '/' }
                                         )}>Home</div>
                                     </Link>
                                 </li>
-                                {!user && <li>
-                                    <div
+                                <li>
+                                    <Link
                                         className={classnames(
                                             styles["header-nav__list-item-link"],
-                                            styles[mode]
-                                        )}
-                                        onClick={toggleLoginModal}
+                                            styles[mode])}
+                                        to="/about"
                                     >
                                         <div className={classnames(
                                             styles["header-nav__list-item"],
-                                        )}>Login</div>
-                                    </div>
-                                </li>}
-
+                                            styles[mode],
+                                            { [styles.active]: location.pathname === '/about' }
+                                        )}>About</div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        className={classnames(
+                                            styles["header-nav__list-item-link"],
+                                            styles[mode])}
+                                        to="/contact"
+                                    >
+                                        <div className={classnames(
+                                            styles["header-nav__list-item"],
+                                            styles[mode],
+                                            { [styles.active]: location.pathname === '/contact' }
+                                        )}>Contact</div>
+                                    </Link>
+                                </li>
                             </ul>
                         </nav>
                     </div>
+                    <div className={styles["header__logo"]}>
+                        <Link className={styles["header__logo-link"]} to="/">
+                            <div className={styles["header__logo-link-container"]}>
+                                {windowWidth <= WINDOW_MOBILE_WITH ? (
+                                    <img src="/images/icons/dairy/logo-mob.png" alt="diary-daze logo" className={classnames(
+                                        styles["header__logo-img"],
+                                        styles[mode]
+                                    )} />
+                                ) : (
+                                    mode === "light" ? (
+                                        <img src="/images/icons/dairy/logo-web.png" alt="diary-daze logo" className={classnames(
+                                            styles["header__logo-img"],
+                                            styles[mode]
+                                        )} />
+                                    ) : (
+                                        <img src="/images/icons/dairy/logo-web-dark.png" alt="diary-daze logo" className={classnames(
+                                            styles["header__logo-img"],
+                                            styles[mode]
+                                        )} />
+                                    )
+                                )}
+                            </div>
+                        </Link>
+                    </div>
                     <div className={styles["header__icons-container"]}>
+                        {!user && <>
+                            <div
+                                className={classnames(
+                                    styles["header-nav__list-item-login"],
+                                    styles[mode]
+                                )}
+                                onClick={toggleLoginModal}
+                            >
+                                <div className={classnames(
+                                    styles["header-nav__list-login"],
+                                )}>Login</div>
+                            </div>
+                        </>}
                         {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
                         >
                             {mode === "light" ? (
@@ -115,13 +172,13 @@ export const Header = ({ user }: HeaderProps) => {
 
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/day-mode-light.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/night-light.png" className={styles["header-mode__icon"]} />
                                 </button>
                             ) : (
                                 <button
                                     onClick={toggleMode} className={styles["header-mode__button"]}
                                 >
-                                    <img src="/images/icons/mode/night-mode-dark.png" className={styles["header-mode__icon"]} />
+                                    <img src="/images/icons/mode/sun-dark.png" className={styles["header-mode__icon"]} />
                                 </button>
                             )}
                         </div>
@@ -130,5 +187,6 @@ export const Header = ({ user }: HeaderProps) => {
                     {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}></LoginModal>}
                 </div>
             </header >
-        </>)
-}
+        </>
+    );
+};

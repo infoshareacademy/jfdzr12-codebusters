@@ -1,21 +1,21 @@
 .button-container {
-  color: var(--white);
-  background-color: var(--violet-medium);
+  color: var(--violet-medium);
+  background-color: inherit;
   border-radius: 8px;
   margin: 10px;
   border: 2px solid var(--violet-medium);
   text-align: center;
 }
 
+.button-container:hover {
+  color: var(--white);
+  background-color: var(--violet-medium);
+  border: 2px solid var(--violet-medium);
+}
+
 .button {
   padding: 10px 25px;
   font-weight: 500;
-}
-
-.button-container:hover {
-  color: var(--violet-medium);
-  background-color: inherit;
-  border: 2px solid var(--violet-medium);
 }
 
 .button-container:active {
@@ -25,15 +25,15 @@
 }
 
 .button-container.dark {
-  color: var(--indigo-medium-dark);
-  background-color: var(--beige-light);
+  color: var(--beige-light);
+  background-color: inherit;
   border: 2px solid var(--beige-light);
 }
 
 .button-container.dark:hover {
   color: var(--indigo-medium-dark);
-  background-color: var(--violet-medium);
-  border: 2px solid var(--violet-medium);
+  background-color: var(--beige-light);
+  border: 2px solid var(--beige-light);
 }
 
 .button-container.dark:active {
