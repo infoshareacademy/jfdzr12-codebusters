@@ -83,6 +83,12 @@
     box-shadow: 0 5px 10px #0000001a;
   }
 
+  .image-preview {
+    display: flex;
+    margin:10px;
+    width: 200px;
+  }
+
 /* darkMode */
 
 .entry__message.dark {
