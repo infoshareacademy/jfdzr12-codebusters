@@ -2,7 +2,6 @@ import { useContext } from "react";
 import styles from "./Button.module.css";
 import classNames from "classnames";
 import { ModeContext } from "@/providers/mode";
-
 interface ButtonProps {
     children: React.ReactNode;
     type?: "button" | "submit" | "reset";
