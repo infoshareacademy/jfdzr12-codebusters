@@ -110,8 +110,12 @@
 
 /*<------ ACCOUNT EDIT FORM*/
 
-@media screen and (max-width: 414px) {
+@media only screen and (max-width: 414px) {
   .account__buttons--container {
     flex-direction: column;
+  }
+
+  .account__container {
+    font-size: 0.9rem;
   }
 }
