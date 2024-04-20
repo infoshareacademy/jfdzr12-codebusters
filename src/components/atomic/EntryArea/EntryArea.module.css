@@ -30,3 +30,25 @@
   background: var(--indigo-medium-dark);
   border: 0.5px solid var(--indigo-medium-dark);
 }
+
+.entry__textarea-container {
+  width: 40vw;
+}
+
+@media screen and (max-width: 1200px) {
+  .entry__textarea-container {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .entry__textarea-container {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .entry__textarea-container {
+    width: 70vw;
+  }
+}

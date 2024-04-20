@@ -2,23 +2,24 @@ import classNames from "classnames";
 import styles from "./EntryArea.module.css"
 import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
-
 interface EntryAreaProps {
-    value: string;
+    value: string | undefined;
     onChange: (e: any) => void;
-    children?: React.ReactNode;
 }
 
-export const EntryArea = ({ children, value, onChange }: EntryAreaProps) => {
+export const EntryArea = ({ value, onChange }: EntryAreaProps) => {
     const { mode } = useContext(ModeContext);
     return (
-        <div>
+        <div className={classNames(
+            styles["entry__textarea-container"],
+            styles[mode]
+        )}>
             <textarea value={value} onChange={onChange}
                 className={classNames(
                     styles["entry__textarea"],
                     styles[mode]
                 )}
-                minLength={10}
+                minLength={1}
                 maxLength={500}
                 name="entry"
                 rows={14}
@@ -27,9 +28,7 @@ export const EntryArea = ({ children, value, onChange }: EntryAreaProps) => {
                 autoSave=""
                 spellCheck
                 required>
-                {children}
             </textarea>
         </div>
     )
-
 }
