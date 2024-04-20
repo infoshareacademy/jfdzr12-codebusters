@@ -96,6 +96,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
 
     const handleReset = () => {
         setEntryText(originalEntryText);
+        setErrorMessage(null);
     }
 
     return (
@@ -112,6 +113,10 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     onSubmit={handleSubmit}
                 >
                     <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
+                    {errorMessage && <div className={classNames(
+                        styles["entry__error-message"],
+                        styles[mode])}>{errorMessage}
+                    </div>}
                     <div className={classNames(
                         styles["entry__buttons-container"],
                         styles[mode])
@@ -120,9 +125,6 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                         <Button type="submit">Add</Button>
                     </div>
                 </form>
-                {errorMessage && <div className={classNames(
-                    styles["entry__error-message"],
-                    styles[mode])}>{errorMessage}</div>}
             </div>
         </Page>
     );
