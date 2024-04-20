@@ -12,28 +12,26 @@ export const Welcome = () => {
     const navigate = useNavigate();
 
     return (
-        <Page>
+        <div className={classNames(
+            styles["welcome__main--container"],
+            styles[mode])}>
             <div className={classNames(
-                styles["welcome__main--container"],
+                styles["welcome__headline--container"],
                 styles[mode])}>
                 <div className={classNames(
-                    styles["welcome__headline--container"],
+                    styles["welcome__headline"],
                     styles[mode])}>
-                    <div className={classNames(
-                        styles["welcome__headline"],
-                        styles[mode])}>
-                        <Headline text="diary daze" />
-                    </div>
-                    <div className={classNames(
-                        styles["welcome__headline--paragraph"],
-                        styles[mode])}>Write history of your life</div>
-                    <div className={classNames(
-                        styles["welcome__headline--button"],
-                        styles[mode])}>
-                        <Button onClick={() => { navigate("/register") }}>Register</Button>
-                    </div>
+                    <Headline text="diary·daze" />
+                </div>
+                <div className={classNames(
+                    styles["welcome__headline--paragraph"],
+                    styles[mode])}>Write history of your life</div>
+                <div className={classNames(
+                    styles["welcome__headline--button"],
+                    styles[mode])}>
+                    <Button onClick={() => { navigate("/register") }}>Register</Button>
                 </div>
             </div>
-        </Page>
+        </div>
     )
 }
