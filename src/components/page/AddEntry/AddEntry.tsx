@@ -10,6 +10,7 @@ import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Paper } from "@/components/structure/Paper/Paper";
 import { useNavigate } from "react-router-dom";
+import { Book } from "@/components/structure/Book/Book";
 interface EntryProps {
     user: User | null;
 }
@@ -59,7 +60,7 @@ export const AddEntry = ({ user }: EntryProps) => {
                 styles[mode])
             }>
                 <Headline text="new entry" />
-                <Paper>
+                {/* <Paper>
                     <form
                         action=""
                         method="get"
@@ -95,7 +96,16 @@ export const AddEntry = ({ user }: EntryProps) => {
                             styles["entry__error-message"],
                             styles[mode])}>{errorMessage}</div>}
                     </form>
-                </Paper>
+                </Paper> */}
+                <div className={classNames(
+                    styles["entry__book-container"],
+                    styles[mode])
+                }>
+
+                </div>
+                <Book>
+                    test
+                </Book>
             </div>
         </Page>
     )
