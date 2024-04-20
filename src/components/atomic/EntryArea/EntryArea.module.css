@@ -1,8 +1,7 @@
 .entry__textarea {
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   resize: none;
-  word-spacing: 2px;
   overflow: auto;
   outline: none;
   word-wrap: break-word;
@@ -12,7 +11,6 @@
   width: 100%;
   border-radius: 20px;
   padding: 20px;
-  font-family: var(--headline);
   font-weight: 300;
   border: 0.5px solid rgb(201, 201, 201);
 }
@@ -44,6 +42,10 @@
 @media screen and (max-width: 768px) {
   .entry__textarea-container {
     width: 60vw;
+  }
+
+  .entry__textarea {
+    font-size: 1rem;
   }
 }
 
