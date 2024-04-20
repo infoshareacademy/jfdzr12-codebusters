@@ -1,0 +1,32 @@
+.entry__textarea {
+  display: block;
+  font-size: 1rem;
+  resize: none;
+  word-spacing: 2px;
+  overflow: auto;
+  outline: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  height: inherit;
+  width: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  font-family: var(--headline);
+  font-weight: 300;
+  border: 0.5px solid rgb(201, 201, 201);
+}
+
+.entry__textarea:active {
+  border: none;
+}
+
+.entry__textarea:focus {
+  border: none;
+}
+
+.entry__textarea.dark {
+  color: var(--beige-light);
+  background: var(--indigo-medium-dark);
+  border: 0.5px solid var(--indigo-medium-dark);
+}

@@ -11,36 +11,6 @@
   margin: 30px;
 }
 
-.entry__textarea {
-  display: block;
-  font-size: 1rem;
-  resize: none;
-  word-spacing: 2px;
-  overflow: auto;
-  outline: none;
-  border: none;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-
-  resize: none;
-  height: inherit;
-  width: 100%;
-  border-bottom-right-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  padding: 20px;
-  font-family: var(--headline);
-  font-weight: 300;
-}
-
-.entry__textarea:active {
-  border: none;
-}
-
-.entry__textarea:focus {
-  border: none;
-}
-
 .entry__input {
   display: block;
   margin: auto;
@@ -68,10 +38,6 @@
 
 .entry__error-message.dark {
   color: var(--pink-medium);
-}
-
-.entry__textarea.dark {
-  background: var(--indigo-medium-dark);
 }
 
 @media screen and (max-width: 768px) {

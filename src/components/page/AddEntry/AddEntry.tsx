@@ -9,8 +9,8 @@ import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { useNavigate } from "react-router-dom";
-import { Book } from "@/components/structure/Book/Book";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 interface EntryProps {
     user: User | null;
 }
@@ -67,28 +67,8 @@ export const AddEntry = ({ user }: EntryProps) => {
                 <form className={classNames(styles["entry__form"])}
                     onSubmit={handleSubmit}>
 
-                    <Book>
-
-                        <textarea
-                            id="entry"
-                            className={classNames(
-                                styles["entry__textarea"],
-                                styles[mode]
-                            )}
-                            minLength={10}
-                            maxLength={500}
-                            name="entry"
-                            rows={18}
-                            cols={50}
-                            wrap="off"
-                            autoSave=""
-                            spellCheck
-                            required
-                            value={entryText}
-                            onChange={(e) => setEntryText(e.target.value)}
-                        >
-                        </textarea>
-                    </Book>
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)}>
+                    </EntryArea>
 
                     <div className={classNames(
                         styles["entry__buttons-container"],
