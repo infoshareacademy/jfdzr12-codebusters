@@ -1,11 +1,13 @@
 .welcome__main--container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("https://firebasestorage.googleapis.com/v0/b/codebusters-7638e.appspot.com/o/welcome%2F1.avif?alt=media&token=8efb59d3-2c47-4f61-9c73-b35421c59afd");
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 20%;
 }
 
 .welcome__image--container {
@@ -13,10 +15,11 @@
 }
 
 .welcome__headline--container {
-  margin-top: 30px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .welcome__image {
@@ -24,20 +27,25 @@
 }
 
 .welcome__headline {
+  display: flex;
+  justify-content: flex-end;
   transform: scale(1.4);
+  flex-wrap: wrap;
 }
 
 .welcome__headline--paragraph {
-  color: var(--beige-dark);
-  margin: 10px auto 20px;
-  font-size: 1.4rem;
+  color: var(--beige-light);
+  margin: 10px 0 20px;
+  font-size: 1.6rem;
   font-weight: 500;
-  text-align: right;
+  text-align: center;
+  width: 100%;
 }
 
 .welcome__headline--button {
-  justify-self: right;
+  justify-self: center;
   transform: scale(1.4);
+  margin-right: 15px;
 }
 
 .welcome__headline--paragraph.dark {
@@ -48,5 +56,31 @@
   .welcome__headline,
   .welcome__headline--button {
     transform: scale(1.2);
+  }
+
+  .welcome__headline--paragraph {
+    margin: 10px 0 20px;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .welcome__headline--container {
+    width: 80%;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .welcome__headline,
+  .welcome__headline--button {
+    transform: scale(1.2);
+  }
+
+  .welcome__headline--paragraph {
+    font-size: 1.3rem;
+  }
+
+  .welcome__headline--container {
+    width: 70%;
   }
 }

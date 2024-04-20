@@ -38,8 +38,8 @@ export const ConfirmDelete = () => {
                     styles[mode]
                 )}>
                     {mode === "light" ? (
-                        <img className={styles["byeLight"]} src="images/icons/delete/cry-cat-fish.gif" />) :
-                        (<img className={styles["byeNight"]} src="images/icons/delete/cry-cat-fish.gif" />)}
+                        <img className={styles["byeLight"]} src="images/icons/delete/sad-dog.avif" />) :
+                        (<img className={styles["byeNight"]} src="images/icons/delete/sad-dog.avif" />)}
                 </div>
 
             </div>
