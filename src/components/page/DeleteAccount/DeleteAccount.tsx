@@ -44,6 +44,10 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
         }
     };
 
+    const handleCancel = () => {
+        setConfirmPassword("");
+    }
+
     return (
         <Page>
             <ButtonBack />
@@ -77,7 +81,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
                 styles["delete-account__buttons"],
                 styles[mode]
             )}>
-                <ButtonTransparent onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <ButtonTransparent onClick={handleCancel}>Cancel</ButtonTransparent>
                 <Button onClick={handleDeleteAccount}>Confirm</Button>
             </div>
         </Page>
