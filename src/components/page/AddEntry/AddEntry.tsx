@@ -11,6 +11,7 @@ import { Headline } from "@/components/structure/Headline/Headline";
 import { useNavigate } from "react-router-dom";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
 import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 interface EntryProps {
     user: User | null;
 }
@@ -60,6 +61,7 @@ export const AddEntry = ({ user }: EntryProps) => {
 
     return (
         <Page>
+            <ButtonBack />
             <div className={classNames(
                 styles["entry__area"],
                 styles[mode])

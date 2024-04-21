@@ -1,0 +1,14 @@
+.button-back {
+  position: absolute;
+  top: 150px;
+  left: 90px;
+  opacity: 0.5;
+}
+
+.button-back__image {
+  width: 60px;
+}
+
+.button-back:hover {
+  opacity: 1;
+}

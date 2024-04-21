@@ -120,13 +120,7 @@ export const Account = ({ user }: AccountProps) => {
             )}>
                 <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
                     <button onClick={() => { setReadOnly(false) }}>
-                        {mode === "light" ? (
-
-                            <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
-                        ) : (
-
-                            <img src="/images/icons/account/user-avatar-color-dark.png" className={styles["account--button--edit-icon"]} />
-                        )}
+                        <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
                     </button>
                 </div>
                 {user && <form onSubmit={handleSubmit}>

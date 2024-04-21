@@ -1,4 +1,3 @@
-import { Page } from "../../structure/Page/Page"
 import styles from "./Welcome.module.css"
 import { useContext } from "react";
 import { ModeContext } from "@/providers/mode";
