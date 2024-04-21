@@ -8,6 +8,7 @@ import { Button } from "@/components/atomic/Button/Button";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 
 export const Contact: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -53,6 +54,7 @@ export const Contact: React.FC = () => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Contact Us" />
             <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <form

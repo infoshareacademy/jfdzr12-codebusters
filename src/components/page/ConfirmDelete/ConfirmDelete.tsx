@@ -4,12 +4,14 @@ import styles from "./ConfirmDelete.module.css"
 import classNames from "classnames";
 import { ModeContext } from "@/providers/mode";
 import { Headline } from "@/components/structure/Headline/Headline";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 
 export const ConfirmDelete = () => {
     const { mode } = useContext(ModeContext);
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Bye bye!"></Headline>
             <div className={classNames(
                 styles["confirm-delete__container"],
