@@ -29,7 +29,6 @@ export const ButtonUp = () => {
         };
     }, []);
 
-
     return (
         <div onClick={handleUp} className={classNames(
             styles["button-up"],
@@ -38,7 +37,6 @@ export const ButtonUp = () => {
             {mode === "light" ? (
                 <img src="/images/icons/arrows/up-button.png" className={styles["button-up__image"]} alt="up icon" />
             ) : (
-
                 <img src="/images/icons/arrows/up-button-dark.png" className={styles["button-up__image"]} alt="up icon" />
             )}
         </div>

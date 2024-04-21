@@ -40,9 +40,15 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
 
         } catch (error) {
             console.error(error);
-            setError("Account hasn't been deleted")
+            setError("Account hasn't been deleted");
+            setConfirmPassword("");
         }
     };
+
+    const handleCancel = () => {
+        setConfirmPassword("");
+        setError(null);
+    }
 
     return (
         <Page>
@@ -77,7 +83,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
                 styles["delete-account__buttons"],
                 styles[mode]
             )}>
-                <ButtonTransparent onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <ButtonTransparent onClick={handleCancel}>Cancel</ButtonTransparent>
                 <Button onClick={handleDeleteAccount}>Confirm</Button>
             </div>
         </Page>

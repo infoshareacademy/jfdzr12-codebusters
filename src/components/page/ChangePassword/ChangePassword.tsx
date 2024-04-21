@@ -56,7 +56,7 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
         }
     };
 
-    const handleReset = () => {
+    const handleCancel = () => {
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');
@@ -131,7 +131,7 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                 styles["change-password__buttons-container"],
                 styles[mode]
             )}>
-                <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
+                <ButtonTransparent type="reset" onClick={handleCancel}>Cancel</ButtonTransparent>
                 <Button onClick={handleChangePassword}>Submit</Button></div>
             {error && <p
                 className={classNames(
