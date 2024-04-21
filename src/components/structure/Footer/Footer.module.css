@@ -57,12 +57,14 @@
   text-decoration: none;
 }
 
-.sb_footer-below-links-policy:hover {
+.sb_footer-below-links-policy:hover,
+.sb_footer-below-links-pages:hover {
   color: var(--beige);
   text-decoration: none;
 }
 
-.sb_footer-below-links-policy.dark:hover {
+.sb_footer-below-links-policy.dark:hover,
+.sb_footer-below-links-pages.dark:hover {
   color: var(--violet-light);
   text-decoration: none;
 }

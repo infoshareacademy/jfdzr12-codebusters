@@ -1,7 +1,7 @@
 .home-section_entry {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 10px 30px;
   background-color: var(--violet-lighter);
   padding: 20px;
   width: 80vw;
