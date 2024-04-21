@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./ButtonUp.module.css";
 import classNames from "classnames";
+import { ModeContext } from "@/providers/mode";
 
 export const ButtonUp = () => {
-
+    const { mode } = useContext(ModeContext);
     const [isVisible, setIsVisible] = useState(false);
 
     const handleUp = () => {
@@ -34,7 +35,12 @@ export const ButtonUp = () => {
             styles["button-up"],
             { [styles['show']]: isVisible, [styles['hide']]: !isVisible }
         )}>
-            <img src="/images/icons/arrows/up-button.png" alt="up icon" className={styles["button-up__image"]} />
+            {mode === "light" ? (
+                <img src="/images/icons/arrows/up-button.png" className={styles["button-up__image"]} alt="up icon" />
+            ) : (
+
+                <img src="/images/icons/arrows/up-button-dark.png" className={styles["button-up__image"]} alt="up icon" />
+            )}
         </div>
     );
 };
