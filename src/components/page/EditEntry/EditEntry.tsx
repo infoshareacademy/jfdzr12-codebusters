@@ -8,8 +8,10 @@ import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
-import { Paper } from "@/components/structure/Paper/Paper";
 import { useNavigate, useParams } from "react-router-dom";
+import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
+
 interface EditEntryProps {
     user: User | null;
 }
@@ -25,6 +27,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const { mode } = useContext(ModeContext);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string | undefined>("");
+    const [originalEntryText, setOriginalEntryText] = useState<string | undefined>("");
     const { entryId }: any = useParams();
     const navigate = useNavigate();
 
@@ -49,7 +52,8 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                 })) as EntriesData[];
 
                 const entry = fetchedEntries.find((entry) => entry.id === entryId);
-                setEntryText(entry?.entry)
+                setEntryText(entry?.entry);
+                setOriginalEntryText(entry?.entry);
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -90,6 +94,11 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         }
     };
 
+    const handleReset = () => {
+        setEntryText(originalEntryText);
+        setErrorMessage(null);
+    }
+
     return (
         <Page>
             <div className={classNames(
@@ -97,43 +106,25 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                 styles[mode])
             }>
                 <Headline text="edit entry" />
-                <Paper>
-                    <form
-                        action=""
-                        method="get"
-                        className={classNames(styles["entry__form"])}
-                        onSubmit={handleSubmit}
-                    >
-                        <div className={classNames(
-                            styles["entry__container"],
-                            styles[mode])}>
-                            <textarea
-                                placeholder="Write your thoughts here..."
-                                id="entry"
-                                className={classNames(
-                                    styles["entry__textarea"],
-                                    styles[mode]
-                                )}
-                                minLength={10}
-                                maxLength={500}
-                                name="entry"
-                                rows={18}
-                                cols={50}
-                                wrap="off"
-                                autoSave=""
-                                spellCheck
-                                required
-                                value={entryText}
-                                onChange={(e) => setEntryText(e.target.value)}
-                            />
-                        </div>
-                        <Button type="submit">Add</Button>
-
-                    </form>
+                <form
+                    action=""
+                    method="get"
+                    className={classNames(styles["entry__form"])}
+                    onSubmit={handleSubmit}
+                >
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
-                        styles[mode])}>{errorMessage}</div>}
-                </Paper>
+                        styles[mode])}>{errorMessage}
+                    </div>}
+                    <div className={classNames(
+                        styles["entry__buttons-container"],
+                        styles[mode])
+                    }>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
+                        <Button type="submit">Add</Button>
+                    </div>
+                </form>
             </div>
         </Page>
     );
