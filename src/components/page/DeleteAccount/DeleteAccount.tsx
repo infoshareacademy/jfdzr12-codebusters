@@ -47,6 +47,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
 
     const handleCancel = () => {
         setConfirmPassword("");
+        setError(null);
     }
 
     return (
