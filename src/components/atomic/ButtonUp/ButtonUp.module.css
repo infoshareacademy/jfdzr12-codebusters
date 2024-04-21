@@ -1,44 +1,53 @@
-.button-back {
+.button-up {
   position: fixed;
   bottom: 5vh;
   right: 60px;
   opacity: 0.5;
   z-index: 6;
+  visibility: hidden;
 }
 
-.button-back__image {
+.button-up.show {
+  visibility: visible;
+}
+
+.button-up__image {
   width: 60px;
 }
 
-.button-back:hover {
+.button-up:hover {
   opacity: 1;
 }
 
 @media screen and (max-width: 1200px) {
-  .button-back {
+  .button-up {
     right: 50px;
   }
 
-  .button-back__image {
+  .button-up__image {
     width: 50px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .button-back {
+  .button-up {
     right: 30px;
   }
 }
 
 @media screen and (max-width: 746px) {
-  .button-back {
+  .button-up {
     right: 5px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .button-back {
+  .button-up {
     right: 0px;
     bottom: 20vh;
+  }
+
+  .button-up.show {
+    visibility: hidden;
   }
 }
