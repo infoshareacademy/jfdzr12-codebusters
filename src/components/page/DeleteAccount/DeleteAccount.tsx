@@ -40,7 +40,8 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
 
         } catch (error) {
             console.error(error);
-            setError("Account hasn't been deleted")
+            setError("Account hasn't been deleted");
+            setConfirmPassword("");
         }
     };
 
