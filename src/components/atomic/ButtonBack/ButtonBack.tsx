@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ButtonBack.module.css";
+import { ModeContext } from "@/providers/mode";
 
 export const ButtonBack = () => {
+    const { mode } = useContext(ModeContext);
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -26,7 +28,14 @@ export const ButtonBack = () => {
 
     return (
         <div onClick={handleBack} className={styles["button-back"]}>
-            <img src="/images/icons/arrows/back-button.png" alt="back icon" className={styles["button-back__image"]} />
+            <img src="/images/icons/arrows/back-button.png" className={styles["button-back__image"]} />
+
+            {mode === "light" ? (
+                <img src="/images/icons/arrows/back-button.png" className={styles["button-back__image"]} alt="back icon" />
+            ) : (
+
+                <img src="/images/icons/arrows/back-button-dark.png" className={styles["button-back__image"]} alt="back icon" />
+            )}
         </div>
     );
 };
