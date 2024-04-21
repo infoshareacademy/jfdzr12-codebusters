@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .button-up {
     right: 0px;
     bottom: 20vh;
