@@ -5,12 +5,14 @@ import { ModeContext } from "@/providers/mode";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Link } from "react-router-dom";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 
 export const About = () => {
     const { mode, } = useContext(ModeContext);
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="About Us"></Headline>
             <div className={classnames(styles["about-container"], styles[mode])}>
                 <section className={classnames(styles["about-section-container"], styles[mode])}>

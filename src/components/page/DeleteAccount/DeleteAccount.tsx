@@ -8,6 +8,7 @@ import classNames from "classnames";
 import styles from './DeleteAccount.module.css';
 import { Button } from "@/components/atomic/Button/Button";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 
 interface DeleteAccountProps {
     user: User | null;
@@ -45,6 +46,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Delete account" />
             <div className={classNames(
                 styles["delete-account__container"],

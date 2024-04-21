@@ -5,11 +5,13 @@ import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Link } from "react-router-dom";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 
 export const NotFound = () => {
     const { mode } = useContext(ModeContext);
     return (
         <Page>
+            <ButtonBack />
             <Headline text="not found" />
             <div className={styles["not-found_container"]}>
                 <div className={styles["not-found_paragraph-container"]}>
