@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Button } from "@/components/atomic/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { ButtonUp } from "@/components/atomic/ButtonUp/ButtonUp";
 
 export const Welcome = () => {
     const { mode } = useContext(ModeContext);
@@ -31,6 +32,7 @@ export const Welcome = () => {
                     <Button onClick={() => { navigate("/register") }}>Register</Button>
                 </div>
             </div>
+            <ButtonUp />
         </div>
     )
 }

@@ -1,0 +1,44 @@
+.button-back {
+  position: fixed;
+  bottom: 5vh;
+  right: 60px;
+  opacity: 0.5;
+  z-index: 6;
+}
+
+.button-back__image {
+  width: 60px;
+}
+
+.button-back:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .button-back {
+    right: 50px;
+  }
+
+  .button-back__image {
+    width: 50px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .button-back {
+    right: 30px;
+  }
+}
+
+@media screen and (max-width: 746px) {
+  .button-back {
+    right: 5px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button-back {
+    right: 0px;
+    bottom: 20vh;
+  }
+}

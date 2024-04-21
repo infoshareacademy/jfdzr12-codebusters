@@ -12,7 +12,7 @@ export const ButtonBack = () => {
 
     return (
         <div onClick={handleBack} className={styles["button-back"]}>
-            <img src="/images/icons/arrows/left.png" alt="back icon" className={styles["button-back__image"]} />
+            <img src="/images/icons/arrows/back-button.png" alt="back icon" className={styles["button-back__image"]} />
         </div>
     );
 };
