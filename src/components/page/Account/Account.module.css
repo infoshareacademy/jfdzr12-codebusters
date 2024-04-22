@@ -170,4 +170,8 @@
     top: -20px;
     right: -30px;
   }
+
+  .account__form--inputs-container {
+    width: 70%;
+  }
 }
