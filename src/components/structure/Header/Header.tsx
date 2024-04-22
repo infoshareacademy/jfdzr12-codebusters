@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
 import styles from "./Header.module.css";
@@ -10,14 +10,16 @@ const WINDOW_MOBILE_WITH = 992;
 
 interface HeaderProps {
     user: User | null;
+    setIsUserModalOpen: Dispatch<SetStateAction<boolean>>;
+    setIsLoginModalOpen: Dispatch<SetStateAction<boolean>>;
+    isUserModalOpen: boolean;
+    isLoginModalOpen: boolean;
 }
 
-export const Header = ({ user }: HeaderProps) => {
+export const Header = ({ user, setIsUserModalOpen, setIsLoginModalOpen, isUserModalOpen, isLoginModalOpen }: HeaderProps) => {
     const { mode, toggleMode } = useContext(ModeContext);
     const location = useLocation();
 
-    const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleAccountModal = (): void => {
@@ -61,7 +63,7 @@ export const Header = ({ user }: HeaderProps) => {
                 <div className={classnames(
                     styles["header__container"],
                     styles[mode]
-                )}>
+                )} id="header__container">
                     <div className={styles["header-nav__container"]}>
                         <nav className={styles["header-nav"]}>
                             <ul className={styles["header-nav__list"]}>
@@ -142,13 +144,14 @@ export const Header = ({ user }: HeaderProps) => {
                                     styles[mode]
                                 )}
                                 onClick={toggleLoginModal}
+                                id="header-nav__list-item-login"
                             >
                                 <div className={classnames(
                                     styles["header-nav__list-login"],
                                 )}>Login</div>
                             </div>
                         </>}
-                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal} id="header__account-container"
                         >
                             {mode === "light" ? (
                                 <div
