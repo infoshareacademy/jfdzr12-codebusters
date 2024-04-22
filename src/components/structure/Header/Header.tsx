@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
 import styles from "./Header.module.css";
