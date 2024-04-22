@@ -10,15 +10,13 @@ const WINDOW_MOBILE_WITH = 992;
 
 interface HeaderProps {
     user: User | null;
-    setIsUserModalOpen: Dispatch<SetStateAction<boolean>>;
-    setIsLoginModalOpen: Dispatch<SetStateAction<boolean>>;
-    isUserModalOpen: boolean;
-    isLoginModalOpen: boolean;
 }
 
-export const Header = ({ user, setIsUserModalOpen, setIsLoginModalOpen, isUserModalOpen, isLoginModalOpen }: HeaderProps) => {
+export const Header = ({ user }: HeaderProps) => {
     const { mode, toggleMode } = useContext(ModeContext);
     const location = useLocation();
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -54,6 +52,27 @@ export const Header = ({ user, setIsUserModalOpen, setIsLoginModalOpen, isUserMo
 
         return () => {
             document.removeEventListener('keydown', handleEscapePress);
+        };
+    }, []);
+
+    const closeModals = () => {
+        setIsUserModalOpen(false);
+        setIsLoginModalOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutsideModals = (event: MouseEvent) => {
+            if (event.target && !(event.target as HTMLElement).closest("#header__account-container") &&
+                !(event.target as HTMLElement).closest("#header-nav__list-item-login") &&
+                !(event.target as HTMLElement).closest("#modal-header__container")) {
+                closeModals();
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutsideModals);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutsideModals);
         };
     }, []);
 

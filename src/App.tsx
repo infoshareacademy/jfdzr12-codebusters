@@ -22,8 +22,6 @@ import ScrollToTop from './components/atomic/ScrollToTop/ScrollToTop';
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
-  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,32 +30,11 @@ function App(): JSX.Element {
     return unsubscribe;
   }, []);
 
-  const closeModals = () => {
-    setIsUserModalOpen(false);
-    setIsLoginModalOpen(false);
-  };
-
-  useEffect(() => {
-    const handleClickOutsideModals = (event: MouseEvent) => {
-      if (event.target && !(event.target as HTMLElement).closest("#header__account-container") &&
-        !(event.target as HTMLElement).closest("#header-nav__list-item-login") &&
-        !(event.target as HTMLElement).closest("#modal-header__container")) {
-        closeModals();
-      }
-    };
-
-    document.body.addEventListener("click", handleClickOutsideModals);
-
-    return () => {
-      document.body.removeEventListener("click", handleClickOutsideModals);
-    };
-  }, []);
-
   return (
     <>
       <ModeProvider>
         <HashRouter>
-          <Header user={user} isUserModalOpen={isUserModalOpen} isLoginModalOpen={isLoginModalOpen} setIsUserModalOpen={setIsUserModalOpen} setIsLoginModalOpen={setIsLoginModalOpen} />
+          <Header user={user} />
           <ScrollToTop>
             <Routes>
               {!user &&
