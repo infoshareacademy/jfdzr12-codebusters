@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Diary Daze
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Diary Daze is an innovative project crafted by the students of InfoSpace Academy. Our platform harnesses the power of cutting-edge technologies, including React, React Router, TypeScript, and JavaScript, to deliver a seamless user experience. Leveraging the versatility of module.css for styling, Diary Daze ensures a visually appealing interface while maintaining structural integrity with HTML5.
 
-Currently, two official plugins are available:
+Driven by a robust backend infrastructure, Diary Daze seamlessly integrates with Firebase Firestore Database, Firebase Storage, Firebase Hosting, and Firebase Authentication. This not only guarantees secure data storage and seamless authentication but also ensures scalability and reliability for our users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Powered by Vite, Diary Daze embraces modern web development practices, optimizing performance and enhancing development efficiency. Moreover, our utilization of CSS3 elevates the aesthetics of the platform, delivering a visually captivating experience.
 
-## Expanding the ESLint configuration
+In essence, Diary Daze represents the culmination of innovation, creativity, and technical expertise, providing users with a comprehensive solution for organizing their daily lives.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Overview
 
-- Configure the top-level `parserOptions` property like this:
+Diary Daze is a web application aimed at helping users organize their daily tasks, events, and thoughts conveniently. Users can create and manage multiple diaries, each containing entries for specific dates. With Diary Daze, users can stay organized, set reminders, and reflect on their experiences effortlessly.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Daily Entries:** Add entries for specific events, or personal reflections.
+- **Firebase Integration:** Securely store your diary entries with Firebase, ensuring data persistence and accessibility across devices.
+- **User Authentication:** Secure your data with user authentication, allowing only authorized users to access and manage their diaries.
+
+## Installation
+
+To run Diary Daze locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:infoshareacademy/jfdzr12-codebusters.git
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+
+3. Start the development server:
+
+   ```bash
+   npm run build
