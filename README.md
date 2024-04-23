@@ -35,4 +35,4 @@ To run Diary Daze locally, follow these steps:
 3. Start the development server:
 
    ```bash
-   npm run build
+   npm run dev
