@@ -8,6 +8,7 @@ import { Headline } from "@/components/structure/Headline/Headline";
 import { auth } from "../../../../firebase-config.js";
 import { AuthForm } from "../../structure/AuthForm/AuthForm.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import ButtonBack from "@/components/atomic/ButtonBack/ButtonBack.js";
 
 export const Registration = () => {
     const { mode, } = useContext(ModeContext);
@@ -30,6 +31,7 @@ export const Registration = () => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Registration" />
             <div className={classnames(styles["registration__form"], styles[mode])}>
                 <AuthForm submitText="Register" handleSubmit={handleSubmit} error={error} message={message}></AuthForm>
