@@ -10,6 +10,11 @@
   display: flex;
 }
 
+.select-selected.dark {
+  background-color: var(--indigo-medium-dark);
+  color: var(--beige-light);
+}
+
 .select-selected {
   background-color: #f5f5f5;
   padding: 10px 20px;
@@ -28,6 +33,11 @@
   top: 0;
 }
 
+.select-items.dark {
+  background-color: var(--indigo-medium-dark);
+  color: var(--beige-light);
+}
+
 .select-item {
   padding: 10px 20px;
   cursor: pointer;
@@ -35,6 +45,10 @@
 
 .select-items div:hover {
   background-color: #e0e0e0;
+}
+
+.select-items.dark div:hover {
+  background-color: rgba(218, 214, 224, 0.329);
 }
 
 .custom-select--text {
