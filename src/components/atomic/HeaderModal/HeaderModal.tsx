@@ -10,7 +10,7 @@ export const HeaderModal = ({ children }: PropsWithChildren) => {
         <div className={classnames(
             styles["modal-header__container"],
             styles[mode]
-        )}>
+        )} id="modal-header__container">
             {children}
         </div>
     )
