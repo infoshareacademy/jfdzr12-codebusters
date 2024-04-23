@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import styles from "./CustomSelect.module.css"
 import classNames from "classnames";
 import { ModeContext } from "@/providers/mode";
@@ -22,9 +22,39 @@ export const CustomSelect = ({ setSortBy }: CustomSelectTypes) => {
         console.log("Selected value:", value);
     };
 
+    useEffect(() => {
+        const handleEscapePress = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscapePress);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapePress);
+        };
+    }, []);
+
+
+    useEffect(() => {
+        const handleClickOutsideSelect = (event: MouseEvent) => {
+            if (event.target && !(event.target as HTMLElement).closest("#header__account-container") &&
+                !(event.target as HTMLElement).closest("#custom-select")) {
+                setIsOpen(false);
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutsideSelect);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutsideSelect);
+        };
+    }, []);
+
     return (
         <div className={styles["custom-select-container"]}>
-            <div className={styles["custom-select"]}>
+            <div className={styles["custom-select"]} id="custom-select">
                 <div className={classNames(styles["custom-select--text"], styles[mode])}
                 >
                     Sort by:
