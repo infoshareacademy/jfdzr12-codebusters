@@ -39,7 +39,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                 <label htmlFor="email" className={classnames(
                     styles["auth-form__label"],
                     styles[mode]
-                )}>Login</label>
+                )}>Login:</label>
                 <input
                     required
                     type="email"
@@ -62,7 +62,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     <label htmlFor="password" className={classnames(
                         styles["auth-form__label"],
                         styles[mode]
-                    )}>Password</label>
+                    )}>Password:</label>
 
                     <input
                         required
