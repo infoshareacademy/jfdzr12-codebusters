@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
+import { CustomSelect } from "@/components/structure/CustomSelect/CustomSelect";
 interface EntryProps {
     user: User | null;
 }
@@ -74,20 +75,10 @@ export const Home = ({ user }: EntryProps) => {
         <Page>
             <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
-
-
                 <div className={classnames(styles["home__content"], styles[mode])}>
                     <div className={classnames(styles["home__button--new-entry"], styles[mode])}>
                         <Button onClick={() => { navigate("/add-entry") }}>Add entry</Button>
-                        {entries.length > 0 && <div className={classnames(styles["home__sort--container"], styles[mode])}>
-                            <div className={classnames(styles["home__sort--text"], styles[mode])}>Sort by:</div>
-                            <div className={classnames(styles["home__sort--select-container"], styles[mode])}>
-                                <select className={classnames(styles["home__sort--select"], styles[mode])} value={sortBy} onChange={(e) => setSortBy(e.target.value as 'asc' | 'desc')}>
-                                    <option className={classnames(styles["home__sort--option"], styles[mode])} value="desc">newest to oldest</option>
-                                    <option className={classnames(styles["home__sort--option"], styles[mode])} value="asc">oldest to newest</option>
-                                </select>
-                            </div>
-                        </div>}
+                        {entries.length > 0 && <CustomSelect setSortBy={setSortBy}></CustomSelect>}
                     </div>
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
