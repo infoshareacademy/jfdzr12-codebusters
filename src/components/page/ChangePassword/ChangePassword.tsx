@@ -8,7 +8,7 @@ import styles from './ChangePassword.module.css';
 import { ModeContext } from '@/providers/mode';
 import classNames from 'classnames';
 import { ButtonTransparent } from '@/components/atomic/ButtonTransparent/ButtonTransparent';
-import { useNavigate } from 'react-router-dom';
+import { ButtonBack } from '@/components/atomic/ButtonBack/ButtonBack';
 
 interface ChangePasswordProps {
     user: User | null;
@@ -22,7 +22,6 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
-    const navigate = useNavigate();
 
     const handleChangePassword = async () => {
         if (!email || !currentPassword || !newPassword || !confirmPassword) {
@@ -57,8 +56,16 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
         }
     };
 
+    const handleCancel = () => {
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setError(null);
+    }
+
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Change password" />
             <div className={classNames(
                 styles["change-password__input-container"],
@@ -124,7 +131,7 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                 styles["change-password__buttons-container"],
                 styles[mode]
             )}>
-                <ButtonTransparent type="reset" onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <ButtonTransparent type="reset" onClick={handleCancel}>Cancel</ButtonTransparent>
                 <Button onClick={handleChangePassword}>Submit</Button></div>
             {error && <p
                 className={classNames(

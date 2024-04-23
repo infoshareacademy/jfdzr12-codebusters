@@ -1,4 +1,4 @@
-import { User, deleteUser } from "firebase/auth";
+import { User, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { useContext, useState } from "react";
@@ -8,7 +8,7 @@ import classNames from "classnames";
 import styles from './DeleteAccount.module.css';
 import { Button } from "@/components/atomic/Button/Button";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
-
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 interface DeleteAccountProps {
     user: User | null;
 }
@@ -32,19 +32,28 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
         }
 
         try {
+            const email = user.email || '';
+
+            const credential = EmailAuthProvider.credential(email, confirmPassword);
+            await reauthenticateWithCredential(user, credential);
             await deleteUser(user);
             setConfirmPassword('');
-            navigate("/confirm-delete")
-
-
+            navigate("/confirm-delete");
         } catch (error) {
             console.error(error);
-            setError("Account hasn't been deleted")
+            setError("Failed to delete account: Incorrect password");
+            setConfirmPassword("");
         }
     };
 
+    const handleCancel = () => {
+        setConfirmPassword("");
+        setError(null);
+    }
+
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Delete account" />
             <div className={classNames(
                 styles["delete-account__container"],
@@ -75,7 +84,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
                 styles["delete-account__buttons"],
                 styles[mode]
             )}>
-                <ButtonTransparent onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <ButtonTransparent onClick={handleCancel}>Cancel</ButtonTransparent>
                 <Button onClick={handleDeleteAccount}>Confirm</Button>
             </div>
         </Page>

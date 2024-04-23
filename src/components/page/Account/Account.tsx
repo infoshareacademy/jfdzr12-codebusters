@@ -10,6 +10,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 interface AccountProps {
     user: User | null;
 }
@@ -113,6 +114,7 @@ export const Account = ({ user }: AccountProps) => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="account" />
             <div className={classNames(
                 styles["account__container"],
@@ -120,17 +122,14 @@ export const Account = ({ user }: AccountProps) => {
             )}>
                 <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
                     <button onClick={() => { setReadOnly(false) }}>
-                        {mode === "light" ? (
-
-                            <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
-                        ) : (
-
-                            <img src="/images/icons/account/user-avatar-color-dark.png" className={styles["account--button--edit-icon"]} />
-                        )}
+                        <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
                     </button>
                 </div>
                 {user && <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className={classNames(
+                        styles["account__form--container"],
+                        styles[mode]
+                    )}>
                         <div className={classNames(
                             styles["account__form--inputs-container"],
                             styles[mode]

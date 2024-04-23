@@ -57,12 +57,15 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
             </div>
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
                 <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
-                <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
-                {entry.updatedTimestamp && (<>
+                {entry.updatedTimestamp && (<div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
                     <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
-                </>)
+                </div>)
                 }
+                <div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
+                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Added:</p>
+                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+                </div>
             </div>
             {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id} handleDeleteConfirmed={handleDeleteConfirmed} ></DeleteModal>}
         </div>

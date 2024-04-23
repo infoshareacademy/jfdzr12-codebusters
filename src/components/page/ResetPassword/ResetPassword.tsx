@@ -6,6 +6,7 @@ import { Button } from '@/components/atomic/Button/Button';
 import styles from './ResetPassword.module.css';
 import { ModeContext } from '@/providers/mode';
 import classNames from 'classnames';
+import { ButtonBack } from '@/components/atomic/ButtonBack/ButtonBack';
 
 export const ResetPassword = () => {
     const { mode } = useContext(ModeContext);
@@ -28,6 +29,7 @@ export const ResetPassword = () => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Reset password" />
             <div className={styles["reset-password__container"]}>
                 <form className={styles["reset-password__form"]} onSubmit={handleResetPassword}>

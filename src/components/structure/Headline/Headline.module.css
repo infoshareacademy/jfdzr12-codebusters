@@ -73,7 +73,7 @@
 @media screen and (max-width: 768px) {
   .headline {
     font-size: 1.5rem;
-    margin: 100px 10px 10px;
+    margin: 90px 10px 10px;
   }
 
   .headline__symbol {
@@ -85,7 +85,7 @@
 @media only screen and (max-width: 600px) {
   .headline {
     font-size: 1.3rem;
-    margin: 100px 20px 20px;
+    margin: 80px 20px 20px;
   }
 
   .headline__symbol {
@@ -96,7 +96,7 @@
 
 @media only screen and (max-width: 500px) {
   .headline {
-    margin: 100px 20px 20px;
+    margin: 80px 20px 10px;
   }
 
   .headline__symbol {

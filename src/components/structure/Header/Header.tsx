@@ -15,9 +15,9 @@ interface HeaderProps {
 export const Header = ({ user }: HeaderProps) => {
     const { mode, toggleMode } = useContext(ModeContext);
     const location = useLocation();
-
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleAccountModal = (): void => {
@@ -55,13 +55,34 @@ export const Header = ({ user }: HeaderProps) => {
         };
     }, []);
 
+    const closeModals = () => {
+        setIsUserModalOpen(false);
+        setIsLoginModalOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutsideModals = (event: MouseEvent) => {
+            if (event.target && !(event.target as HTMLElement).closest("#header__account-container") &&
+                !(event.target as HTMLElement).closest("#header-nav__list-item-login") &&
+                !(event.target as HTMLElement).closest("#modal-header__container")) {
+                closeModals();
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutsideModals);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutsideModals);
+        };
+    }, []);
+
     return (
         <>
             <header className={styles["header"]}>
                 <div className={classnames(
                     styles["header__container"],
                     styles[mode]
-                )}>
+                )} id="header__container">
                     <div className={styles["header-nav__container"]}>
                         <nav className={styles["header-nav"]}>
                             <ul className={styles["header-nav__list"]}>
@@ -143,13 +164,14 @@ export const Header = ({ user }: HeaderProps) => {
                                     styles[mode]
                                 )}
                                 onClick={toggleLoginModal}
+                                id="header-nav__list-item-login"
                             >
                                 <div className={classnames(
                                     styles["header-nav__list-login"],
                                 )}>Login</div>
                             </div>
                         </>}
-                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal} id="header__account-container"
                         >
                             {mode === "light" ? (
                                 <div
