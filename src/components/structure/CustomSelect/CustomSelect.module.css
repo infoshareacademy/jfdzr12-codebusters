@@ -48,7 +48,7 @@
 }
 
 .select-items.dark div:hover {
-  background-color: rgba(218, 214, 224, 0.329);
+  background-color: #dad6e054;
 }
 
 .custom-select--text {
@@ -57,4 +57,27 @@
 
 .custom-select--text.dark {
   color: var(--beige-light);
+}
+
+@media only screen and (max-width: 500px) {
+  .custom-select-container {
+    width: 60%;
+    font-size: 0.9rem;
+  }
+
+  .select-selected {
+    padding: 8px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .select-item {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .custom-select--text {
+    margin: 10px 8px;
+    white-space: nowrap;
+  }
 }
