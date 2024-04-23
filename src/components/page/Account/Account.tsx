@@ -126,7 +126,10 @@ export const Account = ({ user }: AccountProps) => {
                     </button>
                 </div>
                 {user && <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className={classNames(
+                        styles["account__form--container"],
+                        styles[mode]
+                    )}>
                         <div className={classNames(
                             styles["account__form--inputs-container"],
                             styles[mode]

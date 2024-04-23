@@ -15,14 +15,6 @@
   border: 0.5px solid rgb(201, 201, 201);
 }
 
-.entry__textarea:active {
-  border: none;
-}
-
-.entry__textarea:focus {
-  border: none;
-}
-
 .entry__textarea.dark {
   color: var(--beige-light);
   background: var(--indigo-medium-dark);

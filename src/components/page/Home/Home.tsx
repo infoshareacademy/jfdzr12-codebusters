@@ -67,7 +67,9 @@ export const Home = ({ user }: EntryProps) => {
             <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
                 <div className={classnames(styles["home__content"], styles[mode])}>
-                    <Button onClick={() => { navigate("/add-entry") }}>New entry</Button>
+                    <div className={classnames(styles["home__button--new-entry"], styles[mode])}>
+                        <Button onClick={() => { navigate("/add-entry") }}>New entry</Button>
+                    </div>
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
                             {entries.map((entry) => (
