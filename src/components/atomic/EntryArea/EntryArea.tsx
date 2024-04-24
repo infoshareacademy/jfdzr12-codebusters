@@ -1,14 +1,13 @@
 import classNames from "classnames";
 import styles from "./EntryArea.module.css"
-import { useContext } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 interface EntryAreaProps {
     value: string | undefined;
     onChange: (e: any) => void;
 }
 
 export const EntryArea = ({ value, onChange }: EntryAreaProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     return (
         <div className={classNames(
             styles["entry__textarea-container"],

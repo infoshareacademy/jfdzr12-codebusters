@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 const WINDOW_MOBILE_WITH = 992;
 
 interface HeaderProps {
@@ -13,7 +13,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ user }: HeaderProps) => {
-    const { mode, toggleMode } = useContext(ModeContext);
+    const { mode, toggleMode } = useMode();
     const location = useLocation();
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

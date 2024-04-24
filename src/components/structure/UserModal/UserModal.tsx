@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./UserModal.module.css";
 import classnames from "classnames";
-import { ModeContext } from "../../../providers/mode";
 import { useNavigate } from "react-router-dom";
 import { User, signOut } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 import { HeaderModal } from "@/components/atomic/HeaderModal/HeaderModal";
+import { useMode } from "@/providers/mode";
 
 interface UserModalProps {
     setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +13,7 @@ interface UserModalProps {
 }
 
 export const UserModal = ({ setIsUserModalOpen, user }: UserModalProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
 
     const handlerLogOut = () => {

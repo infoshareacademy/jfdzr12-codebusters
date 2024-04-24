@@ -1,7 +1,6 @@
-import { useContext } from "react";
+import { useMode } from "@/providers/mode";
 import styles from "./ButtonTransparent.module.css";
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
 interface ButtonTransparentProps {
     children: React.ReactNode;
     type?: "button" | "submit" | "reset";
@@ -10,7 +9,7 @@ interface ButtonTransparentProps {
 }
 
 export const ButtonTransparent = ({ type = "submit", children, disabled, onClick }: ButtonTransparentProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     return (
         <div className={classNames(
             styles["button-container"],

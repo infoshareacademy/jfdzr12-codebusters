@@ -1,13 +1,12 @@
 import { Page } from "@/components/structure/Page/Page";
-import { useContext } from "react";
 import styles from "./ConfirmDelete.module.css"
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 
 export const ConfirmDelete = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
 
     return (
         <Page>

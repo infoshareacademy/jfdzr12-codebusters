@@ -1,14 +1,13 @@
 import { Page } from "../../structure/Page/Page";
 import styles from "./NotFound.module.css";
-import { useContext } from "react";
-import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Link } from "react-router-dom";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 
 export const NotFound = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     return (
         <Page>
             <ButtonBack />

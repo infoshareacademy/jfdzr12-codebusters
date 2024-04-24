@@ -1,8 +1,7 @@
 import { Page } from "../../structure/Page/Page"
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Home.module.css";
-import { ModeContext } from "@/providers/mode";
 import { User } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
@@ -11,6 +10,7 @@ import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
 import { CustomSelect } from "@/components/structure/CustomSelect/CustomSelect";
+import { useMode } from "@/providers/mode";
 interface EntryProps {
     user: User | null;
 }
@@ -22,7 +22,7 @@ interface EntriesData {
 }
 
 export const Home = ({ user }: EntryProps) => {
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])

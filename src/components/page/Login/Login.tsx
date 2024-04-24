@@ -1,17 +1,17 @@
 import { Page } from "../../structure/Page/Page"
-import { useContext, useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Login.module.css";
-import { ModeContext } from "@/providers/mode";
 import { Link, useNavigate } from "react-router-dom";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { auth } from "../../../../firebase-config.js";
 import { AuthForm } from "../../structure/AuthForm/AuthForm.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import ButtonBack from "@/components/atomic/ButtonBack/ButtonBack.js";
+import { useMode } from "@/providers/mode.js";
 
 export const Login = () => {
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const [error, setError] = useState(false);

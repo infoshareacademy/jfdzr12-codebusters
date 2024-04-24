@@ -1,15 +1,15 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Page } from '@/components/structure/Page/Page';
 import { Headline } from '@/components/structure/Headline/Headline';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { Button } from '@/components/atomic/Button/Button';
 import styles from './ResetPassword.module.css';
-import { ModeContext } from '@/providers/mode';
 import classNames from 'classnames';
 import { ButtonBack } from '@/components/atomic/ButtonBack/ButtonBack';
+import { useMode } from '@/providers/mode';
 
 export const ResetPassword = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [email, setEmail] = useState("");
     const auth = getAuth();
     const [successMessage, setSuccessMessage] = useState<string | null>(null);

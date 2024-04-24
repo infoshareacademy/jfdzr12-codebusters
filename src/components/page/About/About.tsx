@@ -1,14 +1,13 @@
-import { useContext } from "react";
 import classnames from "classnames";
 import styles from "./About.module.css";
-import { ModeContext } from "@/providers/mode";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Link } from "react-router-dom";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 
 export const About = () => {
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
 
     return (
         <Page>

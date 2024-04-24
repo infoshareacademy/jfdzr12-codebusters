@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import styles from "./Entry.module.css";
-import { useContext, useState } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteModal } from "../DeleteModal/DeleteModal"
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 interface EntryTypes {
     entry: {
         entry: string;
@@ -17,7 +17,7 @@ interface EntryTypes {
 }
 
 export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
     const [isUserModalOpen, setIsUserModalOpen] = useState<boolean>(false);
 
