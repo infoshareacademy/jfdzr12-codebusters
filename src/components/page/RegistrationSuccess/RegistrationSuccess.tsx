@@ -42,7 +42,7 @@ export const RegistrationSuccess = () => {
                     )}>Or you can go back <Link className={classNames(
                         styles["registration-success_paragraph-link"],
                         styles[mode]
-                    )} to="/contact">home</Link> now.</p>
+                    )} to="/">home</Link> now.</p>
                 </div>
                 <div className={styles["registration-success_image-container"]}>
                     <img src="/images/icons/registration-success/hello.jpeg" alt="not found image" className={classNames(
