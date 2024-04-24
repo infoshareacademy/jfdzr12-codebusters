@@ -20,7 +20,7 @@ export const Registration = () => {
         createUserWithEmailAndPassword(auth, login, password)
             .then((response) => {
                 console.log(response);
-                navigate("/");
+                navigate("/registration-success");
             })
             .catch((error) => {
                 console.error("Error signing in:", error);
