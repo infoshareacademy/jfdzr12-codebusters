@@ -75,6 +75,7 @@
   color: var(--beige-dark);
   margin-right: 10px;
   white-space: nowrap;
+  width: 40%;
 }
 
 .account__form--label.dark {
@@ -98,7 +99,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  /* justify-self: end; */
 }
 
 .account__form--input-readonly:focus,
@@ -177,5 +177,6 @@
   .account__form--inputs-container {
     width: 100%;
     flex-direction: column;
+    align-items: start;
   }
 }

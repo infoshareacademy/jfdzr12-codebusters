@@ -131,7 +131,7 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                 styles["change-password__buttons-container"],
                 styles[mode]
             )}>
-                <ButtonTransparent type="reset" onClick={handleCancel}>Cancel</ButtonTransparent>
+                <ButtonTransparent type="reset" onClick={handleCancel}>Clear</ButtonTransparent>
                 <Button onClick={handleChangePassword}>Submit</Button></div>
             {error && <p
                 className={classNames(
