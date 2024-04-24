@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
+import { CustomSelect } from "@/components/structure/CustomSelect/CustomSelect";
 interface EntryProps {
     user: User | null;
 }
@@ -25,6 +26,7 @@ export const Home = ({ user }: EntryProps) => {
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
+    const [sortBy, setSortBy] = useState<'asc' | 'desc'>('desc');
 
     if (!user) {
         console.error('User is not authenticated');
@@ -45,9 +47,16 @@ export const Home = ({ user }: EntryProps) => {
                     id: doc.id,
                     ...doc.data()
                 })) as EntriesData[];
-                setEntries(fetchedEntries.sort((x, y) => {
-                    return y.timestamp - x.timestamp;
-                }))
+
+                const sortedEntries = fetchedEntries.sort((x, y) => {
+                    if (sortBy === 'asc') {
+                        return x.timestamp - y.timestamp;
+                    } else {
+                        return y.timestamp - x.timestamp;
+                    }
+                });
+
+                setEntries(sortedEntries);
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -56,7 +65,7 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    }, []);
+    }, [sortBy]);
 
     const updateEntries = (deletedEntryId: string) => {
         setEntries(entries.filter(entry => entry.id !== deletedEntryId));
@@ -68,7 +77,8 @@ export const Home = ({ user }: EntryProps) => {
             <div className={classnames(styles["home"], styles[mode])}>
                 <div className={classnames(styles["home__content"], styles[mode])}>
                     <div className={classnames(styles["home__button--new-entry"], styles[mode])}>
-                        <Button onClick={() => { navigate("/add-entry") }}>New entry</Button>
+                        <Button onClick={() => { navigate("/add-entry") }}>Add entry</Button>
+                        {entries.length > 0 && <CustomSelect setSortBy={setSortBy}></CustomSelect>}
                     </div>
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
