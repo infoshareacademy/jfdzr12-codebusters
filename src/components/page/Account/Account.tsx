@@ -237,7 +237,7 @@ export const Account = ({ user }: AccountProps) => {
                                 styles["account__form--label"],
                                 styles[mode]
                             )}>
-                                Last authentication:
+                                Authenticated:
                             </label>
                             <div className={classNames(
                                 styles["account__form--input-text"],

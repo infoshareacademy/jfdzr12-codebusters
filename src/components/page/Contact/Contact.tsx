@@ -125,7 +125,7 @@ export const Contact: React.FC = () => {
                         styles[mode]
                     )}>Message ID: {messageId}</div>}
                     <div className={styles["contact-form__button-container"]}>
-                        <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Clear</ButtonTransparent>
                         <Button type="submit">Send</Button>
                     </div>
                 </form>

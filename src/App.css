@@ -21,8 +21,8 @@
   --medium-grey: #c4c4c4;
   --dark-grey: #939393;
 
-  --monospace-font: "Roboto Mono", monospace;
-  --sans-serif-font: Rubik, sans-serif;
+  --monospace-font: "Roboto", monospace;
+  --sans-serif-font: Montserrat, sans-serif;
   --cursive-font: "Satisfy", cursive;
   --headline: Syncopate, Arial, Helvetica, sans-serif;
 }
@@ -31,6 +31,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--sans-serif-font);
 }
 
 body {
@@ -40,12 +41,6 @@ body {
 
 a {
   text-decoration: none;
-}
-
-h1,
-h2,
-h3 {
-  font-family: Montserrat, sans-serif;
 }
 
 body.dark {

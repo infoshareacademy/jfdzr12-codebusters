@@ -80,7 +80,7 @@ export const AddEntry = ({ user }: EntryProps) => {
                         styles["entry__buttons-container"],
                         styles[mode])
                     }>
-                        <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Clear</ButtonTransparent>
                         <Button type="submit">Add</Button>
                     </div>
                 </form>
