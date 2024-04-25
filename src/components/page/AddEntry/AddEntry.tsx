@@ -21,7 +21,7 @@ export const AddEntry = ({ user }: EntryProps) => {
     const [entryText, setEntryText] = useState<string>("");
     const [imageUpload, setImageUpload] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string[]>([]);
-    const imagePrewievRef = ref(storage, "upload-photos/")
+    const imagePreviewRef = ref(storage, "upload-photos/")
     const navigate = useNavigate();
 
     const uploadImage = () => {
@@ -32,17 +32,15 @@ export const AddEntry = ({ user }: EntryProps) => {
             })
     }
 
-    useEffect( () => {
-        listAll(imagePrewievRef).then((response) => {
+    useEffect(() => {
+        listAll(imagePreviewRef).then((response) => {
             response.items.forEach((item) => {
                     getDownloadURL(item).then((url) => {
-                        setImagePreview((prev) => [...prev, url]
-
-                        )
-                    })
-            })
-        })
-    }, [])
+                        setImagePreview((prev) => [...prev, url])
+                });
+            });
+        });
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -98,14 +96,26 @@ export const AddEntry = ({ user }: EntryProps) => {
     <span className={classNames(
                         styles["controls-button"],
                         styles[mode])} title="italic" data-button-type="addEmphasis"><strong><em>i</em></strong></span>
-    <input type="file" accept="image/jpeg" onChange={(e) => {setImageUpload(e.target.files![0])}}/>
-    <button onClick={uploadImage}>{(mode === "light" ? (
-                                        <img src="/images/icons/upload/upload-photo-dark.png" alt="upload photo" className={classNames(
+    <label htmlFor="photoUpload" title="choose photo"><input type="file" accept="image/jpeg" id="photoUpload" onChange={(e) => {setImageUpload(e.target.files![0])}}/>{(mode === "light" ? (
+                                        <img src="/images/icons/upload/image-light.png" alt="upload photo" className={classNames(
                                             styles["controls-image"],
                                             styles[mode]
                                         )} />
                                     ) : (
-                                        <img src="/images/icons/upload/upload-photo-light.png" alt="upload photo" className={classNames(
+                                        <img src="/images/icons/upload/image-dark.png" alt="upload photo" className={classNames(
+                                            styles["controls-image"],
+                                            styles[mode]
+                                        )} />
+                                    )
+                                )}
+                                </label>
+    <button onClick={uploadImage} title="upload">{(mode === "light" ? (
+                                        <img src="/images/icons/upload/upload-light.png" alt="upload photo" className={classNames(
+                                            styles["controls-image"],
+                                            styles[mode]
+                                        )} />
+                                    ) : (
+                                        <img src="/images/icons/upload/upload-dark.png" alt="upload photo" className={classNames(
                                             styles["controls-image"],
                                             styles[mode]
                                         )} />
@@ -140,13 +150,13 @@ export const AddEntry = ({ user }: EntryProps) => {
                             styles["entry__error-message"],
                             styles[mode])}>{errorMessage}</div>}
                     </form>
-                    <div className={classNames(
-                        styles["image-preview"],
-                        styles[mode])}>{imagePreview.map((url) => {
-                        return <img src={url}/>
-                    })}</div>
                 </Paper>
             </div>
+            <div className={classNames(
+                        styles["image-preview"],
+                        styles[mode])}><h3>Preview</h3>{imagePreview.map((url) => {
+                        return <img src={url}/>
+                    })}</div>
         </Page>
     )
 }

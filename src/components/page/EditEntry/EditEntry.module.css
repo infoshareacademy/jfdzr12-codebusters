@@ -28,7 +28,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70vw;
+  width: 100%;
+  margin-top:-150px;
 }
 
 .entry__textarea:active {
@@ -55,6 +56,45 @@
   text-align: center;
   margin: -10px;
 }
+
+
+.form-controls{
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-right:-640px;
+}
+
+.controls-button{
+  display: flex;
+  background-color: var(--beige-medium);
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 10px #0000001a;
+}
+
+.controls-image{
+  display: flex;
+  background-color: var(--beige-medium);
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 10px #0000001a;
+}
+
+.image-preview {
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+/* darkMode */
+
 
 .entry__message.dark {
   color: var(--green-medium);
