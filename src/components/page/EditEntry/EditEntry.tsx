@@ -3,7 +3,7 @@ import styles from "./EditEntry.module.css";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { db } from "../../../../firebase-config";
+import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
@@ -12,6 +12,7 @@ import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonT
 import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 interface EditEntryProps {
     user: User | null;
@@ -21,7 +22,8 @@ interface EntriesData {
     id: string;
     entry: string;
     timestamp: any;
-    updatedTimestamp?: any
+    updatedTimestamp?: any;
+    photo?: string;
 }
 
 export const EditEntry = ({ user }: EditEntryProps) => {
@@ -29,6 +31,8 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string | undefined>("");
     const [originalEntryText, setOriginalEntryText] = useState<string | undefined>("");
+    const [photo, setPhoto] = useState<File | null>(null);
+    const [photoUrl, setPhotoUrl] = useState<string | undefined>("");
     const { entryId }: any = useParams();
     const navigate = useNavigate();
 
@@ -55,6 +59,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                 const entry = fetchedEntries.find((entry) => entry.id === entryId);
                 setEntryText(entry?.entry);
                 setOriginalEntryText(entry?.entry);
+                setPhotoUrl(entry?.photo);
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -84,11 +89,20 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         const userId = user.uid;
 
         try {
+            if (photo) {
+                const photoRef = ref(storage, `photos/${userId}/${entryId}_photo`);
+                await uploadBytes(photoRef, photo);
+                const newPhotoUrl = await getDownloadURL(photoRef);
+                setPhotoUrl(newPhotoUrl);
+            }
+
             await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
                 entry: entryText,
-                updatedTimestamp: new Date()
+                updatedTimestamp: new Date(),
+                photo: photoUrl || null
             });
-            navigate("/")
+
+            navigate("/");
         } catch (error) {
             console.log(error);
             setErrorMessage("Error editing entry");
@@ -98,6 +112,35 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const handleReset = () => {
         setEntryText(originalEntryText);
         setErrorMessage(null);
+    }
+
+    const handleDeletePhoto = async () => {
+        if (!photoUrl) {
+            console.error('No photo to delete');
+            return;
+        }
+
+        try {
+            const photoRef = ref(storage, photoUrl);
+            await deleteObject(photoRef);
+            setPhotoUrl(undefined);
+            setPhoto(null);
+
+            // Удаляем ссылку на фото из базы данных
+            const userId = user.uid;
+            await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
+                photo: null
+            });
+        } catch (error) {
+            console.error("Error deleting photo:", error);
+        }
+    }
+
+    const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            setPhoto(files[0]);
+        }
     }
 
     return (
@@ -115,6 +158,9 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     onSubmit={handleSubmit}
                 >
                     <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
+                    {photoUrl && <img src={photoUrl} alt="Entry Photo" />}
+                    <input type="file" name="photo" accept="image/*" onChange={handlePhotoChange} />
+                    {photoUrl && <ButtonTransparent type="button" onClick={handleDeletePhoto}>Delete Photo</ButtonTransparent>}
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}
