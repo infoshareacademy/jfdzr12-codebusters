@@ -1,15 +1,15 @@
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Page } from "@/components/structure/Page/Page";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./RegistrationSuccess.module.css"
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 
 export const RegistrationSuccess = () => {
     const [redirectCount, setRedirectCount] = useState(10);
     const navigate = useNavigate();
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
 
     useEffect(() => {
         const timer = setTimeout(() => {
