@@ -1,20 +1,20 @@
 import { User, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
-import { useContext, useState } from "react";
-import { ModeContext } from "@/providers/mode";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import styles from './DeleteAccount.module.css';
 import { Button } from "@/components/atomic/Button/Button";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
+import { useState } from "react";
 interface DeleteAccountProps {
     user: User | null;
 }
 
 export const DeleteAccount = ({ user }: DeleteAccountProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);

@@ -1,7 +1,6 @@
 import { Page } from "../../structure/Page/Page";
 import styles from "./AddEntry.module.css";
-import { useContext, useState } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useState } from "react";
 import classNames from "classnames";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
@@ -12,12 +11,13 @@ import { useNavigate } from "react-router-dom";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
 import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 interface EntryProps {
     user: User | null;
 }
 
 export const AddEntry = ({ user }: EntryProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string>("");
     const navigate = useNavigate();

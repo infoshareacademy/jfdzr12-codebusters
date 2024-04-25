@@ -1,14 +1,13 @@
 import styles from "./Welcome.module.css"
-import { useContext } from "react";
-import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Button } from "@/components/atomic/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { ButtonUp } from "@/components/atomic/ButtonUp/ButtonUp";
+import { useMode } from "@/providers/mode";
 
 export const Welcome = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
 
     return (

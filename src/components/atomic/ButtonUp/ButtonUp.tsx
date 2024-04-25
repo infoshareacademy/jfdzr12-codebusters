@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ButtonUp.module.css";
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 
 export const ButtonUp = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [isVisible, setIsVisible] = useState(false);
 
     const handleUp = () => {

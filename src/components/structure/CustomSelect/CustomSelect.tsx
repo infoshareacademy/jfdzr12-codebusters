@@ -1,13 +1,13 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./CustomSelect.module.css"
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 
 interface CustomSelectTypes {
     setSortBy: Dispatch<SetStateAction<"desc" | "asc">>;
 }
 export const CustomSelect = ({ setSortBy }: CustomSelectTypes) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("newest to oldest");
     const options = [
