@@ -30,21 +30,13 @@ export const NotFound = () => {
                         styles[mode]
                     )} to="/contact">contact us</Link></p>
                 </div>
-
                 <div className={styles["not-found_image-container"]}>
-                    {mode === "light" ? (
-                        <img src="/images/icons/not-found/magnifying-glass.jpeg" alt="not found image" className={classNames(
-                            styles["not-found_image"],
-                            styles[mode])} />
-                    ) : (
-                        <img src="/images/icons/not-found/magnifying-glass.jpeg" alt="not found image" className={classNames(
-                            styles["not-found_image"],
-                            styles[mode]
-                        )} />
-                    )}
+                    <img src="/images/icons/not-found/magnifying-glass.jpeg" alt="not found image" className={classNames(
+                        styles["not-found_image"],
+                        styles[mode]
+                    )} />
                 </div>
             </div>
-
         </Page>
     )
 }
