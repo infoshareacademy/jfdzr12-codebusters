@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { DeleteModal } from "../DeleteModal/DeleteModal"
 import { User } from "firebase/auth";
 import { useMode } from "@/providers/mode";
+
 interface EntryTypes {
     entry: {
         entry: string;
         timestamp: any;
         id: string;
         updatedTimestamp?: any;
+        photo?: string;
     };
     user: User | null;
     updateEntries: (deletedEntryId: string) => void;
@@ -35,10 +37,8 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
                 <div className={classNames(styles["home-section_entry--edit"], styles[mode])}>
                     <button onClick={() => { navigate(`/edit-entry/${entry.id}`) }}>
                         {mode === "light" ? (
-
                             <img src="/images/icons/home/writing-color.png" className={styles["entry__edit-icon"]} />
                         ) : (
-
                             <img src="/images/icons/home/writing-color.png" className={styles["entry__edit-icon"]} />
                         )}
                     </button>
@@ -46,22 +46,18 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
                 <div className={classNames(styles["home-section_entry--delete"], styles[mode])}>
                     <button onClick={handleClickDeleteEntry}>
                         {mode === "light" ? (
-
                             <img src="/images/icons/home/delete-color.png" className={styles["entry__delete-icon"]} />
                         ) : (
-
                             <img src="/images/icons/home/delete-color.png" className={styles["entry__delete-icon"]} />
                         )}
                     </button>
-                </div >
+                </div>
             </div>
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
                 <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
-                {entry.updatedTimestamp && (<div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
-                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
-                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
-                </div>)
-                }
+                {entry.photo && (
+                    <img src={entry.photo} alt="Entry Photo" className={styles["entry-photo"]} />
+                )}
                 <div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
                     <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Added:</p>
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>

@@ -2,7 +2,7 @@ import { Page } from "../../structure/Page/Page";
 import styles from "./AddEntry.module.css";
 import { useState } from "react";
 import classNames from "classnames";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
@@ -13,7 +13,7 @@ import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
 import { DocumentReference, DocumentData } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 interface EntryProps {
     user: User | null;
@@ -48,10 +48,14 @@ export const AddEntry = ({ user }: EntryProps) => {
                 timestamp: new Date()
             });
 
+            let photoUrl: string | undefined = undefined;
             if (photo) {
                 const photoRef = ref(storage, `photos/${userId}/${docRef.id}_photo`);
-
                 await uploadBytes(photoRef, photo);
+
+                photoUrl = await getDownloadURL(photoRef);
+
+                await updateDoc(docRef, { photo: photoUrl });
             }
 
             setEntryText("");
