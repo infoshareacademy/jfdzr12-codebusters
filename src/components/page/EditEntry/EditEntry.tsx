@@ -130,7 +130,6 @@ useEffect(() => {
                 styles[mode])
             }>
                 <Headline text="edit entry" />
-                <Paper>
                     <form
                         action=""
                         method="get"
@@ -208,7 +207,6 @@ useEffect(() => {
                         <Button type="submit">Add</Button>
                     </div>
                 </form>
-                </Paper>
             </div>
             <div className={classNames(
                         styles["image-preview"],
