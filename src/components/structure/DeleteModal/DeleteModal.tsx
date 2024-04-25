@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import styles from "./DeleteModal.module.css";
 import { Modal } from "@/components/atomic/Modal/Modal.js";
-import { ModeContext } from "@/providers/mode";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 
 interface DeleteModalProps {
     user: User | null;
@@ -14,7 +14,7 @@ interface DeleteModalProps {
     handleDeleteConfirmed: () => void;
 }
 export const DeleteModal = ({ setIsUserModalOpen, user, id, handleDeleteConfirmed }: DeleteModalProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

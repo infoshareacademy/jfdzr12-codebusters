@@ -1,15 +1,14 @@
 import { PropsWithChildren } from "react"
 import styles from "./Paper.module.css"
-import { useContext } from "react";
-import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
+import { useMode } from "@/providers/mode";
 
-export const Paper = ({children}:PropsWithChildren) => {
-  const { mode } = useContext(ModeContext);
-  return(  
-  <div className={classNames(
-    styles["paper-container"],
-    styles[mode])}>
-    {children}
+export const Paper = ({ children }: PropsWithChildren) => {
+  const { mode } = useMode();
+  return (
+    <div className={classNames(
+      styles["paper-container"],
+      styles[mode])}>
+      {children}
     </div>)
 } 

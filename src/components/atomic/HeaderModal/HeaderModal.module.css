@@ -18,7 +18,7 @@
   color: var(--beige-light);
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
   .modal-header__container {
     top: calc(var(--header-hight) * 0.8);
     right: 30px;

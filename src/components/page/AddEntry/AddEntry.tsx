@@ -1,22 +1,24 @@
 import { Page } from "../../structure/Page/Page";
 import styles from "./AddEntry.module.css";
-import { useContext, useState, useEffect } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
 import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
-import { Paper } from "@/components/structure/Paper/Paper";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 interface EntryProps {
     user: User | null;
 }
 
 export const AddEntry = ({ user }: EntryProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string>("");
     const [imageUpload, setImageUpload] = useState<File | null>(null);
@@ -74,20 +76,21 @@ export const AddEntry = ({ user }: EntryProps) => {
         }
     }
 
+    const handleReset = () => {
+        setEntryText("");
+        setErrorMessage(null);
+    }
+
     return (
         <Page>
+            <ButtonBack />
             <div className={classNames(
                 styles["entry__area"],
                 styles[mode])
             }>
                 <Headline text="new entry" />
-                <Paper>
-                    <form
-                        action=""
-                        method="get"
-                        className={classNames(styles["entry__form"])}
-                        onSubmit={handleSubmit}
-                    > <div className={classNames(
+                <form className={classNames(styles["entry__form"])}
+                    onSubmit={handleSubmit}> <div className={classNames(
                         styles["form-controls"],
                         styles[mode])}>
     <span className={classNames(
@@ -121,36 +124,20 @@ export const AddEntry = ({ user }: EntryProps) => {
                                         )} />
                                     )
                                 )}</button></div>
-    <div className={classNames(
-                            styles["entry__container"],
-                            styles[mode])}>
-                            <textarea
-                                placeholder="Write your thoughts here..."
-                                id="entry"
-                                className={classNames(
-                                    styles["entry__textarea"],
-                                    styles[mode]
-                                )}
-                                minLength={10}
-                                maxLength={500}
-                                name="entry"
-                                rows={18}
-                                cols={50}
-                                wrap="off"
-                                autoSave=""
-                                spellCheck
-                                required
-                                value={entryText}
-                                onChange={(e) => setEntryText(e.target.value)}>
-                            </textarea>
-                            
-                        </div>
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)}>
+                    </EntryArea>
+                    {errorMessage && <div className={classNames(
+                        styles["entry__error-message"],
+                        styles[mode])}>{errorMessage}
+                    </div>}
+                    <div className={classNames(
+                        styles["entry__buttons-container"],
+                        styles[mode])
+                    }>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Clear</ButtonTransparent>
                         <Button type="submit">Add</Button>
-                        {errorMessage && <div className={classNames(
-                            styles["entry__error-message"],
-                            styles[mode])}>{errorMessage}</div>}
-                    </form>
-                </Paper>
+                    </div>
+                </form>
             </div>
             <div className={classNames(
                         styles["image-preview"],

@@ -1,19 +1,20 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Contact.module.css";
 import classnames from "classnames";
-import { ModeContext } from "@/providers/mode";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Button } from "@/components/atomic/Button/Button";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 
 export const Contact: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [messageId, setMessageId] = useState<string | null>(null);
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -53,6 +54,7 @@ export const Contact: React.FC = () => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Contact Us" />
             <div className={classnames(styles["contact-form__container"], styles[mode])}>
                 <form
@@ -123,7 +125,7 @@ export const Contact: React.FC = () => {
                         styles[mode]
                     )}>Message ID: {messageId}</div>}
                     <div className={styles["contact-form__button-container"]}>
-                        <ButtonTransparent type="reset" onClick={handleReset}>Reset</ButtonTransparent>
+                        <ButtonTransparent type="reset" onClick={handleReset}>Clear</ButtonTransparent>
                         <Button type="submit">Send</Button>
                     </div>
                 </form>

@@ -11,7 +11,7 @@
 }
 
 .login-form__register-link {
-  font-weight: bold;
+  font-weight: 600;
   color: var(--violet-dark);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .login-form__reset-password-link {
-  font-weight: bold;
+  font-weight: 600;
   color: var(--violet-dark);
 }
 

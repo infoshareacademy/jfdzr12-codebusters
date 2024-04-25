@@ -1,19 +1,18 @@
-import { useContext } from "react";
 import classnames from "classnames";
 import styles from "./Footer.module.css";
-import { ModeContext } from "@/providers/mode";
 import fb from '/images/icons/footer/facebook.png'
 import twitter from '/images/icons/footer/twitter.png'
 import linkedin from '/images/icons/footer/linkedin.png'
 import insta from '/images/icons/footer/instagram.png'
 import { Link } from "react-router-dom";
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 interface FooterProps {
     user: User | null;
 }
 
 export const Footer = ({ user }: FooterProps) => {
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
 
     return (
         <div className={classnames(styles["footer"], styles[mode])}>

@@ -53,3 +53,14 @@
   background-color: var(--dark-grey);
   border: 2px solid var(--dark-grey);
 }
+
+@media screen and (max-width: 500px) {
+  .button-container {
+    border-radius: 7px;
+    margin: 6px;
+  }
+
+  .button {
+    padding: 8px 15px;
+  }
+}

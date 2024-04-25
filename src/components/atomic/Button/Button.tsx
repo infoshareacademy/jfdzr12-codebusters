@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import styles from "./Button.module.css";
 import classNames from "classnames";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 interface ButtonProps {
     children: React.ReactNode;
     type?: "button" | "submit" | "reset";
@@ -10,7 +9,7 @@ interface ButtonProps {
 }
 
 export const Button = ({ type = "submit", children, disabled, onClick }: ButtonProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     return (
         <div className={classNames(
             styles["button-container"],

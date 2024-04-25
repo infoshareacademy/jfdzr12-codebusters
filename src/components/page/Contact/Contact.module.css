@@ -19,6 +19,15 @@
   margin: 0 10px;
 }
 
+.contact-content__form-input--text:active,
+.contact-content__form-input--email:active,
+.contact-content__form-input--textarea:active,
+.contact-content__form-input--text:focus,
+.contact-content__form-input--email:focus,
+.contact-content__form-input--textarea:focus {
+  outline: none;
+}
+
 .contact-content__form-input--text.dark,
 .contact-content__form-input--email.dark,
 .contact-content__form-input--textarea.dark {

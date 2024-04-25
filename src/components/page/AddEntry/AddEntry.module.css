@@ -1,32 +1,13 @@
-.entry__form {
+.entry__area {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-.entry__area {
+.entry__buttons-container {
   display: flex;
-  flex-direction: column;
-}
-
-.entry__textarea {
-  display: block;
-  font-size: 1rem;
-  resize: none;
-  word-spacing: 2px;
-  overflow: auto;
-  outline: none;
-  border: none;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-}
-
-.entry__container {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -101,6 +82,7 @@
 
 .entry__error-message {
   text-align: center;
+  margin: 10px;
   color: var(--pink-dark);
 }
 

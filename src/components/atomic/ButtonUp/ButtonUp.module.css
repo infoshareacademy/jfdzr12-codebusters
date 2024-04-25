@@ -1,0 +1,53 @@
+.button-up {
+  position: fixed;
+  bottom: 5vh;
+  right: 60px;
+  opacity: 0.5;
+  z-index: 6;
+  visibility: hidden;
+}
+
+.button-up.show {
+  visibility: visible;
+}
+
+.button-up__image {
+  width: 60px;
+}
+
+.button-up:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .button-up {
+    right: 50px;
+  }
+
+  .button-up__image {
+    width: 50px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .button-up {
+    right: 30px;
+  }
+}
+
+@media screen and (max-width: 746px) {
+  .button-up {
+    right: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .button-up {
+    right: 0px;
+    bottom: 20vh;
+  }
+
+  .button-up.show {
+    visibility: hidden;
+  }
+}

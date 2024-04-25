@@ -97,9 +97,23 @@
   color: var(--violet-medium);
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   .about-section-container {
     flex-direction: column;
-    margin: 20px 0;
+    margin: 10px 0;
+  }
+
+  .about-section-container {
+    flex-direction: column;
+    margin: 10px auto;
+    font-size: 0.8rem;
+  }
+
+  .about-container {
+    margin: 0px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

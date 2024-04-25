@@ -1,14 +1,12 @@
 import classNames from "classnames";
 import styles from "./Headline.module.css";
-import { useContext } from "react";
-import { ModeContext } from "@/providers/mode";
-
+import { useMode } from "@/providers/mode";
 interface HeadlineProps {
     text: string
 }
 
 export const Headline = ({ text }: HeadlineProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
 
     const textArr = text.split("");
     return (

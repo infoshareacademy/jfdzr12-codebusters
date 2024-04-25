@@ -1,6 +1,5 @@
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Page } from "@/components/structure/Page/Page";
-import { ModeContext } from "@/providers/mode";
 import classNames from "classnames";
 import { User, getIdTokenResult } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
@@ -10,6 +9,8 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import styles from "./Account.module.css"
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
 interface AccountProps {
     user: User | null;
 }
@@ -22,7 +23,7 @@ interface AccountData {
 }
 
 export const Account = ({ user }: AccountProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const [readonly, setReadOnly] = useState<boolean>(true)
     const [createdAt, setCreatedAt] = useState<Date | null>(null);
     const [accountData, setAccountData] = useState<AccountData | null>(null);
@@ -113,6 +114,7 @@ export const Account = ({ user }: AccountProps) => {
 
     return (
         <Page>
+            <ButtonBack />
             <Headline text="account" />
             <div className={classNames(
                 styles["account__container"],
@@ -120,17 +122,14 @@ export const Account = ({ user }: AccountProps) => {
             )}>
                 <div className={classNames(styles["account--button-container--edit"], styles[mode])}>
                     <button onClick={() => { setReadOnly(false) }}>
-                        {mode === "light" ? (
-
-                            <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
-                        ) : (
-
-                            <img src="/images/icons/account/user-avatar-color-dark.png" className={styles["account--button--edit-icon"]} />
-                        )}
+                        <img src="/images/icons/account/user-avatar-color-light.png" className={styles["account--button--edit-icon"]} />
                     </button>
                 </div>
                 {user && <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className={classNames(
+                        styles["account__form--container"],
+                        styles[mode]
+                    )}>
                         <div className={classNames(
                             styles["account__form--inputs-container"],
                             styles[mode]
@@ -238,7 +237,7 @@ export const Account = ({ user }: AccountProps) => {
                                 styles["account__form--label"],
                                 styles[mode]
                             )}>
-                                Last authentication:
+                                Authenticated:
                             </label>
                             <div className={classNames(
                                 styles["account__form--input-text"],

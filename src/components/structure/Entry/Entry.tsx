@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import styles from "./Entry.module.css";
-import { useContext, useState } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteModal } from "../DeleteModal/DeleteModal"
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 interface EntryTypes {
     entry: {
         entry: string;
@@ -17,7 +17,7 @@ interface EntryTypes {
 }
 
 export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
     const [isUserModalOpen, setIsUserModalOpen] = useState<boolean>(false);
 
@@ -57,12 +57,15 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
             </div>
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
                 <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
-                <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
-                {entry.updatedTimestamp && (<>
+                {entry.updatedTimestamp && (<div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
                     <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
-                </>)
+                </div>)
                 }
+                <div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
+                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Added:</p>
+                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
+                </div>
             </div>
             {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id} handleDeleteConfirmed={handleDeleteConfirmed} ></DeleteModal>}
         </div>

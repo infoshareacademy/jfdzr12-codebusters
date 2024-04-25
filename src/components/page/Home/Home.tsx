@@ -1,8 +1,7 @@
 import { Page } from "../../structure/Page/Page"
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Home.module.css";
-import { ModeContext } from "@/providers/mode";
 import { User } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
@@ -10,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
+import { CustomSelect } from "@/components/structure/CustomSelect/CustomSelect";
+import { useMode } from "@/providers/mode";
 interface EntryProps {
     user: User | null;
 }
@@ -21,10 +22,11 @@ interface EntriesData {
 }
 
 export const Home = ({ user }: EntryProps) => {
-    const { mode, } = useContext(ModeContext);
+    const { mode, } = useMode();
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
+    const [sortBy, setSortBy] = useState<'asc' | 'desc'>('desc');
 
     if (!user) {
         console.error('User is not authenticated');
@@ -45,9 +47,16 @@ export const Home = ({ user }: EntryProps) => {
                     id: doc.id,
                     ...doc.data()
                 })) as EntriesData[];
-                setEntries(fetchedEntries.sort((x, y) => {
-                    return y.timestamp - x.timestamp;
-                }))
+
+                const sortedEntries = fetchedEntries.sort((x, y) => {
+                    if (sortBy === 'asc') {
+                        return x.timestamp - y.timestamp;
+                    } else {
+                        return y.timestamp - x.timestamp;
+                    }
+                });
+
+                setEntries(sortedEntries);
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -56,7 +65,7 @@ export const Home = ({ user }: EntryProps) => {
         };
 
         fetchEntries();
-    }, []);
+    }, [sortBy]);
 
     const updateEntries = (deletedEntryId: string) => {
         setEntries(entries.filter(entry => entry.id !== deletedEntryId));
@@ -67,7 +76,10 @@ export const Home = ({ user }: EntryProps) => {
             <Headline text="Your diary" />
             <div className={classnames(styles["home"], styles[mode])}>
                 <div className={classnames(styles["home__content"], styles[mode])}>
-                    <Button onClick={() => { navigate("/add-entry") }}>New entry</Button>
+                    <div className={classnames(styles["home__button--new-entry"], styles[mode])}>
+                        <Button onClick={() => { navigate("/add-entry") }}>Add entry</Button>
+                        {entries.length > 0 && <CustomSelect setSortBy={setSortBy}></CustomSelect>}
+                    </div>
                     <div className={classnames(styles["home-section"], styles[mode])}>
                         <div className={classnames(styles["home-section_entries"], styles[mode])}>
                             {entries.map((entry) => (

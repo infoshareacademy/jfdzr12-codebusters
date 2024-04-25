@@ -1,42 +1,45 @@
 .delete-account__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 8px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .delete-account__container.dark {
-    color: var(--beige-light);
+  color: var(--beige-light);
 }
 
 .delete-account__buttons {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .delete-account__label {
-    margin: 7px;
+  margin: 7px;
 }
 
-
 .delete-account__input {
-    border: 0.5px solid rgb(201, 201, 201);
-    border-radius: 5px;
-    padding: 5px 10px;
+  border: 0.5px solid rgb(201, 201, 201);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.delete-account__input:focus,
+.delete-account__input:active {
+  outline: none;
 }
 
 .delete-account__input.dark {
-    border: 0.5px solid var(--black);
-    background-color: var(--violet-dark);
+  border: 0.5px solid var(--black);
+  background-color: var(--violet-dark);
 }
 
 .delete-account__error-message {
-    font-weight: 500;
-    color: var(--pink-dark);
+  font-weight: 500;
+  color: var(--pink-dark);
 }
 
 .delete-account__error-message.dark {
-    color: var(--pink-medium);
+  color: var(--pink-medium);
 }

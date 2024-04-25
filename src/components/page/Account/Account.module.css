@@ -9,20 +9,27 @@
 
 .account--button-container--edit {
   position: absolute;
-  top: 10px;
+  top: -20px;
   right: 10px;
   width: 30px;
   margin: 10px;
 }
 
 .account--button--edit-icon {
-  min-height: 20px;
-  min-width: 20px;
+  min-height: 25px;
+  min-width: 25px;
 }
 
 .account__buttons--container {
   display: flex;
   margin: 30px;
+}
+
+.account__form--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ACCOUNT EDIT FORM ------>*/
@@ -34,7 +41,7 @@
   padding: 20px;
   border-radius: 5px;
   z-index: 1000;
-  width: 400px;
+  width: 550px;
   max-width: 90%;
   border-radius: 8px;
   box-shadow: 0 0 60px #11305121;
@@ -61,11 +68,14 @@
   display: flex;
   margin: 20px;
   align-items: center;
+  width: 100%;
 }
 
 .account__form--label {
   color: var(--beige-dark);
   margin-right: 10px;
+  white-space: nowrap;
+  width: 40%;
 }
 
 .account__form--label.dark {
@@ -79,6 +89,18 @@
   font-weight: 500;
 }
 
+.account__form--input-readonly,
+.account__form--input-text,
+.account__form--input {
+  background-color: inherit;
+  color: var(--violet-dark);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
 .account__form--input-readonly:focus,
 .account__form--input-readonly:active {
   outline: none;
@@ -89,12 +111,13 @@
   background-color: var(--white);
   border-radius: 5px;
   padding: 2px 5px;
+  border: 0.5px solid #c9c9c9;
 }
 
 .account__form--input:focus,
 .account__form--input:active {
   outline: none;
-  border: none;
+  border: 0.5px solid #c9c9c9;
 }
 
 .account__form--input-readonly.dark,
@@ -106,16 +129,54 @@
 .account__form--input.dark {
   background-color: var(--violet-dark);
   color: var(--beige-light);
+  border: 0.5px solid var(--violet-dark);
 }
 
 /*<------ ACCOUNT EDIT FORM*/
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 900px) {
+  .account__container {
+    width: 80%;
+  }
+
+  .account__form--inputs-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .account--button--edit-icon {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .account__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .account__buttons--container {
     flex-direction: column;
   }
 
   .account__container {
     font-size: 0.9rem;
+  }
+
+  .account--button-container--edit {
+    position: absolute;
+    top: -20px;
+    right: -30px;
+  }
+
+  .account__form--inputs-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
   }
 }

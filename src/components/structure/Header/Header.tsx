@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { ModeContext } from "@/providers/mode";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { UserModal } from "../UserModal/UserModal";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { User } from "firebase/auth";
+import { useMode } from "@/providers/mode";
 const WINDOW_MOBILE_WITH = 992;
 
 interface HeaderProps {
@@ -13,11 +13,11 @@ interface HeaderProps {
 }
 
 export const Header = ({ user }: HeaderProps) => {
-    const { mode, toggleMode } = useContext(ModeContext);
+    const { mode, toggleMode } = useMode();
     const location = useLocation();
-
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleAccountModal = (): void => {
@@ -55,13 +55,34 @@ export const Header = ({ user }: HeaderProps) => {
         };
     }, []);
 
+    const closeModals = () => {
+        setIsUserModalOpen(false);
+        setIsLoginModalOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutsideModals = (event: MouseEvent) => {
+            if (event.target && !(event.target as HTMLElement).closest("#header__account-container") &&
+                !(event.target as HTMLElement).closest("#header-nav__list-item-login") &&
+                !(event.target as HTMLElement).closest("#modal-header__container")) {
+                closeModals();
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutsideModals);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutsideModals);
+        };
+    }, []);
+
     return (
         <>
             <header className={styles["header"]}>
                 <div className={classnames(
                     styles["header__container"],
                     styles[mode]
-                )}>
+                )} id="header__container">
                     <div className={styles["header-nav__container"]}>
                         <nav className={styles["header-nav"]}>
                             <ul className={styles["header-nav__list"]}>
@@ -139,16 +160,18 @@ export const Header = ({ user }: HeaderProps) => {
                             <div
                                 className={classnames(
                                     styles["header-nav__list-item-login"],
+                                    { [styles.inactive]: location.pathname === '/login' },
                                     styles[mode]
                                 )}
                                 onClick={toggleLoginModal}
+                                id="header-nav__list-item-login"
                             >
                                 <div className={classnames(
                                     styles["header-nav__list-login"],
                                 )}>Login</div>
                             </div>
                         </>}
-                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal}
+                        {user && <div className={styles["header__account-container"]} onClick={toggleAccountModal} id="header__account-container"
                         >
                             {mode === "light" ? (
                                 <div

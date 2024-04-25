@@ -1,20 +1,20 @@
-import { User, deleteUser } from "firebase/auth";
+import { User, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
 import { Page } from "@/components/structure/Page/Page";
 import { Headline } from "@/components/structure/Headline/Headline";
-import { useContext, useState } from "react";
-import { ModeContext } from "@/providers/mode";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import styles from './DeleteAccount.module.css';
 import { Button } from "@/components/atomic/Button/Button";
 import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonTransparent";
-
+import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
+import { useMode } from "@/providers/mode";
+import { useState } from "react";
 interface DeleteAccountProps {
     user: User | null;
 }
 
 export const DeleteAccount = ({ user }: DeleteAccountProps) => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
@@ -32,19 +32,28 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
         }
 
         try {
+            const email = user.email || '';
+
+            const credential = EmailAuthProvider.credential(email, confirmPassword);
+            await reauthenticateWithCredential(user, credential);
             await deleteUser(user);
             setConfirmPassword('');
-            navigate("/confirm-delete")
-
-
+            navigate("/confirm-delete");
         } catch (error) {
             console.error(error);
-            setError("Account hasn't been deleted")
+            setError("Failed to delete account: Incorrect password");
+            setConfirmPassword("");
         }
     };
 
+    const handleCancel = () => {
+        setConfirmPassword("");
+        setError(null);
+    }
+
     return (
         <Page>
+            <ButtonBack />
             <Headline text="Delete account" />
             <div className={classNames(
                 styles["delete-account__container"],
@@ -75,7 +84,7 @@ export const DeleteAccount = ({ user }: DeleteAccountProps) => {
                 styles["delete-account__buttons"],
                 styles[mode]
             )}>
-                <ButtonTransparent onClick={() => { navigate("/account") }}>Cancel</ButtonTransparent>
+                <ButtonTransparent onClick={handleCancel}>Clear</ButtonTransparent>
                 <Button onClick={handleDeleteAccount}>Confirm</Button>
             </div>
         </Page>
