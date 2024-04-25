@@ -14,7 +14,6 @@ import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
 
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
-import { Paper } from "@/components/structure/Paper/Paper";
 interface EditEntryProps {
     user: User | null;
 }
@@ -45,7 +44,10 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const uploadImage = () => {
         if (imageUpload == null) return;
         const imageRef = ref(storage, `upload-photos/${imageUpload.name}`)
-        uploadBytes(imageRef, imageUpload). then(() => {
+        uploadBytes(imageRef, imageUpload). then((snaphsot) => {
+            getDownloadURL(snaphsot.ref).then((url) => {
+            setImagePreview((prev) => [...prev, url])
+            })
             alert('Image uploaded')
         })
 }
@@ -187,7 +189,7 @@ useEffect(() => {
             <div className={classNames(
                         styles["image-preview"],
                         styles[mode])}><h3>Preview</h3>{imagePreview.map((url) => {
-                        return <img src={url}/>
+                        return <img src={url} key={url}/>
                     })}</div>
         </Page>
     );

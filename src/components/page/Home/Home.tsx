@@ -99,7 +99,7 @@ export const Home = ({ user }: EntryProps) => {
                                 <Entry entry={entry} key={entry.id} user={user} updateEntries={updateEntries}></Entry>
                             ))}
                             {entryPhoto.map((url) => {
-                        return <img src={url}/>
+                            return <img src={url} key={url}/> 
                     })}
                         </div>
                     </div>
