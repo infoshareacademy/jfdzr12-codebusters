@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top:-150px;
+
 }
 
 .entry__input {
@@ -41,7 +41,7 @@
   width: 40px;
   display: flex;
   flex-direction: column;
-  margin-right:-640px;
+  margin-right:-740px;
 }
 
 .controls-button{

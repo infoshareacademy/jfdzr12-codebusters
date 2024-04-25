@@ -4,13 +4,14 @@ import classnames from "classnames";
 import styles from "./Home.module.css";
 import { User } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../../../firebase-config";
+import { db, storage } from "../../../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
 import { Entry } from "@/components/structure/Entry/Entry";
 import { CustomSelect } from "@/components/structure/CustomSelect/CustomSelect";
 import { useMode } from "@/providers/mode";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
 interface EntryProps {
     user: User | null;
 }
@@ -26,12 +27,24 @@ export const Home = ({ user }: EntryProps) => {
     const navigate = useNavigate();
 
     const [entries, setEntries] = useState<EntriesData[]>([])
+    const [entryPhoto, setEntryPhoto] = useState<string[]>([]);
+    const photoListRef = ref(storage, "")
     const [sortBy, setSortBy] = useState<'asc' | 'desc'>('desc');
 
     if (!user) {
         console.error('User is not authenticated');
         return <div>User is not authenticated</div>;
     }
+
+    useEffect(() => {
+        listAll(photoListRef).then((response) => {
+            response.items.forEach((item) => {
+                    getDownloadURL(item).then((url) => {
+                        setEntryPhoto((prev) => [...prev, url])
+                });
+            });
+        });
+    }, []);
 
     useEffect(() => {
         if (!user) {
@@ -85,6 +98,9 @@ export const Home = ({ user }: EntryProps) => {
                             {entries.map((entry) => (
                                 <Entry entry={entry} key={entry.id} user={user} updateEntries={updateEntries}></Entry>
                             ))}
+                            {entryPhoto.map((url) => {
+                        return <img src={url}/>
+                    })}
                         </div>
                     </div>
                 </div>

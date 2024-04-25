@@ -171,30 +171,6 @@ useEffect(() => {
                                         )} />
                                     )
                                 )}</button></div>
-                        <div className={classNames(
-                            styles["entry__container"],
-                            styles[mode])}>
-                            <textarea
-                                placeholder="Write your thoughts here..."
-                                id="entry"
-                                className={classNames(
-                                    styles["entry__textarea"],
-                                    styles[mode]
-                                )}
-                                minLength={10}
-                                maxLength={500}
-                                name="entry"
-                                rows={18}
-                                cols={50}
-                                wrap="off"
-                                autoSave=""
-                                spellCheck
-                                required
-                                value={entryText}
-                                onChange={(e) => setEntryText(e.target.value)}
-                            />
-                        </div>
-
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}
