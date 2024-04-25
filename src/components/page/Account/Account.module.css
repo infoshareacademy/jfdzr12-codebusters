@@ -41,7 +41,7 @@
   padding: 20px;
   border-radius: 5px;
   z-index: 1000;
-  width: 450px;
+  width: 550px;
   max-width: 90%;
   border-radius: 8px;
   box-shadow: 0 0 60px #11305121;
@@ -75,6 +75,7 @@
   color: var(--beige-dark);
   margin-right: 10px;
   white-space: nowrap;
+  width: 40%;
 }
 
 .account__form--label.dark {
@@ -110,12 +111,13 @@
   background-color: var(--white);
   border-radius: 5px;
   padding: 2px 5px;
+  border: 0.5px solid #c9c9c9;
 }
 
 .account__form--input:focus,
 .account__form--input:active {
   outline: none;
-  border: none;
+  border: 0.5px solid #c9c9c9;
 }
 
 .account__form--input-readonly.dark,
@@ -127,6 +129,7 @@
 .account__form--input.dark {
   background-color: var(--violet-dark);
   color: var(--beige-light);
+  border: 0.5px solid var(--violet-dark);
 }
 
 /*<------ ACCOUNT EDIT FORM*/
@@ -172,6 +175,8 @@
   }
 
   .account__form--inputs-container {
-    width: 70%;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
   }
 }

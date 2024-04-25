@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ButtonBack.module.css";
-import { ModeContext } from "@/providers/mode";
+import { useMode } from "@/providers/mode";
 
 export const ButtonBack = () => {
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
     const navigate = useNavigate();
 
     const handleBack = () => {

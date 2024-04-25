@@ -1,8 +1,8 @@
-import { useContext, useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import styles from "./AuthForm.module.css";
-import { ModeContext } from "@/providers/mode";
 import classnames from "classnames";
 import { Button } from "@/components/atomic/Button/Button";
+import { useMode } from "@/providers/mode";
 interface AuthFormProps {
     submitText: string;
     isPasswordHidden?: boolean;
@@ -20,7 +20,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 }) => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
