@@ -58,6 +58,11 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
                 {entry.photo && (
                     <img src={entry.photo} alt="Entry Photo" className={styles["entry-photo"]} />
                 )}
+                {entry.updatedTimestamp && (<div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
+                    <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
+                    <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
+                </div>)
+                }
                 <div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
                     <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Added:</p>
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>

@@ -1,8 +1,6 @@
-import { Page } from "../../structure/Page/Page";
-import styles from "./EditEntry.module.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc, where, deleteDoc, setDoc, query } from "firebase/firestore";
 import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
@@ -13,6 +11,8 @@ import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { Page } from "@/components/structure/Page/Page";
+import styles from "./EditEntry.module.css";
 
 interface EditEntryProps {
     user: User | null;
@@ -32,7 +32,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const [entryText, setEntryText] = useState<string | undefined>("");
     const [originalEntryText, setOriginalEntryText] = useState<string | undefined>("");
     const [photo, setPhoto] = useState<File | null>(null);
-    const [photoUrl, setPhotoUrl] = useState<string | undefined>("");
+    const [photoUrl, setPhotoUrl] = useState<string | null>(null);
     const { entryId }: any = useParams();
     const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                 const entry = fetchedEntries.find((entry) => entry.id === entryId);
                 setEntryText(entry?.entry);
                 setOriginalEntryText(entry?.entry);
-                setPhotoUrl(entry?.photo);
+                setPhotoUrl(entry?.photo || null);
 
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -89,17 +89,22 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         const userId = user.uid;
 
         try {
+            if (photoUrl) {
+                const oldPhotoRef = ref(storage, photoUrl);
+                await deleteObject(oldPhotoRef);
+            }
+
+            let newPhotoUrl: string | null = null;
             if (photo) {
                 const photoRef = ref(storage, `photos/${userId}/${entryId}_photo`);
                 await uploadBytes(photoRef, photo);
-                const newPhotoUrl = await getDownloadURL(photoRef);
-                setPhotoUrl(newPhotoUrl);
+                newPhotoUrl = await getDownloadURL(photoRef);
             }
 
             await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
                 entry: entryText,
                 updatedTimestamp: new Date(),
-                photo: photoUrl || null
+                photo: newPhotoUrl || null
             });
 
             navigate("/");
@@ -123,10 +128,8 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         try {
             const photoRef = ref(storage, photoUrl);
             await deleteObject(photoRef);
-            setPhotoUrl(undefined);
-            setPhoto(null);
+            setPhotoUrl(null);
 
-            // Удаляем ссылку на фото из базы данных
             const userId = user.uid;
             await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
                 photo: null
