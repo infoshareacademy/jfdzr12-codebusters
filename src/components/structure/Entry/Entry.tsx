@@ -74,7 +74,7 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.timestamp.toDate().toString()}</p>
                 </div>
             </div>
-            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} id={entry.id} handleDeleteConfirmed={handleDeleteConfirmed} ></DeleteModal>}
+            {isUserModalOpen && <DeleteModal user={user} setIsUserModalOpen={setIsUserModalOpen} entry={entry} handleDeleteConfirmed={handleDeleteConfirmed} ></DeleteModal>}
         </div>
     )
 }
