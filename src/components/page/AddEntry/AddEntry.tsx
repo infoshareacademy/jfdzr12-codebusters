@@ -14,6 +14,7 @@ import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
 import { DocumentReference, DocumentData } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { UploadPhoto } from "@/components/structure/UploadPhoto/UploadPhoto";
 
 interface EntryProps {
     user: User | null;
@@ -89,7 +90,7 @@ export const AddEntry = ({ user }: EntryProps) => {
             }>
                 <Headline text="new entry" />
                 <form className={classNames(styles["entry__form"])} onSubmit={handleSubmit}>
-                    <input type="file" name="photo" accept="image/*" onChange={handlePhotoChange} />
+                    <UploadPhoto onChange={handlePhotoChange} />
                     <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],

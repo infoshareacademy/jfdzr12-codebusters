@@ -13,6 +13,7 @@ import { useMode } from "@/providers/mode";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { Page } from "@/components/structure/Page/Page";
 import styles from "./EditEntry.module.css";
+import { UploadPhoto } from "@/components/structure/UploadPhoto/UploadPhoto";
 interface EditEntryProps {
     user: User | null;
 }
@@ -158,7 +159,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     className={classNames(styles["entry__form"])}
                     onSubmit={handleSubmit}
                 >
-                    <input type="file" name="photo" accept="image/*" onChange={handlePhotoChange} />
+                    <UploadPhoto onChange={handlePhotoChange} />
                     <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {photoUrl && <div className={classNames(
                         styles["entry-edit__photo-container"],
