@@ -54,10 +54,16 @@ export const Entry = ({ entry, user, updateEntries }: EntryTypes) => {
                 </div>
             </div>
             <div className={classNames(styles["home-section_entry--content"], styles[mode])}>
-                <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
-                {entry.photo && (
-                    <img src={entry.photo} alt="Entry Photo" className={styles["entry-photo"]} />
-                )}
+                <div className={classNames(styles["home-section_entry--content-data"], styles[mode])}>
+                    <div className={classNames(styles["home-section_entry--text-container"], styles[mode])}>
+                        <p className={classNames(styles["home-section_entry--text"], styles[mode])}>{entry.entry}</p>
+                    </div>
+                    {entry.photo && (
+                        <div className={styles["home-section__entry-photo--container"]}>
+                            <img src={entry.photo} alt="Entry Photo" className={styles["entry-photo"]} />
+                        </div>
+                    )}
+                </div>
                 {entry.updatedTimestamp && (<div className={classNames(styles["home-section_entry--date-container"], styles[mode])}>
                     <p className={classNames(styles["home-section_entry--date-updated"], styles[mode])}>Updated:</p>
                     <p className={classNames(styles["home-section_entry--date"], styles[mode])}>{entry.updatedTimestamp.toDate().toString()}</p>
