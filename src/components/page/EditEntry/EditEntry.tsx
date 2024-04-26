@@ -88,22 +88,20 @@ export const EditEntry = ({ user }: EditEntryProps) => {
         const userId = user.uid;
 
         try {
-            if (photoUrl) {
-                const oldPhotoRef = ref(storage, photoUrl);
-                await deleteObject(oldPhotoRef);
-            }
-
             let newPhotoUrl: string | null = null;
+
             if (photo) {
                 const photoRef = ref(storage, `photos/${userId}/${entryId}_photo`);
                 await uploadBytes(photoRef, photo);
                 newPhotoUrl = await getDownloadURL(photoRef);
+            } else {
+                newPhotoUrl = photoUrl;
             }
 
             await updateDoc(doc(db, `entries/${userId}/entry`, entryId), {
                 entry: entryText,
                 updatedTimestamp: new Date(),
-                photo: newPhotoUrl || null
+                photo: newPhotoUrl
             });
 
             navigate("/");
@@ -111,6 +109,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
             console.log(error);
             setErrorMessage("Error editing entry");
         }
+
     };
 
     const handleReset = () => {
