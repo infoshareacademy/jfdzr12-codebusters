@@ -1,0 +1,47 @@
+.upload-image--container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-image--image {
+  width: 30px;
+  margin: 10px;
+}
+
+.upload-image--input {
+  background-color: inherit;
+  display: none;
+}
+
+.upload-image--container.dark {
+  color: var(--beige-light);
+}
+
+.custom-file-label {
+  width: 100%;
+  display: block;
+  flex-direction: row;
+}
+
+.upload-image--image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-image--label {
+  width: 40%;
+  display: flex;
+  justify-content: start;
+}
+
+@media screen and (max-width: 500px) {
+  .upload-image--label {
+    width: 60%;
+    display: flex;
+    justify-content: start;
+  }
+}

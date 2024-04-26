@@ -2,7 +2,7 @@ import { Headline } from "@/components/structure/Headline/Headline";
 import { Page } from "@/components/structure/Page/Page";
 import classNames from "classnames";
 import { User, getIdTokenResult } from "firebase/auth";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/atomic/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";

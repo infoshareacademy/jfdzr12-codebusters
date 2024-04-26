@@ -2,8 +2,8 @@ import { Page } from "../../structure/Page/Page";
 import styles from "./AddEntry.module.css";
 import { useState } from "react";
 import classNames from "classnames";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../../../firebase-config";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
+import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
 import { Headline } from "@/components/structure/Headline/Headline";
@@ -12,6 +12,10 @@ import { ButtonTransparent } from "@/components/atomic/ButtonTransparent/ButtonT
 import { EntryArea } from "@/components/atomic/EntryArea/EntryArea";
 import { ButtonBack } from "@/components/atomic/ButtonBack/ButtonBack";
 import { useMode } from "@/providers/mode";
+import { DocumentReference, DocumentData } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { UploadPhoto } from "@/components/structure/UploadPhoto/UploadPhoto";
+
 interface EntryProps {
     user: User | null;
 }
@@ -20,20 +24,18 @@ export const AddEntry = ({ user }: EntryProps) => {
     const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string>("");
+    const [photo, setPhoto] = useState<File | null>(null);
     const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        const formData = new FormData(event.currentTarget);
-        const entry = formData.get('entry') as string;
 
         if (!user) {
             console.error('User is not authenticated');
             return;
         }
 
-        if (!entry.trim()) {
+        if (!entryText.trim()) {
             setErrorMessage("Entry cannot be empty");
             return;
         }
@@ -41,12 +43,24 @@ export const AddEntry = ({ user }: EntryProps) => {
         const userId = user.uid;
 
         try {
-            await addDoc(collection(db, `entries/${userId}/entry`), {
-                entry,
+            const docRef: DocumentReference<DocumentData> = await addDoc(collection(db, `entries/${userId}/entry`), {
+                entry: entryText,
                 email: user.email,
                 timestamp: new Date()
             });
+
+            let photoUrl: string | undefined = undefined;
+            if (photo) {
+                const photoRef = ref(storage, `photos/${userId}/${docRef.id}_photo`);
+                await uploadBytes(photoRef, photo);
+
+                photoUrl = await getDownloadURL(photoRef);
+
+                await updateDoc(docRef, { photo: photoUrl });
+            }
+
             setEntryText("");
+            setPhoto(null);
             navigate("/")
         } catch (error) {
             console.log(error);
@@ -57,6 +71,14 @@ export const AddEntry = ({ user }: EntryProps) => {
     const handleReset = () => {
         setEntryText("");
         setErrorMessage(null);
+        setPhoto(null);
+    }
+
+    const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            setPhoto(files[0]);
+        }
     }
 
     return (
@@ -67,11 +89,9 @@ export const AddEntry = ({ user }: EntryProps) => {
                 styles[mode])
             }>
                 <Headline text="new entry" />
-                <form className={classNames(styles["entry__form"])}
-                    onSubmit={handleSubmit}>
-
-                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)}>
-                    </EntryArea>
+                <form className={classNames(styles["entry__form"])} onSubmit={handleSubmit}>
+                    <UploadPhoto onChange={handlePhotoChange} />
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}
