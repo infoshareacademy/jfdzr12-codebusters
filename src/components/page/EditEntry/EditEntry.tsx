@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { collection, doc, getDocs, updateDoc, where, deleteDoc, setDoc, query } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc, where, query } from "firebase/firestore";
 import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { Button } from "@/components/atomic/Button/Button";
@@ -13,11 +13,9 @@ import { useMode } from "@/providers/mode";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { Page } from "@/components/structure/Page/Page";
 import styles from "./EditEntry.module.css";
-
 interface EditEntryProps {
     user: User | null;
 }
-
 interface EntriesData {
     id: string;
     entry: string;
