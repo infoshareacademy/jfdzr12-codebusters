@@ -5,9 +5,6 @@ import { Welcome } from './components/page/Welcome/Welcome';
 import { AddEntry } from './components/page/AddEntry/AddEntry'
 import { Footer } from './components/structure/Footer/Footer';
 import { ModeProvider } from './providers/mode';
-import { useState, useEffect } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../firebase-config';
 import { NotFound } from './components/page/NotFound/NotFound';
 import { Account } from './components/page/Account/Account';
 import { ChangePassword } from './components/page/ChangePassword/ChangePassword';
@@ -22,16 +19,10 @@ import ScrollToTop from './components/atomic/ScrollToTop/ScrollToTop';
 import { Registration } from './components/page/Registration/Registration';
 import { Login } from './components/page/Login/Login';
 import { RegistrationSuccess } from './components/page/RegistrationSuccess/RegistrationSuccess';
+import { useCurrentUser } from './providers/currentUser';
 
 function App(): JSX.Element {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-    return unsubscribe;
-  }, []);
+  const user = useCurrentUser();
 
   return (
     <>
