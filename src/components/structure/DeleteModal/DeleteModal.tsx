@@ -3,17 +3,23 @@ import classnames from "classnames";
 import styles from "./DeleteModal.module.css";
 import { Modal } from "@/components/atomic/Modal/Modal.js";
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../../../firebase-config";
+import { db, storage } from "../../../../firebase-config";
 import { User } from "firebase/auth";
 import { useMode } from "@/providers/mode";
-
+import { deleteObject, ref } from "firebase/storage";
 interface DeleteModalProps {
     user: User | null;
     setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    id: string;
+    entry: {
+        entry: string;
+        timestamp: any;
+        id: string;
+        updatedTimestamp?: any;
+        photo?: string;
+    };
     handleDeleteConfirmed: () => void;
 }
-export const DeleteModal = ({ setIsUserModalOpen, user, id, handleDeleteConfirmed }: DeleteModalProps) => {
+export const DeleteModal = ({ setIsUserModalOpen, user, entry, handleDeleteConfirmed }: DeleteModalProps) => {
     const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -27,8 +33,14 @@ export const DeleteModal = ({ setIsUserModalOpen, user, id, handleDeleteConfirme
         const userId = user.uid;
 
         try {
-            await deleteDoc(doc(db, `entries/${userId}/entry`, id));
+            await deleteDoc(doc(db, `entries/${userId}/entry`, entry.id));
             handleDeleteConfirmed();
+
+            if (entry.photo) {
+                const photoRef = ref(storage, entry.photo);
+                await deleteObject(photoRef);
+            }
+
         } catch (error) {
             console.log(error);
             setErrorMessage("Error");
