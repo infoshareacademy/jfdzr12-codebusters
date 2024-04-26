@@ -158,10 +158,22 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     className={classNames(styles["entry__form"])}
                     onSubmit={handleSubmit}
                 >
-                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
-                    {photoUrl && <img src={photoUrl} alt="Entry Photo" />}
                     <input type="file" name="photo" accept="image/*" onChange={handlePhotoChange} />
-                    {photoUrl && <ButtonTransparent type="button" onClick={handleDeletePhoto}>Delete Photo</ButtonTransparent>}
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
+                    {photoUrl && <div className={classNames(
+                        styles["entry-edit__photo-container"],
+                        styles[mode])}>
+                        <img src={photoUrl} alt="entry photo" className={classNames(
+                            styles["entry-edit__photo"],
+                            styles[mode])} />
+                        <div className={classNames(
+                            styles["entry-edit__button-container--delete-photo"],
+                            styles[mode])}>
+                            <button type="button" onClick={handleDeletePhoto} className={classNames(
+                                styles["entry-edit__button--delete-photo"],
+                                styles[mode])}>X</button>
+                        </div>
+                    </div>}
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}

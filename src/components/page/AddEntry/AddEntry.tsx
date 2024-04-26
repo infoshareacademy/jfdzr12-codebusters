@@ -89,8 +89,8 @@ export const AddEntry = ({ user }: EntryProps) => {
             }>
                 <Headline text="new entry" />
                 <form className={classNames(styles["entry__form"])} onSubmit={handleSubmit}>
-                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     <input type="file" name="photo" accept="image/*" onChange={handlePhotoChange} />
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}
