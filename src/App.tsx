@@ -19,47 +19,49 @@ import ScrollToTop from './components/atomic/ScrollToTop/ScrollToTop';
 import { Registration } from './components/page/Registration/Registration';
 import { Login } from './components/page/Login/Login';
 import { RegistrationSuccess } from './components/page/RegistrationSuccess/RegistrationSuccess';
-import { useCurrentUser } from './providers/currentUser';
+import { UserProvider, useCurrentUser } from './providers/currentUser';
 
 function App(): JSX.Element {
   const user = useCurrentUser();
 
   return (
     <>
-      <ModeProvider>
-        <HashRouter>
-          <Header user={user} />
-          <ScrollToTop>
-            <Routes>
-              {!user &&
-                <>
-                  <Route path="/" element={<Welcome />} />
-                  <Route path="/reset-password" element={<ResetPassword />} />
-                  <Route path="/confirm-delete" element={<ConfirmDelete />} />
-                  <Route path="/register" element={<Registration />} />
-                  <Route path="/login" element={<Login />} />
-                </>
-              }
-              {user &&
-                <>
+      <UserProvider>
+        <ModeProvider>
+          <HashRouter>
+            <Header user={user} />
+            <ScrollToTop>
+              <Routes>
+                {!user &&
+                  <>
+                    <Route path="/" element={<Welcome />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/confirm-delete" element={<ConfirmDelete />} />
+                    <Route path="/register" element={<Registration />} />
+                    <Route path="/login" element={<Login />} />
+                  </>
+                }
+                {user &&
+                  <>
 
-                  <Route path="/" element={<Home user={user} />} />
-                  <Route path="/add-entry" element={<AddEntry user={user} />} />
-                  <Route path="/edit-entry/:entryId" element={<EditEntry user={user} />} />
-                  <Route path="/account" element={<Account user={user} />} />
-                  <Route path="/change-password" element={<ChangePassword user={user} />} />
-                  <Route path="/delete-account" element={<DeleteAccount user={user} />} />
-                  <Route path="/registration-success" element={<RegistrationSuccess />} />
-                </>
-              }
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ScrollToTop>
-          <Footer user={user} />
-        </HashRouter>
-      </ModeProvider>
+                    <Route path="/" element={<Home user={user} />} />
+                    <Route path="/add-entry" element={<AddEntry user={user} />} />
+                    <Route path="/edit-entry/:entryId" element={<EditEntry user={user} />} />
+                    <Route path="/account" element={<Account user={user} />} />
+                    <Route path="/change-password" element={<ChangePassword user={user} />} />
+                    <Route path="/delete-account" element={<DeleteAccount user={user} />} />
+                    <Route path="/registration-success" element={<RegistrationSuccess />} />
+                  </>
+                }
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ScrollToTop>
+            <Footer user={user} />
+          </HashRouter>
+        </ModeProvider>
+      </UserProvider>
     </>
   );
 }

@@ -1,8 +1,7 @@
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
-
+import { getAuth, User } from "firebase/auth";
 interface FirebaseConfigTypes {
   apiKey: string;
   authDomain: string;
@@ -25,3 +24,4 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
+export type { User }; 
