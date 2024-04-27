@@ -6,24 +6,37 @@
   transform: translateY(-50%);
   text-align: center;
   color: var(--beige-dark);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 1s ease-in-out;
   z-index: 3;
 }
 
-.headline.active {
+.headline.active,
+.headline:hover {
   transform: rotateX(35deg), translateY(-50%);
   font-weight: bold;
+  transition: transform 1s ease-in-out;
 }
 
-.headline.active > .headline__symbol {
+.headline.active > .headline__symbol,
+.headline:hover > .headline__symbol {
   color: var(--violet-dark);
+  transition: transform 1s ease-in-out, color 1s ease-in-out;
 }
 
-.headline.active > .headline__symbol:nth-child(odd) {
+.headline.active > .headline__symbol:nth-child(odd),
+.headline.active > .headline__symbol:nth-child(even),
+.headline:hover > .headline__symbol:nth-child(odd),
+.headline:hover > .headline__symbol:nth-child(even) {
+  transition: transform 1s ease-in-out;
+}
+
+.headline.active > .headline__symbol:nth-child(odd),
+.headline:hover > .headline__symbol:nth-child(odd) {
   transform: skewY(15deg);
 }
 
-.headline.active > .headline__symbol:nth-child(even) {
+.headline.active > .headline__symbol:nth-child(even),
+.headline:hover > .headline__symbol:nth-child(even) {
   transform: skewY(-15deg);
   background-color: var(--violet-light);
 }
@@ -35,8 +48,8 @@
   height: 60px;
   justify-content: center;
   align-items: center;
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
+  transition: transform 1s ease-in-out, color 1s ease-in-out,
+    background-color 1s ease-in-out;
   box-shadow: 0 5px 10px #0000001a;
   font-family: var(--headline);
 }
@@ -45,11 +58,13 @@
   color: var(--beige-light);
 }
 
-.headline.dark.active > .headline__symbol {
+.headline.dark.active > .headline__symbol,
+.headline.dark:hover > .headline__symbol {
   color: var(--beige-light);
 }
 
-.headline.dark.active > .headline__symbol:nth-child(even) {
+.headline.dark.active > .headline__symbol:nth-child(even),
+.headline.dark:hover > .headline__symbol:nth-child(even) {
   background-color: var(--indigo-medium-dark);
 }
 
