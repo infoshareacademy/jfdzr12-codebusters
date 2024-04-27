@@ -36,6 +36,13 @@ export const Account = ({ user }: AccountProps) => {
     });
     const navigate = useNavigate();
 
+    let creationTime = "";
+
+    if (user?.metadata.creationTime) {
+        creationTime = new Date(user.metadata.creationTime).toLocaleString();
+    }
+
+
     useEffect(() => {
         if (user) {
             getIdTokenResult(user).then(idTokenResult => {
@@ -149,6 +156,27 @@ export const Account = ({ user }: AccountProps) => {
                             styles["account__form--inputs-container"],
                             styles[mode]
                         )}>
+                            <label htmlFor="username" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Username:
+                            </label>
+                            <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly}
+                                className={readonly ?
+                                    classNames(
+                                        styles["account__form--input-readonly"],
+                                        styles[mode]) :
+                                    classNames(
+                                        styles["account__form--input"],
+                                        styles[mode])
+                                }
+                            />
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
                             <label htmlFor="name" className={classNames(
                                 styles["account__form--label"],
                                 styles[mode]
@@ -177,27 +205,6 @@ export const Account = ({ user }: AccountProps) => {
                                 Surname:
                             </label>
                             <input type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={readonly}
-                                className={readonly ?
-                                    classNames(
-                                        styles["account__form--input-readonly"],
-                                        styles[mode]) :
-                                    classNames(
-                                        styles["account__form--input"],
-                                        styles[mode])
-                                }
-                            />
-                        </div>
-                        <div className={classNames(
-                            styles["account__form--inputs-container"],
-                            styles[mode]
-                        )}>
-                            <label htmlFor="username" className={classNames(
-                                styles["account__form--label"],
-                                styles[mode]
-                            )}>
-                                Username:
-                            </label>
-                            <input type="text" name="username" value={formData.username} onChange={handleChange} readOnly={readonly}
                                 className={readonly ?
                                     classNames(
                                         styles["account__form--input-readonly"],
@@ -243,6 +250,21 @@ export const Account = ({ user }: AccountProps) => {
                                 styles["account__form--input-text"],
                                 styles[mode]
                             )}>{createdAt?.toLocaleString()}</div>
+                        </div>
+                        <div className={classNames(
+                            styles["account__form--inputs-container"],
+                            styles[mode]
+                        )}>
+                            <label htmlFor="name" className={classNames(
+                                styles["account__form--label"],
+                                styles[mode]
+                            )}>
+                                Account created:
+                            </label>
+                            <div className={classNames(
+                                styles["account__form--input-text"],
+                                styles[mode]
+                            )}>{creationTime}</div>
                         </div>
                     </div>
                     {!readonly && <div className={styles["account__buttons--container"]}>
