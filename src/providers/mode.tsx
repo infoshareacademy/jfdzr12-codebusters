@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
 
 type Mode = "light" | "dark";
 
@@ -29,7 +29,26 @@ export const ModeProvider: React.FC<ModeProviderProps> = ({ children }: ModeProv
     };
 
     useEffect(() => {
-        document.body.className = mode;
+        const fetchModeFromLocalStorage = () => {
+            try {
+                const modeData: Mode | null = JSON.parse(localStorage.getItem('mode') || 'null');
+                if (modeData && mode !== modeData) {
+                    setMode(modeData);
+                }
+            } catch (error) {
+                console.error("Error accessing local storage:", error);
+            }
+        };
+
+        fetchModeFromLocalStorage();
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('mode', JSON.stringify(mode));
+    }, [mode]);
+
+    useEffect(() => {
+        document.body.className = mode === "dark" ? "dark" : "";
     }, [mode]);
 
     return (
