@@ -58,7 +58,7 @@
 }
 
 .registration-success_image {
-  width: 400px;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 768px) {

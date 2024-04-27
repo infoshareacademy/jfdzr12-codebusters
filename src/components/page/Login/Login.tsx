@@ -48,6 +48,19 @@ export const Login = () => {
                         </Link>
                     </p>
                 </div>
+                <div className="login__reset-password-container">
+                    <p className={classnames(
+                        styles["login__reset-password-text"],
+                        styles[mode]
+                    )}>
+                        <Link to="/reset-password" className={classnames(
+                            styles["login__reset-password-link"],
+                            styles[mode]
+                        )}>
+                            Forgot password?
+                        </Link>
+                    </p>
+                </div>
             </div>
         </Page >
     )
