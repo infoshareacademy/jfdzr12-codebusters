@@ -14,6 +14,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage
 import { Page } from "@/components/structure/Page/Page";
 import styles from "./EditEntry.module.css";
 import { UploadPhoto } from "@/components/structure/UploadPhoto/UploadPhoto";
+import { ConfirmDeleteImageModal } from "@/components/structure/ConfirmModal/ConfirmDeleteImageModal";
 interface EditEntryProps {
     user: User | null;
 }
@@ -28,10 +29,12 @@ interface EntriesData {
 export const EditEntry = ({ user }: EditEntryProps) => {
     const { mode } = useMode();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorMessageDeletePhoto, setErrorMessageDeletePhoto] = useState<string | null>(null);
     const [entryText, setEntryText] = useState<string | undefined>("");
     const [originalEntryText, setOriginalEntryText] = useState<string | undefined>("");
     const [photo, setPhoto] = useState<File | null>(null);
     const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+    const [confirmDeleteImageModal, setConfirmDeleteImageModal] = useState<boolean>(false);
     const { entryId }: any = useParams();
     const navigate = useNavigate();
 
@@ -120,6 +123,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const handleDeletePhoto = async () => {
         if (!photoUrl) {
             console.error('No photo to delete');
+            setErrorMessageDeletePhoto("No photo to delete")
             return;
         }
 
@@ -134,6 +138,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
             });
         } catch (error) {
             console.error("Error deleting photo:", error);
+            setErrorMessageDeletePhoto("Error deleting photo")
         }
     }
 
@@ -169,7 +174,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                         <div className={classNames(
                             styles["entry-edit__button-container--delete-photo"],
                             styles[mode])}>
-                            <button type="button" onClick={handleDeletePhoto} className={classNames(
+                            <button type="button" onClick={() => { setConfirmDeleteImageModal(true) }} className={classNames(
                                 styles["entry-edit__button--delete-photo"],
                                 styles[mode])}>X</button>
                         </div>
@@ -186,6 +191,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                         <Button type="submit">Add</Button>
                     </div>
                 </form>
+                {confirmDeleteImageModal && <ConfirmDeleteImageModal handleDeletePhoto={handleDeletePhoto} setConfirmDeleteImageModal={setConfirmDeleteImageModal} errorMessageDeletePhoto={errorMessageDeletePhoto}>Are you sure you want to delete photo?</ConfirmDeleteImageModal>}
             </div>
         </Page>
     );
