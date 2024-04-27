@@ -5,7 +5,7 @@ import { useState } from "react";
 
 interface UploadPhotoTypes {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    photo: string | null;
+    photo?: string | null;
 }
 
 export const UploadPhoto = ({ onChange, photo }: UploadPhotoTypes) => {
