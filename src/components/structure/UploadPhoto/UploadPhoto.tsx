@@ -5,15 +5,16 @@ import { useState } from "react";
 
 interface UploadPhotoTypes {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    photo: string | null;
 }
 
-export const UploadPhoto = ({ onChange }: UploadPhotoTypes) => {
+export const UploadPhoto = ({ onChange, photo }: UploadPhotoTypes) => {
     const { mode } = useMode();
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files && event.target.files[0];
-        setSelectedFile(file);
+        setSelectedFile(file || null);
     };
 
     return (
@@ -48,7 +49,7 @@ export const UploadPhoto = ({ onChange }: UploadPhotoTypes) => {
                         styles["upload-image--image"],
                         styles[mode]
                     )}></img>
-                    {selectedFile ? selectedFile.name : 'Choose image file'}
+                    {selectedFile ? selectedFile.name : (photo ? 'Change image file' : 'Choose image file')}
 
                 </div>
             </label>

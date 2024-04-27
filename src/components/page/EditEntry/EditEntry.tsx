@@ -158,7 +158,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     className={classNames(styles["entry__form"])}
                     onSubmit={handleSubmit}
                 >
-                    <UploadPhoto onChange={handlePhotoChange} />
+                    <UploadPhoto onChange={handlePhotoChange} photo={photoUrl} />
                     <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {photoUrl && <div className={classNames(
                         styles["entry-edit__photo-container"],
