@@ -9,12 +9,14 @@
   color: var(--beige-light);
 }
 
-.login__login-link {
+.login__login-link,
+.login__reset-password-link {
   font-weight: 600;
   color: var(--violet-dark);
 }
 
-.login__login-link.dark {
+.login__login-link.dark,
+.login__reset-password-link.dark {
   color: var(--violet-light);
 }
 

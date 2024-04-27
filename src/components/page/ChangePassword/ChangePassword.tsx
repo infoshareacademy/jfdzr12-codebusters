@@ -115,7 +115,7 @@ export const ChangePassword = ({ user }: ChangePasswordProps) => {
                 <label className={classNames(
                     styles["change-password__label"],
                     styles[mode]
-                )} htmlFor="new-password-repeat">Submit new password:</label>
+                )} htmlFor="new-password-repeat">Confirm new password:</label>
                 <input
                     className={classNames(
                         styles["change-password__input"],
