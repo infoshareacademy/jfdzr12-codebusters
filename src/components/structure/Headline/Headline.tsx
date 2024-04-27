@@ -13,7 +13,7 @@ export const Headline = ({ text }: HeadlineProps) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setIsActive(false);
-        }, 2000);
+        }, 1000);
 
         return () => clearTimeout(timeout);
     }, []);
