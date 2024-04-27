@@ -80,6 +80,11 @@
 
 .entry-photo {
   border-radius: 15px;
+  filter: grayscale(0%);
+}
+.entry-photo:hover {
+    filter: grayscale(100%);
+    border: 1px solid var(--violet-dark);
 }
 
 @media only screen and (max-width: 768px) {
