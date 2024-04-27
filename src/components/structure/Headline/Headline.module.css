@@ -10,20 +10,20 @@
   z-index: 3;
 }
 
-.headline:hover {
+.headline.active {
   transform: rotateX(35deg), translateY(-50%);
   font-weight: bold;
 }
 
-.headline:hover > .headline__symbol {
+.headline.active > .headline__symbol {
   color: var(--violet-dark);
 }
 
-.headline:hover > .headline__symbol:nth-child(odd) {
+.headline.active > .headline__symbol:nth-child(odd) {
   transform: skewY(15deg);
 }
 
-.headline:hover > .headline__symbol:nth-child(even) {
+.headline.active > .headline__symbol:nth-child(even) {
   transform: skewY(-15deg);
   background-color: var(--violet-light);
 }
@@ -45,11 +45,11 @@
   color: var(--beige-light);
 }
 
-.headline.dark:hover > .headline__symbol {
+.headline.dark.active > .headline__symbol {
   color: var(--beige-light);
 }
 
-.headline.dark:hover > .headline__symbol:nth-child(even) {
+.headline.dark.active > .headline__symbol:nth-child(even) {
   background-color: var(--indigo-medium-dark);
 }
 
