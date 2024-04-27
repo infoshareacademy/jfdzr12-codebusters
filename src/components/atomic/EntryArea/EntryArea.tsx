@@ -19,11 +19,12 @@ export const EntryArea = ({ value, onChange }: EntryAreaProps) => {
                     styles[mode]
                 )}
                 minLength={1}
-                maxLength={500}
+                maxLength={2000}
                 name="entry"
                 rows={14}
                 cols={50}
                 wrap="off"
+                placeholder="Start typing..."
                 autoSave=""
                 spellCheck
                 required>
