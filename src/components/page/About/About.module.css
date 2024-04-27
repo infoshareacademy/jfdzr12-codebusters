@@ -56,6 +56,10 @@
   width: 50%;
 }
 
+.about__image {
+  border-radius: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .about-container {
     margin: 30px 50px;

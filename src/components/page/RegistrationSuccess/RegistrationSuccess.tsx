@@ -46,7 +46,7 @@ export const RegistrationSuccess = () => {
                 </div>
                 <div className={styles["registration-success_image-container"]}>
                     <img src="/images/icons/registration-success/hello.jpeg" alt="not found image" className={classNames(
-                        styles["not-found_image"],
+                        styles["registration-success_image"],
                         styles[mode]
                     )} />
                 </div>
