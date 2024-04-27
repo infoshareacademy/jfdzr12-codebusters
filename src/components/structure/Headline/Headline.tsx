@@ -8,12 +8,12 @@ interface HeadlineProps {
 
 export const Headline = ({ text }: HeadlineProps) => {
     const { mode } = useMode();
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setIsActive(true);
-        }, 5000);
+            setIsActive(false);
+        }, 2000);
 
         return () => clearTimeout(timeout);
     }, []);
@@ -28,8 +28,7 @@ export const Headline = ({ text }: HeadlineProps) => {
             {textArr.map((symbol, index) => {
                 return (<div className={classNames(
                     styles["headline__symbol"],
-                    styles[mode],
-                    { [styles.active]: isActive }
+                    styles[mode]
                 )} key={index}>
                     {symbol}
                 </div>)
