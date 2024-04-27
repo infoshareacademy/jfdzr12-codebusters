@@ -164,7 +164,6 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                     onSubmit={handleSubmit}
                 >
                     <UploadPhoto onChange={handlePhotoChange} photo={photoUrl} />
-                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {photoUrl && <div className={classNames(
                         styles["entry-edit__photo-container"],
                         styles[mode])}>
@@ -179,6 +178,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                                 styles[mode])}>X</button>
                         </div>
                     </div>}
+                    <EntryArea value={entryText} onChange={(e) => setEntryText(e.target.value)} />
                     {errorMessage && <div className={classNames(
                         styles["entry__error-message"],
                         styles[mode])}>{errorMessage}
