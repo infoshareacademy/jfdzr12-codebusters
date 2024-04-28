@@ -64,16 +64,16 @@
   justify-content: center;
   align-items: center;
   margin: 30px 10px;
-  filter: grayscale(0%);
 }
 
 .entry-edit__photo {
   width: 80%;
   margin: 0 10px;
   border-radius: 10px;
+  filter: grayscale(0%);
 }
 
-.entry-edit__photo-container:hover {
+.entry-edit__photo.hoverButtonDelete {
   filter: grayscale(100%);
 }
 

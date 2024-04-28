@@ -34,6 +34,7 @@ export const EditEntry = ({ user }: EditEntryProps) => {
     const [originalEntryText, setOriginalEntryText] = useState<string | undefined>("");
     const [photo, setPhoto] = useState<File | null>(null);
     const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+    const [hoverButtonDeletePhoto, setHoverButtonDeletePhoto] = useState<boolean>(false);
     const [confirmDeleteImageModal, setConfirmDeleteImageModal] = useState<boolean>(false);
     const { entryId }: any = useParams();
     const navigate = useNavigate();
@@ -169,10 +170,13 @@ export const EditEntry = ({ user }: EditEntryProps) => {
                         styles[mode])}>
                         <img src={photoUrl} alt="entry photo" className={classNames(
                             styles["entry-edit__photo"],
-                            styles[mode])} />
+                            styles[mode],
+                            { [styles.hoverButtonDelete]: hoverButtonDeletePhoto }
+                        )} />
                         <div className={classNames(
                             styles["entry-edit__button-container--delete-photo"],
-                            styles[mode])}>
+                            styles[mode])} onMouseEnter={() => { setHoverButtonDeletePhoto(true) }}
+                            onMouseLeave={() => { setHoverButtonDeletePhoto(false) }}>
                             <button type="button" onClick={() => { setConfirmDeleteImageModal(true) }} className={classNames(
                                 styles["entry-edit__button--delete-photo"],
                                 styles[mode])}>X</button>
