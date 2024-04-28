@@ -9,7 +9,7 @@ export const ButtonBack = () => {
 
     const handleBack = () => {
         const previousPage = document.referrer;
-        if (previousPage && previousPage.includes(window.location.origin)) {
+        if (!previousPage.includes(window.location.origin)) {
             window.history.back();
         } else {
             navigate('/');
