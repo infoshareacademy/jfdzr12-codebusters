@@ -25,7 +25,7 @@ export const Modal = ({ children, onClickSubmit, onClickCancel }: ModalTypes) =>
                     styles["modal__button-container"],
                     styles[mode])}>
                     {onClickCancel && <ButtonTransparent type="reset" onClick={onClickCancel}>Cancel</ButtonTransparent>}
-                    <Button type="submit">Submit</Button></div>
+                    <Button type="submit">Confirm</Button></div>
             </form></div>
     )
 }
