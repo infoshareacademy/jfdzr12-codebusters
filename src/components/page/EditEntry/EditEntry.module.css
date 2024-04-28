@@ -74,7 +74,7 @@
 }
 
 .entry-edit__photo.hoverButtonDelete {
-  filter: grayscale(100%);
+  filter: grayscale(100%) opacity(0.4);
 }
 
 .entry-edit__button-container--delete-photo {
