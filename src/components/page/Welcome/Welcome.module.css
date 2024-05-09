@@ -34,7 +34,7 @@
 }
 
 .welcome__headline--paragraph {
-  color: var(--beige-light);
+  color: var(--white);
   margin: 10px 0 20px;
   font-size: 1.6rem;
   font-weight: 500;
