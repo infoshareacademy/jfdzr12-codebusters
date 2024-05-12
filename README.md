@@ -1,6 +1,6 @@
 # Diary Daze
 
-Diary Daze is an innovative project crafted by the students of InfoSpace Academy. Our platform harnesses the power of cutting-edge technologies, including React, React Router, TypeScript, and JavaScript, to deliver a seamless user experience. Leveraging the versatility of module.css for styling, Diary Daze ensures a visually appealing interface while maintaining structural integrity with HTML5.
+Diary Daze is an innovative project crafted by the students of infoShare Academy. Our platform harnesses the power of cutting-edge technologies, including React, React Router, TypeScript, and JavaScript, to deliver a seamless user experience. Leveraging the versatility of module.css for styling, Diary Daze ensures a visually appealing interface while maintaining structural integrity with HTML5.
 
 Driven by a robust backend infrastructure, Diary Daze seamlessly integrates with Firebase Firestore Database, Firebase Storage, Firebase Hosting, and Firebase Authentication. This not only guarantees secure data storage and seamless authentication but also ensures scalability and reliability for our users.
 
